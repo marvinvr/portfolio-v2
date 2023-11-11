@@ -28,7 +28,7 @@
       date: "Aug\xa02020 - Nov\xa02022",
       title: "Product Team at Apiax",
       position: "Software Engineer",
-      description: "After having already conducted a one year Internship at Apiax and having switched over to a full time employment I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading an EFZ candidate through their final exam.",
+      description: "After having already conducted a one year Internship at Apiax and having switched over to a full time employment I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
       icon: apiaxLogo
   },
   {
