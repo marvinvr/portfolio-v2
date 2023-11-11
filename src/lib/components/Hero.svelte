@@ -12,7 +12,7 @@
 </svelte:head>
 
 <div>
-    <section class="pt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex md:px-8">
+    <section class="md:pt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center flex-col-reverse lg:flex-row flex md:px-8">
         <div class="space-y-4 flex-1 sm:text-center lg:text-left">
             <h1 class="text-gray-800 font-semibold text-4xl xl:text-5xl">
                 Hi! I'm
@@ -36,7 +36,7 @@
                 </button>
             </div>
         </div>
-        <div class="flex-1 text-center mt-7 lg:mt-0 lg:ml-3">
+        <div class="flex-1 text-center mt-7 lg:mt-0 lg:ml-3 mb-6 lg:mb-0">
             <img src={portrait} width="384" height="384" class="w-full mx-auto sm:w-10/12  md:w-96 rounded-lg shadow-2xl" alt="Portrait of Marvin von Rappard" />
         </div>
     </section>

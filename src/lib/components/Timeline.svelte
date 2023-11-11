@@ -10,7 +10,7 @@
 <div class="max-w-screen-xl mx-auto mt-12 px-4 md:px-8">
     
     <!-- Title -->
-    <h2 class="text-2xl font-semibold text-gray-800  mb-8">
+    <h2 class="text-gray-800">
         {title}
     </h2>
     <!-- Item -->
@@ -33,9 +33,9 @@
     
         <!-- Right Content -->
         <div class="pt-0.5 pb-8 w-11/12 md:w-9/12">
-            <h3 class="flex gap-x-1.5 font-semibold text-gray-800 ">
+            <span class="flex gap-x-1.5 font-semibold text-gray-800 ">
                 {item.title}
-            </h3>
+            </span>
             <span class="mt-1 -ms-1 p-1 inline-flex items-center gap-x-2 text-xs rounded-lg border border-transparent text-gray-500 disabled:opacity-50 disabled:pointer-events-none     ">
             <img class="flex-shrink-0 w-4 h-4 rounded-full" src={portrait} alt="Portrait of Marvin von Rappard">
                 {item.position}

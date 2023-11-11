@@ -45,9 +45,9 @@
   <div class="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
     <div class="relative max-w-2xl">
       <div class="relative z-10">
-        <h3 class="text-gray-800 text-3xl font-semibold sm:text-4xl">
+        <h2 class="text-gray-800">
           My Skills
-        </h3>
+        </h2>
         <p class="mt-3">
           I am a versatile data scientist and software engineer with a strong background in machine learning and natural language processing. I am passionate about leveraging AI to solve real-world problems and create value for businesses and society.
         </p>
@@ -63,9 +63,9 @@
                 class="w-6 h-6"
               />
             </div>
-            <h4 class="text-lg text-gray-800 font-semibold">
+            <span class="text-lg text-gray-800 font-semibold">
               {item.title}
-            </h4>
+            </span>
             <p>
               {item.desc}
             </p>
