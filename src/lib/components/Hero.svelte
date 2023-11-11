@@ -16,7 +16,7 @@
         <div class="space-y-4 flex-1 sm:text-center lg:text-left">
             <h1 class="text-gray-800 font-semibold text-4xl xl:text-5xl">
                 Hey, I'm
-                <span class="text-blue-950"> Marvin</span>
+                <span class="text-indigo-800"> Marvin</span>
             </h1>
             <h2 class="text-gray-800 font-medium text-xl xl:text-2xl">
                 Data Scientist & Bachelors of Science Student
