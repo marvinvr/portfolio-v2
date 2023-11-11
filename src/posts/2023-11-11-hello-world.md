@@ -8,7 +8,6 @@ published: true
 img: header.png
 ---
 
-## Introduction
 Hey there! 👋 I'm thrilled to finally roll out the virtual welcome mat and introduce you to my latest creation—a personal website that's a blend of my career highlights and the digital playground where my thoughts take shape in the form of posts. 
 Whether you stumbled upon this site by chance or came here out of curiosity, I'm glad you did. Stick around, and I promise to make the journey worth your while!
 
