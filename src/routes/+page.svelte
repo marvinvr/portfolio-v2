@@ -11,8 +11,6 @@
 
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
-
-  export const prerender = true;
 </script>
 
 <Hero />
