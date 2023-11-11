@@ -16,7 +16,7 @@
         <div class="space-y-4 flex-1 sm:text-center lg:text-left">
             <h1 class="text-gray-800 font-semibold text-4xl xl:text-5xl">
                 Hi! I'm
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#4F46E5] to-[#E114E5]"> Marvin von Rappard</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#4F46E5] to-[#E114E5]"> Marvin&nbsp;von&nbsp;Rappard</span>
             </h1>
             <h2 class="text-gray-800 font-medium text-xl xl:text-2xl">
                 Data Scientist & Bachelors of Science Student
