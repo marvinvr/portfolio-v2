@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    h1 {
+        @apply text-4xl;
+    }
+    h2 {
+        @apply text-3xl;
+        @apply font-semibold;
+        @apply mt-8;
+        @apply mb-3;
+
+    }
+    h3 {
+        @apply text-2xl;
+    }
+    h4 {
+        @apply text-xl;
+    }
+    h5 {
+        @apply text-lg;
+    }
+
+    p {
+        @apply text-base;
+    }
+
+    a {
+        @apply text-blue-500;
+    }
+
+    code {
+        // Basic styling for the code block
+        @apply my-3;
+        display: block; // Block element
+        background-color: #282c34; // Dark background for contrast
+        color: #abb2bf; // Soft white for main text
+        padding: 1rem; // Padding around the code
+        border-radius: 0.5rem; // Rounded corners
+        font-family: 'Fira Code', monospace; // Monospace font for code
+        overflow-x: auto; // Allows scrolling for long lines
+    
+        // Styling specific tokens
+        .token.keyword {
+          color: #c678dd; // Purple for keywords
+        }
+    
+        .token.function {
+          color: #61afef; // Blue for functions
+        }
+    
+        .token.builtin {
+          color: #e5c07b; // Orange for built-in methods
+        }
+    
+        .token.operator {
+          color: #56b6c2; // Cyan for operators
+        }
+    
+        .token.string,
+        .token.template-string {
+          color: #98c379; // Green for strings
+        }
+    
+        .token.interpolation {
+          color: #e06c75; // Red for interpolation
+        }
+    
+        .token.punctuation {
+          color: #abb2bf; // Same as the main text color
+        }
+    
+        // Additional styles for specific needs
+        // ...
+      }
+}

@@ -6,7 +6,7 @@
   inject({ mode: dev ? 'development' : 'production' });
 
 
-  import "../app.css";
+  import "../app.scss";
 </script>
 
 <slot />

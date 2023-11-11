@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Hero from "$lib/components/Hero.svelte";
   import Timeline from "$lib/components/Timeline.svelte";
 
@@ -11,7 +11,25 @@
 
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
+  import Posts from "$lib/components/Posts.svelte";
+
+  import type { PageData } from "./$types";
+
+
+  export let data: PageData;
+  const { latestPosts } = data;
 </script>
+
+<svelte:head>
+  <meta property="og:title" content="Marvin von Rappard | Portfolio" />
+  <meta property="og:description" content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland." />
+  <meta property="og:image" content="https://marvinvr.ai/og-image.png" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:title" content="Marvin von Rappard | Portfolio" />
+  <meta name="twitter:description" content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland." />
+  <meta name="twitter:image" content="https://marvinvr.ai/og-image.png" />
+</svelte:head>
 
 <Hero />
 <Timeline title="My Professional History" items={[
@@ -59,4 +77,5 @@
     icon: kantiLogo
   }
 ]} />
+<Posts posts={latestPosts} />
 <Contact />

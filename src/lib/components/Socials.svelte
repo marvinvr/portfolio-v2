@@ -2,6 +2,7 @@
     import logoX from "$lib/assets/logo_x.svg";
     import logoLinkedin from "$lib/assets/logo_linkedin.svg";
     import logoEmail from "$lib/assets/logo_email.svg";
+    import logoGithub from "$lib/assets/logo_github.svg";
 
     const socials: { icon: any, link: string }[] = [
         {
@@ -11,6 +12,10 @@
         {
             icon: logoLinkedin,
             link: "https://www.linkedin.com/in/marvinvr/",
+        },
+        {
+            icon: logoGithub,
+            link: "https://github.com/marvinvr",
         },
         {
             icon: logoEmail,
