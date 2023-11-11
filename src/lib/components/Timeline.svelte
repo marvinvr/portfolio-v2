@@ -1,6 +1,6 @@
 <script lang="ts">
     export let title: string
-    export let items: {date: string, title: string, position: string, description: string, icon: any}[] = []
+    export let items: {date: string, title: string, position: string, link: string, description: string, icon: any}[] = []
 
     // @ts-ignore
     import portrait from "$lib/assets/portrait.jpeg?format=webp&w=200&h=200";
@@ -24,7 +24,9 @@
         <!-- Icon -->
         <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-gray-200 ">
             <div class="relative z-10 w-7 h-7 flex justify-center items-center">
-            <img class="flex-shrink-0 w-7 h-7 rounded-full" src={item.icon} alt={`${item.title} logo`}>
+                <a href={item.link} target="_blank" >
+                    <img class="flex-shrink-0 w-7 h-7 rounded-full" src={item.icon} alt={`${item.title} logo`}>
+                </a>
             </div>
         </div>
         <!-- End Icon -->
