@@ -5,7 +5,8 @@ date: '2023-11-11'
 categories:
   - other
 published: true
-img: header.png
+thumbnail: thumbnail.png
+header: header.png
 ---
 
 Hey there! 👋 I'm thrilled to finally roll out the virtual welcome mat and introduce you to my latest creation—a personal website that's a blend of my career highlights and the digital playground where my thoughts take shape in the form of posts. 
