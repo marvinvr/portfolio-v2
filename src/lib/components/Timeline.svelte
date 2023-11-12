@@ -17,7 +17,7 @@
     {#each items as item}
         <div class="flex gap-x-3 rounded-lg">
         <div class="w-16 md:w-32 text-end">
-            <div class="text-xs text-gray-500">{item.date}</div>
+            <div class="text-xs text-gray-500 mt-1">{item.date}</div>
         </div>
         <!-- End Left Content -->
     
