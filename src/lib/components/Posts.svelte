@@ -17,7 +17,7 @@
             {#each posts as post (post.title)}
                 <li class="w-full mx-auto group sm:max-w-sm rounded-md hover:bg-gray-50 transition p-3">
                     <a href={`/posts/${post.slug}`}>
-                        <img data-src={`/posts/${post.slug}/${post.thumbnail}`} use:lazyImage alt={post.title} class="w-full rounded-md max-h-48 object-cover" />
+                        <img data-src={`/posts/${post.slug}/${post.thumbnail}`} use:lazyImage alt={post.title} height="192" class="w-full rounded-md h-48 object-cover" />
                         <div class="mt-3 space-y-2 mx-2 my-4">
                             <span class="block text-indigo-600 text-sm">{formatDate(post.date)}</span>
                             <span class="text-lg text-gray-800 duration-150 font-semibold">
