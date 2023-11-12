@@ -5,7 +5,7 @@ date: '2023-11-11'
 categories:
   - other
 published: true
-thumbnail: thumbnail.png
+thumbnail: thumbnail.webp
 header: header.png
 ---
 
