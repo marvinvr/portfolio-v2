@@ -4,6 +4,13 @@
 
   // @ts-ignore
   import portrait from "$lib/assets/portrait.jpeg?format=webp&w=200&h=200";
+  import { onMount } from "svelte";
+
+  let mounted = false;
+
+  onMount(() => {
+    mounted = true;
+  });
 
   export let data: PageData;
 </script>
@@ -40,53 +47,54 @@
         <span>Go back to Home</span>
       </a>
       <header class="mb-4 lg:mb-6 not-format">
+        <h1
+          class="mb-4 font-extrabold leading-tight text-gray-900 lg:mb-6"
+        >
+          {data.meta.title}
+        </h1>
         <address class="flex items-center mb-6 not-italic">
           <div class="inline-flex items-center mr-3 text-sm text-gray-900">
             <img
-              class="mr-4 w-16 h-16 rounded-full"
+              class="mr-4 w-14 h-14 rounded-full"
               src={portrait}
               alt="Marvin von Rappard"
             />
             <div>
-              <a href="/" rel="author" class="text-xl font-bold text-gray-900"
+              <a href="/" rel="author" class="text-lg font-bold text-gray-900"
                 >Marvin von Rappard</a
               >
-              <p class="text-base text-gray-500">
+              <span class="text-gray-500 text-md block">
                 Data Scientist & Bachelors of Science Student
-              </p>
-              <p class="text-base text-gray-500">
+              </span>
+              <p class="text-gray-500 text-sm">
                 Published on {formatDate(data.meta.date)}
               </p>
             </div>
           </div>
         </address>
-        <h1
-          class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl"
-        >
-          {data.meta.title}
-        </h1>
       </header>
       <div class="prose prose-lg mb-12">
         <svelte:component this={data.content} />
       </div>
-      <script
-        src="https://giscus.app/client.js"
-        data-repo="marvinvr/comments"
-        data-repo-id="R_kgDOJZGi4g"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOJZGi4s4Ca4ci"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async
-      >
-      </script>
+      {#if mounted}
+        <script
+          src="https://giscus.app/client.js"
+          data-repo="marvinvr/comments"
+          data-repo-id="R_kgDOJZGi4g"
+          data-category="Announcements"
+          data-category-id="DIC_kwDOJZGi4s4Ca4ci"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async
+        ></script>
+      {/if}
     </article>
   </div>
 </main>
