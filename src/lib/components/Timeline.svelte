@@ -10,7 +10,7 @@
 <div class="max-w-screen-xl mx-auto mt-12 px-4 md:px-8">
     
     <!-- Title -->
-    <h2 class="text-gray-800">
+    <h2 class="text-gray-800 mb-4">
         {title}
     </h2>
     <!-- Item -->
