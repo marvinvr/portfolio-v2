@@ -33,7 +33,7 @@
 </script>
 
 <!-- Contact Us -->
-<div class="max-w-[85rem] px-4 py-10 md:px-8 lg:px-8 lg:py-14 mx-auto" id="contact-me">
+<div class="max-w-screen-xl px-4 py-10 md:px-8 lg:px-8 lg:py-14 mx-auto" id="contact-me">
     <div>
       <div>
         <h2 class="text-gray-800">
