@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit'
-import { getPosts } from './utils/posts'
+import { getPosts } from '../utils/posts'
 
 export const prerender = true;
 
