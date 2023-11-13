@@ -1,4 +1,4 @@
-export type Categories = 'deep-learning' | 'natural-language-processing' | 'machine-learning' | 'data-science' | 'programming' | 'other'
+export type Categories = 'deep-learning' | 'natural-language-processing' | 'machine-learning' | 'computer-vision' | 'programming' | 'other'
 
 export type Post = {
 	title: string
@@ -7,6 +7,5 @@ export type Post = {
 	date: string
 	categories: Categories[]
 	published: boolean
-	thumbnail: string
 	header: string
 }

@@ -5,6 +5,7 @@
   // @ts-ignore
   import portrait from "$lib/assets/portrait.jpeg?format=webp&w=200&h=200";
   import { onMount } from "svelte";
+  import { image } from "$lib/utils/images";
 
   let mounted = false;
 
@@ -13,16 +14,17 @@
   });
 
   export let data: PageData;
+  const { content, meta, slug } = data;
 </script>
 
 <svelte:head>
   <title>{data.meta.title} | Marvin von Rappard</title>
   <meta property="og:type" content="article" />
-  <meta property="og:title" content={data.meta.title} />
-  <meta property="og:description" content={data.meta.description} />
+  <meta property="og:title" content={meta.title} />
+  <meta property="og:description" content={meta.description} />
 
-  <meta property="twitter:title" content={data.meta.title} />
-  <meta property="twitter:description" content={data.meta.description} />
+  <meta property="twitter:title" content={meta.title} />
+  <meta property="twitter:description" content={meta.description} />
 </svelte:head>
 
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white antialiased">
@@ -47,10 +49,15 @@
         <span>Go back to Home</span>
       </a>
       <header class="mb-4 lg:mb-6 not-format">
+        <img
+          class="mb-6 w-full h-64 object-cover rounded-lg"
+          src={image(slug, meta.header)}
+          alt={meta.title}
+        />
         <h1
           class="mb-4 font-extrabold leading-tight text-gray-900 lg:mb-6"
         >
-          {data.meta.title}
+          {meta.title}
         </h1>
         <address class="flex items-center mb-6 not-italic">
           <div class="inline-flex items-center mr-3 text-sm text-gray-900">
@@ -67,14 +74,14 @@
                 Data Scientist & Bachelors of Science Student
               </span>
               <p class="text-gray-500 text-sm">
-                Published on {formatDate(data.meta.date)}
+                Published on {formatDate(meta.date)}
               </p>
             </div>
           </div>
         </address>
       </header>
       <div class="prose prose-lg mb-12">
-        <svelte:component this={data.content} />
+        <svelte:component this={content} />
       </div>
       {#if mounted}
         <script
