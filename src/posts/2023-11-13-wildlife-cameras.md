@@ -52,7 +52,7 @@ Classifying images from wildlife cameras stationed deep in the African jungle pr
 
 ![Example Images]({exampleImage})
 
-Firstly, let's consider the lighting conditions. In the dataset, we encountered images like these example images, where the first two are in black and white. The first example image is slightly overexposed, with the animal only partially visible. Whereas the second image is of good quality, but again shows only a fragment of the animal. Such varying exposures significantly complicate the identification process.
+Firstly, let's consider the lighting conditions. In the dataset, we encountered images similar to the ones above, where the first two are in black and white. The first example image is slightly overexposed, with the animal only partially visible. Whereas the second image is of good quality, but again shows only a fragment of the animal. Such varying exposures significantly complicate the identification process.
 
 Next, we face issues with focus and clarity. Example image three is characterized by only the foreground foliage being in sharp focus, with our subject of interest—the animal—appearing blurred in the background. This poses a particular challenge as the model must learn to recognize animals even in less than ideal sharpness.
 
