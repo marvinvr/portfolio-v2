@@ -209,7 +209,7 @@ The accuracy table for each model across various classes highlighted their stren
 
 The accuracy barplot offered a straightforward visual comparison of model accuracies by class. With color-coded bars representing different classes, we could quickly discern patterns and disparities in model performance.
 
-Following the cropping optimization using Megadetector, the Vision Transformer (ViT) emerged as a top-performing model. It achieved an F1-Weighted of `0.7569`, an F1-Macro of `0.6678`, and an F1-Micro of `0.7562`, signaling consistent performance across classes. Its Log-Loss of `0.7816` also indicated a solid classification capacity.
+Following the cropping optimization using Megadetector, the **Vision Transformer (ViT)** emerged as a top-performing model. It achieved an F1-Weighted of `0.7569`, an F1-Macro of `0.6678`, and an F1-Micro of `0.7562`, signaling consistent performance across classes. Its Log-Loss of `0.7816` also indicated a solid classification capacity.
 
 Particularly impressive was the ViT model's capability to classify `antelope_duiker`, `civet_genet`, and `monkey_prosimian` with accuracies surpassing `80%`, indicating excellent adaptability on our dataset. The lowest accuracy across models was observed for the 'hog' class, suggesting this might inherently be a challenging class to distinguish, possibly due to its limited representation in the dataset.
 
