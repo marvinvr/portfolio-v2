@@ -7,6 +7,8 @@ export const load = (async ({ params }) => {
 	try {
 		const post = await import(`../../../posts/${slug}.md`)
 
+		if (!post.metadata.published) throw error(404, `Could not find ${params.slug}`);
+
 		return {
 			content: post.default as ConstructorOfATypedSvelteComponent,
 			meta: post.metadata as Post,

@@ -5,7 +5,7 @@ date: '2023-11-13'
 categories:
   - deep-learning
   - computer-vision
-published: false
+published: true
 thumbnail: thumbnail.png
 header: header.png
 ---
@@ -32,7 +32,7 @@ header: header.png
 </script>
 
 
-Embarking on an exploration through the dense African jungle isn't an easy feat—even less so when embarked upon vicariously through the lenses of wildlife cameras. These unblinking eyes capture the untamed life of a world mostly unseen by human eyes, generating an abundance of images rich with potential insights. The question is, how can we harness the power of Deep Learning to sort through this wilderness of pixels and accurately classify each creature that crosses the camera's path? It's within this challenging intersection of technology and nature that our project took root. 
+Embarking on an exploration through the African jungle isn't an easy feat—even less so when embarked upon vicariously through the lenses of wildlife cameras. These unblinking eyes capture the untamed life of a world mostly unseen by human eyes, generating an abundance of images rich with potential insights. The question is, how can we harness the power of Deep Learning to sort through this wilderness of pixels and accurately classify each creature that crosses the camera's path? It's within this challenging intersection of technology and nature that our project took root. 
 
 We aimed to develop a computer vision-based solution capable of distinguishing among the myriad of species captured in thousands of photos, automating what has historically been a manual task for wildlife researchers. 
 
@@ -48,7 +48,7 @@ We were provided with a dataset rich with image data coupled with informative at
 The competition placed strict restrictions that no external dataset beyond what was provided could be utilized, although leveraging publicly available, pre-trained computer vision models was permitted. Our mission was clear: develop a model that could stand the test of new contexts and help transform the way we protect and study the rich biodiversity of Taï National Park.
 
 ### Challenges of Wildlife Image Classification
-Classifying images from wildlife cameras stationed deep in the African jungle presents a unique set of challenges, a fact vividly illustrated by the diversity in our own dataset. As we progressed through the images, we learned that each snapshot was a complex puzzle, waiting to be deciphered by our deep learning algorithms.
+Classifying images from wildlife cameras stationed deep in the African jungle presents a unique set of challenges, a fact illustrated by the diversity in our dataset. As we progressed through the images, we learned that each snapshot was a complex puzzle, waiting to be deciphered by our deep learning algorithms.
 
 ![Example Images]({exampleImage})
 
@@ -211,7 +211,7 @@ The accuracy barplot offered a straightforward visual comparison of model accura
 
 Following the cropping optimization using Megadetector, the Vision Transformer (ViT) emerged as a top-performing model. It achieved an F1-Weighted of `0.7569`, an F1-Macro of `0.6678`, and an F1-Micro of `0.7562`, signaling consistent performance across classes. Its Log-Loss of `0.7816` also indicated a solid classification capacity.
 
-Particularly impressive was the ViT model's capability to classify 'antelope_duiker', 'civet_genet', and 'monkey_prosimian' with accuracies surpassing `80%`, indicating excellent adaptability on our dataset. The lowest accuracy across models was observed for the 'hog' class, suggesting this might inherently be a challenging class to distinguish, possibly due to its limited representation in the dataset.
+Particularly impressive was the ViT model's capability to classify `antelope_duiker`, `civet_genet`, and `monkey_prosimian` with accuracies surpassing `80%`, indicating excellent adaptability on our dataset. The lowest accuracy across models was observed for the 'hog' class, suggesting this might inherently be a challenging class to distinguish, possibly due to its limited representation in the dataset.
 
 ![Confusion Matrix]({confusionMatrix})
 
