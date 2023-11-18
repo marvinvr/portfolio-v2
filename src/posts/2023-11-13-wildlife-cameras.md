@@ -6,7 +6,6 @@ categories:
   - deep-learning
   - computer-vision
 published: true
-thumbnail: thumbnail.png
 header: header.png
 ---
 

@@ -13,7 +13,7 @@ const mdsvexOptions = {
     highlighter,
   },
   rehypePlugins: [
-    [rehypeExternalLinks, { rel: ['nofollow'], target: '_blank' }]
+    [rehypeExternalLinks, { target: '_blank' }]
   ],
 };
 
