@@ -13,7 +13,7 @@ header: header.png
     import { image } from "$lib/utils/images";
 
     const slug = "2023-11-18-writing-your-homework-with-chatgpt";
-    const overviewImage = image(slug, 'header.png');
+    const overviewImage = image(slug, 'overview.png');
     const signUpImage = image(slug, 'sign-up.png');
     const createReportImage = image(slug, 'create-report.png');
     const generateOutline = image(slug, 'generate-outline.png');
