@@ -7,6 +7,11 @@
     const {latestPosts} = data;
 </script>
 
+<svelte:head>
+  <link rel="canonical" href="https://marvinvr.ai/blog/" />
+  <meta property="og:url" content="https://marvinvr.ai/blog/" />
+</svelte:head>
+
 
 <Posts
     title="My Recent Posts"
