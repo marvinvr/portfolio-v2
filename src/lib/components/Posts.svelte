@@ -1,21 +1,26 @@
 <script lang="ts">
-  import type { Post } from "$lib/models/post";
-  import { formatDate } from "$lib/utils/date";
+      import type { Post } from "$lib/models/post";
+      import { formatDate } from "$lib/utils/date";
 
-  import { useLazyImage as lazyImage } from 'svelte-lazy-image';
+      import { useLazyImage as lazyImage } from 'svelte-lazy-image';
 
-  import { thumbnail } from "$lib/utils/images";
+      import { thumbnail } from "$lib/utils/images";
 
-  export let posts: Post[] = [];
+    export let title: string;
+    export let description: string = "";
+    export let posts: Post[] = [];
 </script>
 
 <section class="py-24">
     <div class="max-w-screen-xl mx-auto px-4 md:px-8">
         <div>
-            <h2 class="text-gray-800">My latest Posts</h2>
-            <p class="text-gray-600">My posts usually center around some Deep Learning project I've been working on. I hope you enjoy reading them! </p>
+            <h2 class="text-gray-800">{title}</h2>
+            {#if description}
+                <p class="text-gray-600">{description}</p>
+            {/if}
+            <slot />
         </div>
-        <ul class="grid gap-x-8 gap-y-10 mt-12 sm:grid-cols-2 lg:grid-cols-3">
+        <ul class="grid gap-x-8 mt-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-3" class:mt-12={description}>
             {#each posts as post (post.title)}
                 <li class="w-full mx-auto group sm:max-w-sm rounded-md hover:bg-gray-50 transition p-3">
                     <a href={`/posts/${post.slug}`}>

@@ -4,7 +4,9 @@
 
     // @ts-ignore
     import portrait from "$lib/assets/portrait.jpeg?format=webp&w=600&h=600";
-  import Socials from "./Socials.svelte";
+    import Socials from "./Socials.svelte";
+
+    export let subtitle: string;
 </script>
 
 <svelte:head>
@@ -21,22 +23,25 @@
                 Data Scientist & Bachelors of Science Student
             </h2>
             <!-- Location marker -->
-            <a href="https://maps.app.goo.gl/R5u3Xi7rhmvvguwU9" aria-label="Baden, Switzerland" class="flex items-center justify-start sm:justify-center lg:justify-start space-x-2">
-                <MapMarkerOutline class="w-5 h-5 text-gray-700" />
+            <a href="https://maps.app.goo.gl/R5u3Xi7rhmvvguwU9" aria-label="Baden, Switzerland"
+               class="flex items-center justify-start sm:justify-center lg:justify-start space-x-2">
+                <MapMarkerOutline class="w-5 h-5 text-gray-700"/>
                 <span class="text-gray-700">Baden, Switzerland</span>
             </a>
             <p class="text-gray-700 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
-                Currently working at Apiax as part of a dynamic team developing state-of-the-art compliance AI, harnessing the power of natural language processing and advanced technologies like LLMs. In addition, I'm studying Data Science at the University of Applied Sciences.
+                {subtitle}
             </p>
-            <Socials />
+            <Socials/>
             <div class="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
-                <button on:click={() => document.getElementById('contact-me')?.scrollIntoView({behavior: 'smooth'})} class="px-7 py-3 w-full bg-gray-700 hover:bg-gray-800 transition text-gray-200 text-center rounded-md block sm:w-auto">
+                <button on:click={() => document.getElementById('contact-me')?.scrollIntoView({behavior: 'smooth'})}
+                        class="px-7 py-3 w-full bg-gray-700 hover:bg-gray-800 transition text-gray-200 text-center rounded-md block sm:w-auto">
                     Get in touch
                 </button>
             </div>
         </div>
         <div class="flex-1 text-center mt-7 lg:mt-0 lg:ml-3 mb-6 lg:mb-0">
-            <img src={portrait} width="384" height="384" class="w-full mx-auto sm:w-10/12  md:w-96 rounded-lg shadow-2xl" alt="Portrait of Marvin von Rappard" />
+            <img src={portrait} width="384" height="384"
+                 class="w-full mx-auto sm:w-10/12  md:w-96 rounded-lg shadow-2xl" alt="Portrait of Marvin von Rappard"/>
         </div>
     </section>
 </div>

@@ -23,3 +23,9 @@ export async function getPosts() {
 
 	return posts
 }
+
+export async function getCategories() {
+	const posts = await getPosts()
+
+	return [...new Set(posts.map(post => post.categories).flat())];
+}

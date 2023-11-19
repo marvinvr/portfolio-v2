@@ -31,10 +31,12 @@
   <meta name="twitter:image" content="https://marvinvr.ai/og-image.png" />
 </svelte:head>
 
-<Hero />
+<Hero
+  subtitle="I'm currently working at Apiax as part of a team developing state-of-the-art compliance AI, harnessing the power of natural language processing and advanced technologies like LLMs. In addition, I'm studying Data Science at the University of Applied Sciences."
+  />
 <Timeline title="My Professional History" items={[
   {
-      date: "Now\xa02022 - Now",
+      date: "Nov\xa02022 - Now",
       link: "https://www.apiax.com/",
       title: "AI Lab at Apiax",
       position: "Data Scientist",
@@ -53,7 +55,7 @@
       date: "Aug\xa02019 - Jul\xa02020",
       link: "https://www.apiax.com/",
       title: "Operations Team at Apiax",
-      position: "Internship - Software Engineer for internal tools",
+      position: "Software Engineer - Internship",
       description: "During my Internship at Apiax I took part in shaping the IT infrastructure of a fast growing startup whilst making my first experiences working as a Software Engineer.",
       icon: apiaxLogo
   },
@@ -77,5 +79,8 @@
     icon: kantiLogo
   }
 ]} />
-<Posts posts={latestPosts} />
+<Posts
+  title="My Latest Posts"
+  description="My posts usually center around some Deep Learning project I've been working on. I hope you enjoy reading them!"
+  posts={latestPosts} />
 <Contact />

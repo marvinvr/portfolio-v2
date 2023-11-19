@@ -36,8 +36,8 @@
             <span class="flex gap-x-1.5 font-semibold text-gray-800 ">
                 {item.title}
             </span>
-            <span class="mt-1 -ms-1 p-1 inline-flex items-center gap-x-2 text-xs rounded-lg border border-transparent text-gray-500 disabled:opacity-50 disabled:pointer-events-none     ">
-            <img class="flex-shrink-0 w-4 h-4 rounded-full" src={portrait} alt="Portrait of Marvin von Rappard">
+            <span class="mt-1 -ms-1 p-1 inline-flex items-center gap-x-2 text-sm rounded-lg border border-transparent text-gray-500 disabled:opacity-50 disabled:pointer-events-none     ">
+            <img class="flex-shrink-0 w-5 h-5 rounded-full" src={portrait} alt="Portrait of Marvin von Rappard">
                 {item.position}
             </span>
             <p class="mt-1 text-sm text-gray-600 ">

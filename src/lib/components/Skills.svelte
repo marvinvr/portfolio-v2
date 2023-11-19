@@ -25,7 +25,7 @@
     },
     {
       title: "Software Engineering Expertise",
-      desc: "Versatile software engineer proficient in backend development with Java and TypeScript, coupled with strong Python programming skills for data analysis, machine learning, and algorithm development using tools like Jupyter.",
+      desc: "Software engineer proficient in backend development with Java and TypeScript, coupled with strong Python programming skills for data analysis, machine learning, and algorithm development using tools like Jupyter.",
       icon: CodeBraces,
     },
     {
@@ -49,7 +49,7 @@
           My Skills
         </h2>
         <p class="mt-3">
-          I am a versatile data scientist and software engineer with a strong background in machine learning and natural language processing. I am passionate about leveraging AI to solve real-world problems and create value for businesses and society.
+          I am a data scientist and software engineer with a strong background in machine learning and natural language processing. I am passionate about leveraging AI to solve real-world problems and create value for businesses and society.
         </p>
       </div>
     </div>
