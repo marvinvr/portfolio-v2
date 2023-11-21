@@ -10,6 +10,9 @@
 <svelte:head>
   <link rel="canonical" href="https://marvinvr.ai/blog/" />
   <meta property="og:url" content="https://marvinvr.ai/blog/" />
+
+  <meta property="og:title" content="Marvin von Rappard | Blog" />
+  <meta property="og:description" content="The personal blog of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland." />
 </svelte:head>
 
 
