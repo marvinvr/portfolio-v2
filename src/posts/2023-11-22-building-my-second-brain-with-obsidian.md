@@ -114,9 +114,9 @@ Delving into my public Obsidian library offers a glimpse into the essence of wha
 
 My Obsidian setup mirrors the multi-faceted interests and demands of my academic career. It constitutes a series of main categories, some of which are elaborated into further subcategories.
 
-My primary Obsidian "Vault" is called "Documentation".  Here, you will find a mix of notes on `Code`, `Deep Learning`, `Natural Language Processing`, `Hardware`, and `Maths`. Each of these broad categories is broken down into more specialized subtopics. For instance, under 'Deep Learning', you can delve into notes covering everything from 'Activation Functions' to `Models`, which are the building blocks of this complex field.
+My primary Obsidian "Vault" is called "Documentation".  Here, you will find a mix of notes on `Code`, `Deep Learning`, `Natural Language Processing`, `Hardware`, and `Maths`. Each of these broad categories is broken down into more specialized subtopics. For instance, under `Deep Learning`, you can delve into notes covering everything from `Activation Functions` to `Models`, which are the building blocks of this complex field.
 
-'Hardware' is where my tinkering takes a physical form, with sections dedicated to `OPNSense`, `Raspberry Pi`, `Ubuntu Server`, and `Unraid`. These notes serve as technical guides and references based on my personal setup experiences.
+`Hardware` is where my tinkering takes a physical form, with sections dedicated to `OPNSense`, `Raspberry Pi`, `Ubuntu Server`, and `Unraid`. These notes serve as technical guides and references based on my personal setup experiences.
 
 *Note:* Parts of my library, specifically the math parts, are written in German, this is due to my education taking place in Switzerland.
 
