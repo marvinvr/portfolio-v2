@@ -23,109 +23,121 @@ header: header.png
     const myObsidianVault = image(slug, "my-obsidian-vault.png");
 </script>
 
-In this digital era, flooded with information and continuous learning opportunities, managing and organizing knowledge has never been more paramount. As a data science student and an avid learner, I've wandered through various applications and systems searching for the perfect tool to capture, store, and make sense of everything I learn. That quest only came to a halt when I learned about Obsidian – a powerful note-taking app that has revolutionized the way I organize my thoughts, ideas, and academic material. 
+In today's age of information and continuous learning opportunities, managing and organizing knowledge has never been more paramount. As a data science student and therefore continuous learner, I've tried various applications and systems searching for the perfect tool to capture, store, and make sense of everything I learn. That quest only came to a halt when I learned about Obsidian, a powerful note-taking app that has revolutionized the way I organize my thoughts and ideas. 
 
-Obsidian stands out in the sea of note-taking applications with its unique combination of simplicity, flexibility, and power. For me, it functions as not just a tool for documentation but as an extension of my cognitive processes – a 'Second Brain' if you will. In this post, I'm excited to share how I've leveraged Obsidian to elevate my note-taking to an art form and how it has made a significant impact on my university life. From its markdown-centric approach to its customizable plugin ecosystem, my journey with Obsidian has reshaped my approach to learning and productivity. Join me as I delve into the features and personal experiences that make Obsidian indispensable for anyone looking to take their knowledge management to the next level.
+Obsidian stands out from other note-taking applications with its combination of simplicity, flexibility, and power. For me, it functions as not just a tool for documentation but as an extension of my cognitive processes – a 'Second Brain' if you will. In this post, I will share how I've leverage Obsidian to elevate my note-taking and how it has made a significant impact on my university life. From its markdown-centric approach to its plugin ecosystem, my work with Obsidian has reshaped my approach to learning and productivity.
 
 ## What is Obsidian?
 ![Obsidian]({obsidian})
 
-Before diving into the mechanics of how Obsidian transforms chaotic data into an organized structure, it's essential to understand what Obsidian is at its core. Obsidian is a remarkable note-taking and knowledge management app that allows users to write, edit, and organize their notes using a sleek interface. It is based on the principle of a knowledge base or digital garden that grows and evolves with you.
+For starters, it's essential to understand what Obsidian is at its core. Obsidian is a remarkable note-taking and knowledge management app that allows users to write, and most importantly, organize their notes using a sleek interface.
 
-The magic of Obsidian lies in its use of plain text markdown files to create and manage notes. Unlike other proprietary formats that lock you into a certain platform, markdown files are portable, future-proof, and can be read by a multitude of editors and applications. This feature ensures that your data remains accessible and editable outside of Obsidian, giving you the freedom to control and manage your knowledge as you see fit.
+The magic of Obsidian lies in its use of plain text markdown files to manage notes. Unlike other proprietary formats that lock you into a certain platform, markdown files are portable, future-proof, and can be read by a multitude of editors and applications. This feature ensures that your notes remain accessible outside of Obsidian, giving you the freedom to control and manage your data.
 
-But Obsidian isn’t just a simple markdown editor—it's a hub that connects your thoughts through links, much like the intertwined web of neurons in the human brain. You can link notes together, create intricate networks of ideas, and visualize the connections through various graph views. This interconnected system not only makes it easier to find relationships between disparate pieces of information but also fosters a deeper understanding and retention of knowledge.
+But Obsidian isn’t just a simple markdown editor. It's a hub that connects your thoughts through links, much like the web of neurons in the human brain. You can link notes together, create networks of ideas, and visualize the connections through graph views. This interconnected system not only makes it easy to find relationships between pieces of information but also fosters a more in-depth understanding of how the knowledge is connected.
 
-Furthermore, Obsidian is designed to be as unassuming or as complex as you need it to be. With its customizable nature, it serves equally well for users seeking a lightweight, distraction-free writing environment, as it does for power users who revel in tailoring the application to their specific workflow with the help of its robust plugin ecosystem. 
+Additionally, Obsidian is designed to be as unassuming or as complex as you need it to be. With its customizable nature, it works equally well for users seeking a lightweight writing environment, as it does for power users who want to tailor the application to their specific workflow with its robust plugin ecosystem. 
 
-At its heart, Obsidian champions user agency and data ownership. You can store your knowledge vault wherever you prefer—locally on your device or on your chosen cloud service. This ensures complete control over the safety and privacy of your data. 
+At its heart, Obsidian lies user agency and data ownership. You can store your knowledge vault wherever you prefer. This can be locally on your device or on your chosen cloud service. This means that you have complete control over the safety and privacy of your data. 
 
-Whether you're making quick notes, archiving insights from a research paper, or piecing together a complex concept, Obsidian provides a rich soil in which the seeds of your knowledge can be sown and nurtured into a vibrant intellectual garden that is uniquely yours.
+Whether you're making quick notes, archiving insights from a research paper, Obsidian provides a rich soil in which the seeds of your knowledge can be sown and nurtured into a knowledge-base that is uniquely yours.
 
 ## The Core Advantage: Markdown Format
-One of the core advantages of Obsidian lies in its use of Markdown for note creation and editing. Markdown is a lightweight markup language with plain text formatting syntax that is designed to be converted to HTML and other formats using simple, readable symbols. This feature is what sets Obsidian apart from many other note-taking apps and offers several significant benefits.
+One of the core advantages of Obsidian lies in its use of Markdown for storing your notes. Markdown is a lightweight markup language with plain text formatting syntax that is designed to be converted to other formats using simple, readable symbols. This feature is what sets Obsidian apart from many other note-taking apps and offers several significant benefits.
 
-Markdown is incredibly user-friendly and easy to pick up, even for those who are not tech-savvy. If you can type, you can use Markdown. This simplicity allows for rapid note-taking without the cumbersome overhead of navigating complex formatting menus and options, which can interrupt the flow of thought during brainstorming sessions or lectures.
+Firstly, Markdown is incredibly user-friendly and easy to pick up, even for those who are not tech-savvy. If you can type, you can use Markdown. This simplicity allows for rapid note-taking without the overhead of navigating complex formatting menus and options, which can interrupt the flow of thought during writing sessions.
 
 ![Markdown]({markdown})
 
-In addition to that, they files are extraordinarily flexible. Unlike proprietary formats used by many note-taking apps, Markdown files are future-proof and portable. You can open, edit, and manage them with a wide array of text editors and software, ensuring your notes remain accessible no matter how your digital tools change. This plays into the philosophy of long-term knowledge retention and management, freeing Obsidian users from the worry of software obsolescence or vendor lock-in. And therefore gives it a huge advantage over other note-taking tools like Notion.
+In addition to that, unlike proprietary formats used by many note-taking apps, Markdown files are future-proof and portable. You can open, edit, and manage them with an array of text editors, ensuring your notes remain accessible no matter how your digital tools change. This plays into the philosophy of long-term knowledge retention and management, freeing Obsidian users from the worry of their software becoming obsolete or vendor lock-in, which they might have with other note-taking tools like Notion.
 
-When coupled with Obsidian's linking and graphing capabilities, Markdown becomes even more powerful. You can effortlessly create links within your text that bridge concepts and notes, building a web of information that visually and contextually represents the neural networks of your own thinking.
+When coupled with Obsidian's linking and graphing capabilities, Markdown becomes a lot more powerful. You can easily create links within your text that bridge concepts and notes, building a web of information that visually and contextually represents the neural networks of your own thinking.
 
 ![Obsidian Interface]({obsidianInterface})
 
-Another incredible aspect, especially for Software Engineers, is the way Markdown pairs with version control systems, such as Git. This combination allows you to track changes over time, collaborate with others, and even roll back to previous versions of your notes if needed, all while maintaining a clear and readable format.
+Another outstanding aspect, especially for Software Engineers, is the way Markdown pairs with version control systems, such as Git. This combination allows you to track changes over time, easily collaborate, and even roll back to previous versions of your notes if needed.
 
 ## Navigating University with Obsidian
-Attending university involves managing a vast array of information spanning different subjects, projects, and research materials. For students, ensuring this information is organized and easily retrievable can be as crucial as understanding the content itself. Here is where Obsidian has become an academic ally for me.
+Attending university involves managing vast information spanning various subjects. Ensuring this information is organized and easily retrievable can be as crucial as understanding the content itself. Here is where Obsidian has become my go-to tool for note-taking in university.
 
 ![Obsidian Graph]({obsidianGraph})
 
-The first aspect of Obsidian that aids in navigating university life is its non-linear note-taking capability. With the ability to interlink notes, I can relate concepts from different lectures or research materials, regardless of their chronological order. This method reflects the actual structure of knowledge, where ideas are interconnected rather than isolated. By building a network of notes, I create a personalized encyclopedia of my university courses that becomes more valuable over time.
+With the ability to interlink notes, I can relate concepts from different lectures or materials, regardless of their chronological order. This method reflects the actual structure of knowledge, where ideas are interconnected rather than isolated topics. By building a network of notes, I effectively have a personalized encyclopedia of my university courses that becomes more and more valuable over time.
 
-One of the most impactful features of Obsidian for students is its ability to handle different media types. I can integrate images from slides, embed PDFs, and even link audio recordings right within my notes. When it comes to revising or digging deeper into a topic, having all these resources available in one place saves me considerable time and aggravation. Obsidian also has plugins available to more directly work with different formats. For example, the [Omnisearch Plugin](https://github.com/scambier/obsidian-omnisearch) allows for PDF files to be indexed using Optical Character Recognition and searched through as if they were text files, allowing me to find anything I'm looking for.
+Another very impactful feature is its ability to handle different media types. I can integrate images from slides, embed PDFs, and even link audio recordings right within my notes. When it comes to digging deeper into a topic, having all these resources available in one place saves me considerable time. Obsidian also has plugins available to more directly work with different formats. For example, the [Omnisearch Plugin](https://github.com/scambier/obsidian-omnisearch) allows for PDF files to be indexed using Optical Character Recognition and searched through as if they were text files.
 
 ![Obsidian LaTeX]({obsidianLatex})
 
 
-Additionally, Obsidian’s ability to support LaTeX within notes is invaluable for courses heavy on equations and mathematical formulations. As a data science student, being able to notate complex formulas and have them rendered beautifully within my notes streamlines my study process and aids in comprehension.
+Additionally, Obsidian’s ability to support LaTeX within notes is invaluable for courses relying on equations or mathematical formulations. As a data science student, this is a feature I use in almost all of my notes, and having them rendered within my notes streamlines my study process and truly helps me understand concepts faster.
 
-The result is a robust, searchable, and incredibly personalized database of knowledge, which evolves concurrently with my academic journey. Needless to say, Obsidian has not just been a tool for taking notes but a companion throughout my learning experience at the university, enabling me to capture the breadth of my education in a structured, yet flexible manner.
+The result is a robust and organized database of knowledge, which constantly evolves with my academic progress.
 
 ## Leveraging the Plugin Ecosystem
-The true power of Obsidian as a second brain lies not only in its markdown capabilities or linking features but also in its extensive plugin ecosystem. With a community that's always growing and innovating, Obsidian offers plugins that cater to the unique workflow of each user. This means you have the flexibility to customize your experience to suit your specific needs, whether you're a student, researcher, writer, or anyone in between.
+The true power of Obsidian as a second brain lies not only in its markdown capabilities or linking features but also in its extensive plugin ecosystem. Obsidian's plugins can cater to very specific workflows. This means you have the flexibility to customize your experience to suit your specific needs, no matter how you like to take your notes.
 
-Plugins for Obsidian come in all shapes and sizes, fulfilling a wide array of functions designed to streamline your note-taking and information management. From simple quality-of-life improvements like better text formatting to advanced functionality like automated task management, the plugin ecosystem turns the already versatile Obsidian into a powerhouse of productivity.
-
-In the following sections, I will delve deeper into two specific plugins, the Projects Plugin and the Text Generator Plugin, which have been particularly instrumental in enhancing my productivity and efficiency in managing university work and personal learning endeavors within Obsidian.
+Plugins for Obsidian support a wide array of functions designed to streamline your note-taking and information management. There are solutions for everything from simple improvements like better text formatting to advanced functionality like automation management. In the following sections, I will delve deeper into two specific plugins, the Projects Plugin and the Text Generator Plugin, which have been particularly helpful in my workflow.
 
 ### Projects Plugin
 ![Projects Plugin]({obsidianProjectsPlugin})
 
-The Projects Plugin in Obsidian is an incredible tool for people like me, needing to manage a multitude of tasks and projects. At its core, this plugin leverages the versatility of Markdown to create dynamic, flexible data tables that seamlessly integrate into your existing notes structure.
+The Projects Plugin in Obsidian is an outstanding tool for people like me, needing to manage various tasks and projects. This plugin leverages the versatility of Markdown to create dynamic data tables that integrate into your existing notes structure.
 
-By utilizing markdown metadata fields, the plugin allows you to store detailed project information such as titles, statuses, deadlines, and more, right within your note's metadata. What's ingenious about this approach is the information remains within your markdown files, ensuring that your data is stored in a text-based, portable, and software-agnostic format, adhering to the very principles that make Obsidian so powerful.
+By storing information in markdown metadata fields, the plugin allows me to store specific task properties within my note's metadata. What's great about this approach is the information remains within markdown files, ensuring that your data remains in the text-based, portable format that makes Obsidian so powerful.
 
 ![Projects Plugin Kanban]({obsidianProjectsPluginKanban})
 
-Once your project data is in place, the Projects Plugin provides several intuitive views to visualize and interact with your projects. If you're inclined towards a traditional, spreadsheet-like overview, you can opt for the table view. For those who appreciate the clarity brought by visual segmentation, the kanban board view turns your projects into movable cards across different columns, ideal for tracking progress in stages. And for the schedule-oriented, the calendar view offers a time-based perspective, making it convenient to keep track of upcoming deadlines and milestones.
+Once the project data is in place, the Projects Plugin provides several views to visualize and interact with your projects. If you prefer a traditional, spreadsheet-like overview, you can opt for the table view. For those who prefer to divide projects by status, the kanban board view turns your projects into movable cards across user-defined columns, which is ideal for larger projects. In addition to those two, the calendar view offers a time-based perspective, making it easy to keep track of upcoming events. 
 
-What sets the Projects Plugin apart is the way it harmonizes with Obsidian's existing interface. The transition between your notes and your projects is seamless, with links and backlinks maintaining the intricate web of connections within your digital library. The ability to have a bird's-eye view of all your projects while being able to drill down into granular details simply by clicking through to the related notes transforms Obsidian from a mere note-taking app to a potent project management tool. 
-
-For a university student juggling multiple courses, assignments, and personal projects, this functionality is invaluable. Not only can I maintain oversight on my academic obligations and deadlines, but I can also track the progress of research projects, extracurricular activities, or any other endeavor I undertake. The Projects Plugin ensures that no detail is lost in the shuffle of a hectic academic schedule, and that I can stay organized and ahead of my workload with confidence.
+For a university student like me, working on multiple courses, assignments, and personal projects, at the same time, this can massively help with organization. The Projects Plugin ensures that no detail is lost and that I can stay ahead of my workload.
 
 ### Text Generator Plugin
 ![Text Generator Plugin]({obsidianTextGeneratorPlugin})
 *Website*: [Text Generator Plugin](https://text-gen.com/)
 
-The Text Generator Plugin for Obsidian introduces a profound leap in efficiency when it comes to note-taking and information documentation. By integrating OpenAI's language models directly into my workflow, I can invoke AI-powered text completion with a simple hotkey. The ability to pick up from where I left off in a sentence and generate contextually relevant content is a game-changer, especially when it comes to crafting expansive notes with boilerplate information, like standard definitions and introductory explanations, that, while necessary, can be tedious to write out.
+The Text Generator Plugin for Obsidian drastically improves efficiency when it comes to information documentation. By integrating OpenAI's language models into my workflow, I can invoke AI text completion with a hotkey. The ability to let the language model take over for boilerplate tasks, really eliminates tedious work when studying. I find the Text Generator to be particularly helpful in bridging the gap between ideas, providing me with a starting point for elaboration and further exploration of a topic.
 
-What makes this plugin exceptionally useful is its customizability. I can define the specifics of how it behaves, like the hotkey trigger and the version of the language model being used, tailoring the tool to my personal writing style and note-taking needs. The Text Generator can be particularly helpful in bridging the gap between ideas, providing me with a starting point for elaboration and further exploration of a topic, which I can then refine and expand upon with my insights and knowledge.
+However, with AI-generated text comes some responsibility. While the language models can produce remarkable content, they are often not a great sources of truth. The information generated must always be fact-checked and verified. This is critical, as incorporating incorrect or misleading information into my notes will lead to confusion or inaccuracies in my understanding of certain topics.
 
-However, with the power of AI-generated text comes the responsibility of scrutiny. While the language models can produce remarkably coherent and relevant content, they are not infallible sources of truth. The information generated must be fact-checked and verified. This is a critical step in the process, as incorporating incorrect or misleading information into my notes and therefore study process will lead to confusion or inaccuracies in my understanding and documentation.
+Despite this necessary fact-checking, the Text Generator Plugin is a great asset, allowing me to focus my efforts on learning and synthesizing information rather than getting bogged down in repetitive writing tasks.
 
-Despite this necessary step of fact-checking, the Text Generator Plugin is an invaluable asset, allowing me to focus my cognitive efforts on learning and synthesizing information rather than getting bogged down in the minutiae of repetitive writing tasks.
+## When NOT to use Obsidian
+Whilst I do believe that Obsidian is one of if not the best note-taking tool available on the market, there are some disadvantages which you should know about before you make the switch.
+
+
+### Lacking Tablet support
+One such limitation of Obsidian is its lack of native tablet support, particularly when it comes to handwriting input. For many students, the ability to write notes by hand using a stylus is important. For some, it allows for a more familiar note-taking experience, especially during lectures where typing might be disruptive.
+
+Unfortunately, Obsidian doesn't offer built-in functionality for handwriting recognition or the ability to convert pen strokes into text. This means that users who depend heavily on handwritten notes might find Obsidian less accommodating to their needs. The absence of this feature is significant when compared to some of its competitors, such as Notability or Evernote, which have embraced tablet users for a long time. For those reliant on a digital handwriting experience, this might be a deal-breaker, or like me, might need a secondary app as well which they use for handwritten notes.
+
+### Difficulties to sync with iOS devices
+Another obstacle for potential Obsidian users comes in the form of synchronization when it involves iOS devices. Apple's iOS ecosystem has restrictions on how data can be stored and accessed. This presents a challenge for Obsidian users who wish to access their vaults across iPhones and iPads.
+
+Unlike some note-taking apps, Obsidian doesn't directly support using cloud storage solutions like iCloud, OneDrive, or Dropbox for synchronization on iOS. The only (somewhat) supported way is to sync via iCloud, which can result in sync conflicts or delays that are very unpredictable, causing frustration.
+
+To reliably sync data across all platforms, including iOS, Obsidian's proprietary Sync service has to be used, which is a paid feature. While the Obsidian Sync service is a robust solution, it does mean incurring an additional recurring subscription of `8$`/mo at the time of writing. Although, they do offer a student discount [here](https://help.obsidian.md/Licenses+and+payment/Education+and+non-profit+discount).
+
+Personally, as someone who utilizes multiple devices for my work, I've opted for subscribing to the Obsidian Sync service, primarily due to its limitations of its syncing within the iOS ecosystem.
 
 ## Public Knowledge Base: A Tour of My Obsidian Library
 ![My Obsidian Valut]({myObsidianVault})
 
-Delving into my public Obsidian library offers a glimpse into the essence of what I've learned and continue to explore. Located at [docs.marvinvr.ai](https://docs.marvinvr.ai), you can navigate through a well-organized repository of knowledge that showcases the true collaborative and evolutionary nature of learning.
+My public Obsidian library offers a view into the essence of what I've learned until now. Located at [docs.marvinvr.ai](https://docs.marvinvr.ai), you can navigate through my personal repository of knowledge. It's a dynamic library, growing with each semester and letting the public see, what I've been learning.
 
-My Obsidian setup mirrors the multi-faceted interests and demands of my academic career. It constitutes a series of main categories, some of which are elaborated into further subcategories.
+My Obsidian setup constitutes a series of main categories, some of which are divided into further subcategories.
 
-My primary Obsidian "Vault" is called "Documentation".  Here, you will find a mix of notes on `Code`, `Deep Learning`, `Natural Language Processing`, `Hardware`, and `Maths`. Each of these broad categories is broken down into more specialized subtopics. For instance, under `Deep Learning`, you can delve into notes covering everything from `Activation Functions` to `Models`, which are the building blocks of this complex field.
+My primary Obsidian Vault is called "Documentation".  Here, you will find a mix of notes on `Code`, `Deep Learning`, `Natural Language Processing`, `Hardware`, and `Maths`. Each of these categories is broken down into more specialized subtopics. For instance, under `Deep Learning`, you can delve into notes covering everything from `Activation Functions` to `Models`.
 
-`Hardware` is where my tinkering takes a physical form, with sections dedicated to `OPNSense`, `Raspberry Pi`, `Ubuntu Server`, and `Unraid`. These notes serve as technical guides and references based on my personal setup experiences.
+`Hardware` includes what I'm tinkering with on my spare time. With sections dedicated to `OPNSense`, `Raspberry Pi`, `Ubuntu Server`, and `Unraid`. These notes serve as technical guides based on my personal setup experiences.
 
 *Note:* Parts of my library, specifically the math parts, are written in German, this is due to my education taking place in Switzerland.
 
-The documentation housed in my public Obsidian library serves not just as a personal reference but also as an educational resource for others, inviting collaboration, discussion, and collective advancement. It is dynamic, growing with each semester. Obsidian opens the opportunity for me to openly share what I have learned and let others join in.
-
 ## Conclusion
-In the realm of digital note-taking and knowledge management, Obsidian stands out as a versatile and robust tool that caters to the needs of students, researchers, and lifelong learners alike. Its markdown-centric approach not only ensures a future-proofed and accessible database of information but also synergizes well with an incredibly adaptable plugin ecosystem that can be personalized for any user's workflow.
+In the landscape of note-taking platforms, Obsidian stands tall for its powerful features, customization options, and robust community. For me, it has proven to be an invaluable tool throughout my university classes, providing a flexible and reliable way to document everything I learn. Its markdown foundation simplifies note creation and ensures that my data remains portable and future-proof.
 
-For me, the process of integrating Obsidian into my university life has been revolutionary. It has enabled a fluid transfer of knowledge into a centralized and interlinked hub, where my thoughts, study materials, and project management coexist in harmony. With the help of outstanding plugins like Projects and Text Generator, I'm able to tackle complex academic challenges with systematic efficiency.
+Moreover, the plugin ecosystem of Obsidian, featuring gems like the Projects and Text Generator plugins, has allowed me to increase my productivity and streamline my workflows. While it does fall short in areas such as tablet support and iOS synchronization, these limitations are outweighed by its overall utility and versatility.
 
-Embracing Obsidian is a step towards building a second brain, a digital counterpart that supplements our natural memory and augments our intellectual pursuits. My public Obsidian library is an extension of my commitment to open knowledge and collaborative growth, and I will continue to do so in the future.
+My public Obsidian library not only works as a testament to my learning journey, but also as an accessible resource for anyone curious enough to explore it. Whether you're in academia, like me, or just someone passionate about learning, Obsidian could very well be the platform you need to build your second brain, just as I did. 
+
+In essence, it's more than just a tool for note-taking. It's an extension of your mind, captured digitally.
 
