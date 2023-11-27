@@ -6,8 +6,7 @@
   import Web from "svelte-material-icons/Web.svelte";
   import Database from "svelte-material-icons/Database.svelte";
 
-
-  const skills: {title: string, desc: string, icon: any }[] = [
+  const skills: { title: string; desc: string; icon: any }[] = [
     {
       title: "Deep Learning",
       desc: "Specialized in PyTorch for building and training neural networks. Proficient with Weights & Biases for experiment tracking and model optimization.",
@@ -20,22 +19,22 @@
     },
     {
       title: "Prompt Engineering",
-      desc: "Innovative in crafting and refining prompts for AI models, specializing in eliciting desired responses and fine-tuning interactions to optimize user experience and model performance.",
+      desc: "Innovative in crafting and refining prompts for AI models, specializing in achieving desired responses and fine-tuning interactions to optimize user experience.",
       icon: HeadCogOutline,
     },
     {
       title: "Software Engineering Expertise",
-      desc: "Software engineer proficient in backend development with Java and TypeScript, coupled with strong Python programming skills for data analysis, machine learning, and algorithm development using tools like Jupyter.",
+      desc: "Proficient in backend development with Java and TypeScript, coupled with strong Python programming skills for data analysis, machine learning, and algorithm development using tools like Jupyter.",
       icon: CodeBraces,
     },
     {
       title: "Database Technologies",
-      desc: "Experienced with SQL, MongoDB, and GraphQL, emphasizing efficient data storage, retrieval, and manipulation.",
+      desc: "Experienced with SQL, MongoDB, and GraphQL, achieving efficient data storage, retrieval, and manipulation.",
       icon: Database,
     },
     {
       title: "Frontend Web Development",
-      desc: "Skilled in creating user-friendly web applications using Angular and SvelteKit, focusing on responsive design and user experience.",
+      desc: "Skilled in creating user-friendly web applications using Angular and SvelteKit, focusing on responsive design and intuitive user experiences.",
       icon: Web,
     },
   ];
@@ -45,11 +44,12 @@
   <div class="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
     <div class="relative max-w-2xl">
       <div class="relative z-10">
-        <h2 class="text-gray-800">
-          My Skills
-        </h2>
+        <h2 class="text-gray-800">My Skills</h2>
         <p class="mt-3">
-          I am a data scientist and software engineer with a strong background in machine learning and natural language processing. I am passionate about leveraging AI to solve real-world problems and create value for businesses and society.
+          I am a data scientist and software engineer with a strong background
+          in machine learning and natural language processing. I'm passionate
+          about leveraging AI to solve real-world problems and create value for
+          businesses and society.
         </p>
       </div>
     </div>
@@ -58,10 +58,7 @@
         {#each skills as item}
           <li class="bg-white space-y-3 p-4 border rounded-lg">
             <div class="text-indigo-600 pb-3">
-              <svelte:component
-                this={item.icon}
-                class="w-6 h-6"
-              />
+              <svelte:component this={item.icon} class="w-6 h-6" />
             </div>
             <span class="text-lg text-gray-800 font-semibold">
               {item.title}
