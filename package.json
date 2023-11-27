@@ -8,7 +8,7 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"postbuild": "npx svelte-sitemap --out-dir .vercel/output/static --change-freq daily --domain https://marvinvr.ai"
+		"postbuild": "npx svelte-sitemap --out-dir .vercel/output/static --trailing-slashes --change-freq daily --domain https://marvinvr.ai"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",

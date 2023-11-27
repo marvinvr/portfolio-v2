@@ -21,8 +21,8 @@
 <svelte:head>
   <title>{data.meta.title} | Marvin von Rappard</title>
 
-  <link rel="canonical" href="https://marvinvr.ai/posts/{slug}" />
-  <meta property="og:url" content="https://marvinvr.ai/posts/{slug}" />
+  <link rel="canonical" href="https://marvinvr.ai/posts/{slug}/" />
+  <meta property="og:url" content="https://marvinvr.ai/posts/{slug}/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:title" content={meta.title} />
@@ -40,7 +40,10 @@
     <article
       class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue"
     >
-      <button on:click={() => history.back()} class="flex items-center justify-start mb-8 text-indigo-900">
+      <button
+        on:click={() => history.back()}
+        class="flex items-center justify-start mb-8 text-indigo-900"
+      >
         <svg
           class="w-6 h-6 mr-2"
           fill="none"
@@ -62,9 +65,7 @@
           src={headerImage}
           alt={meta.title}
         />
-        <h1
-          class="mb-4 font-extrabold leading-tight text-gray-900 lg:mb-6"
-        >
+        <h1 class="mb-4 font-extrabold leading-tight text-gray-900 lg:mb-6">
           {meta.title}
         </h1>
         <address class="flex items-center mb-6 not-italic">
