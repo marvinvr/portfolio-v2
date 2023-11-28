@@ -13,7 +13,7 @@ Whether you stumbled upon this site by chance or came here out of curiosity, I'm
 
 ## About Me
 
-Hi, I'm Marvin, I'm a Data Scientist! I come from the center of Switzerland, Baden to be precise. I currently study Data Science at FHNW (Fachhochschule Nordwestschweiz). It's a fascinating field that truly resonates with my interest for numbers, patterns, and the powerful stories they can tell.
+I'm Marvin, I'm a Data Scientist! I come from the center of Switzerland, Baden to be precise. I currently study Data Science at FHNW (Fachhochschule Nordwestschweiz). It's a fascinating field that truly resonates with my interest for numbers, patterns, and the powerful stories they can tell.
 
 Outside academia, I'm just as passionate about applying my data expertise in practical scenarios. In my posts you'll find anything programming or AI-related, with a special sweet spot for deep learning.
 
