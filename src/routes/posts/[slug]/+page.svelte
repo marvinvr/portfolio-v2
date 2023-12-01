@@ -22,6 +22,7 @@
     <title>{data.meta.title} | Marvin von Rappard</title>
 
     <link rel="canonical" href="https://marvinvr.ai/posts/{slug}"/>
+    <meta property="description" content={meta.description}/>
     <meta property="og:url" content="https://marvinvr.ai/posts/{slug}"/>
 
     <meta property="og:type" content="article"/>

@@ -6,16 +6,17 @@
 <svelte:head>
     <meta property="og:title" content="Marvin von Rappard | Blog"/>
     <meta property="og:description"
-          content="The personal blog of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland."/>
+          content="The personal blog of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. My posts usually center around Deep Learning and Computer Science."/>
     <meta property="og:image" content="https://marvinvr.ai/og-image.png"/>
     <meta property="og:type" content="website"/>
 
-    <meta name="twitter:title" content="Marvin von Rappard | Portfolio"/>
+    <meta name="twitter:title" content="Marvin von Rappard | Blog"/>
     <meta name="twitter:description"
-          content="The personal blog of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland."/>
+          content="The personal blog of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. My posts usually center around Deep Learning and Computer Science."/>
     <meta name="twitter:image" content="https://marvinvr.ai/og-image.png"/>
 </svelte:head>
 
-<Hero subtitle="This is where you can find my most recent blog posts. Usually in the domain of Artificial Intelligence. Use any of the links below to get in touch!" />
+<Hero
+    subtitle="This is where you can find my most recent blog posts. Usually in the domain of Artificial Intelligence. Use any of the links below to get in touch!"/>
 <slot/>
 <Contact/>

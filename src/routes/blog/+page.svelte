@@ -12,11 +12,6 @@
 
     <meta property="og:title" content="Marvin von Rappard | Blog"/>
     <title>Marvin von Rappard | Blog</title>
-
-    <meta
-        property="og:description"
-        content="The personal blog of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland."
-    />
 </svelte:head>
 
 <Posts title="My Recent Posts" posts={latestPosts}/>

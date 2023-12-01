@@ -26,7 +26,7 @@
     <meta property="og:title" content="Marvin von Rappard | Portfolio"/>
     <meta
         property="og:description"
-        content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland."
+        content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
     />
     <meta property="og:image" content="https://marvinvr.ai/og-image.png"/>
     <meta property="og:type" content="website"/>
@@ -34,7 +34,7 @@
     <meta name="twitter:title" content="Marvin von Rappard | Portfolio"/>
     <meta
         name="twitter:description"
-        content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland."
+        content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
     />
     <meta name="twitter:image" content="https://marvinvr.ai/og-image.png"/>
 </svelte:head>
