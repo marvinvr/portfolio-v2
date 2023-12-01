@@ -22,6 +22,8 @@
 <svelte:head>
     <link rel="canonical" href="https://marvinvr.ai"/>
     <meta property="og:url" content="https://marvinvr.ai"/>
+    <meta property="description"
+          content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."/>
 
     <meta property="og:title" content="Marvin von Rappard | Portfolio"/>
     <meta
