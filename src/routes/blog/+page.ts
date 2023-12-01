@@ -1,5 +1,4 @@
 import type { PageLoad } from './$types.js';
-import { getPosts } from '../api/posts/utils/posts.js';
 import type { Post } from '$lib/models/post.js';
 
 export const prerender = true;
