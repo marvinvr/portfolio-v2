@@ -1,52 +1,54 @@
 <script lang="ts">
-    import Hero from "$lib/components/Hero.svelte";
-    import Timeline from "$lib/components/Timeline.svelte";
+  import Hero from "$lib/components/Hero.svelte";
+  import Timeline from "$lib/components/Timeline.svelte";
 
-    // @ts-ignore
-    import apiaxLogo from "$lib/assets/logo_apiax.png?format=webp&w=100&h=100";
-    // @ts-ignore
-    import fhnwLogo from "$lib/assets/logo_fhnw.webp?format=webp&w=100&h=100";
-    // @ts-ignore
-    import kantiLogo from "$lib/assets/logo_kanti.jpeg?format=webp&w=100&h=100";
+  // @ts-ignore
+  import apiaxLogo from "$lib/assets/logo_apiax.png?format=webp&w=100&h=100";
+  // @ts-ignore
+  import fhnwLogo from "$lib/assets/logo_fhnw.webp?format=webp&w=100&h=100";
+  // @ts-ignore
+  import kantiLogo from "$lib/assets/logo_kanti.jpeg?format=webp&w=100&h=100";
 
-    import Skills from "$lib/components/Skills.svelte";
-    import Contact from "$lib/components/Contact.svelte";
-    import Posts from "$lib/components/Posts.svelte";
+  import Skills from "$lib/components/Skills.svelte";
+  import Contact from "$lib/components/Contact.svelte";
+  import Posts from "$lib/components/Posts.svelte";
 
-    import type {PageData} from "./$types";
+  import type { PageData } from "./$types";
 
-    export let data: PageData;
-    const {latestPosts} = data;
+  export let data: PageData;
+  const { latestPosts } = data;
 </script>
 
 <svelte:head>
-    <link rel="canonical" href="https://marvinvr.ai"/>
-    <meta property="og:url" content="https://marvinvr.ai"/>
-    <meta property="description"
-          content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."/>
+  <link rel="canonical" href="https://marvinvr.ai" />
+  <meta property="og:url" content="https://marvinvr.ai" />
+  <meta
+    property="description"
+    content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
+  />
 
-    <meta property="og:title" content="Marvin von Rappard | Portfolio"/>
-    <meta
-        property="og:description"
-        content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
-    />
-    <meta property="og:image" content="https://marvinvr.ai/og-image.png"/>
-    <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Marvin von Rappard | Portfolio" />
+  <meta
+    property="og:description"
+    content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
+  />
+  <meta property="og:image" content="https://marvinvr.ai/og-image.png" />
+  <meta property="og:type" content="website" />
 
-    <meta name="twitter:title" content="Marvin von Rappard | Portfolio"/>
-    <meta
-        name="twitter:description"
-        content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
-    />
-    <meta name="twitter:image" content="https://marvinvr.ai/og-image.png"/>
+  <meta name="twitter:title" content="Marvin von Rappard | Portfolio" />
+  <meta
+    name="twitter:description"
+    content="The personal portfolio of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
+  />
+  <meta name="twitter:image" content="https://marvinvr.ai/og-image.png" />
 </svelte:head>
 
 <Hero
-    subtitle="I'm currently working at Apiax as part of a team developing state-of-the-art compliance AI, harnessing the power of natural language processing and advanced technologies like LLMs. In addition, I'm studying Data Science at the University of Applied Sciences Northwestern Switzerland."
+  subtitle="I'm currently working at Apiax as part of a team developing state-of-the-art compliance AI, harnessing the power of natural language processing and advanced technologies like LLMs. In addition, I'm studying Data Science at the University of Applied Sciences Northwestern Switzerland."
 />
 <Timeline
-    title="My Professional History"
-    items={[
+  title="My Professional History"
+  items={[
     {
       date: "Nov\xa02022 - Now",
       link: "https://www.apiax.com/",
@@ -76,14 +78,14 @@
     },
   ]}
 />
-<Skills/>
+<Skills />
 <Timeline
-    title="My Education"
-    items={[
+  title="My Education"
+  items={[
     {
       date: "Sep\xa02021 - Sep\xa02024",
       link: "https://www.fhnw.ch/de/studium/technik/data-science",
-      position: "Bachelors of Science in Data Science",
+      position: "Bachelor of Science in Data Science",
       title: "University of Applied Sciences and Arts Northwestern Switzerland",
       description:
         "I am currently one year away from completing my studies at University of Applied Sciences and working on my bachelor's degree in Data Science. The degree focuses on data analysis and machine learning, while enabling me to learn about the mathematical background behind these algorithms.",
@@ -101,8 +103,8 @@
   ]}
 />
 <Posts
-    title="My Latest Posts"
-    description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
-    posts={latestPosts}
+  title="My Latest Posts"
+  description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
+  posts={latestPosts}
 />
-<Contact/>
+<Contact />
