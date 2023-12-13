@@ -3,8 +3,8 @@ title: Using Deep Learning to classify Camera-Trap images from the African Jungl
 description: Using Computer Vision to tackle wildlife species classification in Taï National Park.
 date: "2023-11-13"
 categories:
-    - deep-learning
-    - computer-vision
+  - deep-learning
+  - computer-vision
 published: true
 header: header.png
 ---

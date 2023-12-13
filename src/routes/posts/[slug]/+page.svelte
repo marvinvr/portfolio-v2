@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.meta.title} | Marvin von Rappard</title>
+  <title>{data.meta.title}</title>
 
   <meta name="keywords" content={meta.categories.join(", ")} />
   <link rel="canonical" href="https://marvinvr.ai/posts/{slug}" />

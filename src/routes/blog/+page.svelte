@@ -20,7 +20,7 @@
   <meta
     name="description"
     property="og:description"
-    content="The personal blog of Marvin von Rappard. I'm a Data Scientist located in Baden, Switzerland. This is an overview of my recent posts and current projects i'm working on."
+    content="The personal blog of Marvin von Rappard. This is an overview of my recent posts and current projects I'm working on."
   />
 </svelte:head>
 
