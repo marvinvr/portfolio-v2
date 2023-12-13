@@ -21,6 +21,7 @@
 <svelte:head>
   <title>{data.meta.title} | Marvin von Rappard</title>
 
+  <meta name="keywords" content={meta.categories.join(", ")} />
   <link rel="canonical" href="https://marvinvr.ai/posts/{slug}" />
   <meta
     name="description"
@@ -30,7 +31,7 @@
 
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://marvinvr.ai/posts/{slug}" />
-  <meta property="og:title" content={meta.title} />
+  <meta property="og:title" content="{meta.title} | Marvin von Rappard" />
   <meta property="og:image" content="https://marvinvr.ai{headerImage}" />
   <meta property="og:type" content="article" />
 
