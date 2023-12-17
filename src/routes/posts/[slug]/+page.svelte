@@ -45,10 +45,7 @@
     <article
       class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue"
     >
-      <button
-        on:click={() => history.back()}
-        class="flex items-center justify-start mb-8 text-indigo-900"
-      >
+      <a href="/" class="flex items-center justify-start mb-8 text-indigo-900">
         <svg
           class="w-6 h-6 mr-2"
           fill="none"
@@ -63,8 +60,8 @@
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
           />
         </svg>
-        <span>Go Back</span>
-      </button>
+        <span>Go Back Home</span>
+      </a>
       <header class="mb-4 lg:mb-6 not-format">
         <img
           class="mb-6 w-full h-64 object-cover rounded-lg"
