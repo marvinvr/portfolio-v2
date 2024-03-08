@@ -51,30 +51,30 @@
   title="My Professional History"
   items={[
     {
-      date: "Nov\xa02022 - Now",
+      date: "Feb\xa02024 - Present",
+      link: "https://www.fhnw.ch/de/die-fhnw/hochschulen/ht/institute/institut-fuer-data-science",
+      title: "Institute for Data Science at FHNW",
+      position: "AI Researcher",
+      description:
+        "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from many different fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation (RAG) system and is designed to help students navigate through their studies.",
+      icon: fhnwLogo,
+    },
+    {
+      date: "Nov\xa02022 - Jan\xa02024",
       link: "https://www.apiax.com/",
       title: "AI Lab at Apiax",
       position: "Data Scientist",
       description:
-        "As part of our AI Lab team, I am currently working on understanding, processing and eventually digitizing Legal Documents using state-of-the-art Natural Language Processing technologies.",
+        "As part of our AI Lab team, I was working on understanding, processing and eventually digitizing Legal Documents using state-of-the-art Natural Language Processing technologies. As part of that, we developed multiple Transformer-Based models including Large Language Models partly in combination with Retrieval Augmented Generation (RAG) systems.",
       icon: apiaxLogo,
     },
     {
-      date: "Aug\xa02020 - Nov\xa02022",
+      date: "Aug\xa02019 - Oct\xa02022",
       link: "https://www.apiax.com/",
       title: "Product Team at Apiax",
       position: "Software Engineer",
       description:
-        "After having already conducted a one year Internship at Apiax and having switched over to a full time employment I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
-      icon: apiaxLogo,
-    },
-    {
-      date: "Aug\xa02019 - Jul\xa02020",
-      link: "https://www.apiax.com/",
-      title: "Operations Team at Apiax",
-      position: "Software Engineer - Internship",
-      description:
-        "During my Internship at Apiax I took part in shaping the IT infrastructure of a fast growing startup whilst making my first experiences working as a Software Engineer.",
+        "My first year at Apiax as an intern, I took part in shaping the IT infrastructure of a fast growing startup. After that I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
       icon: apiaxLogo,
     },
   ]}
@@ -89,7 +89,7 @@
       position: "Bachelor of Science in Data Science",
       title: "University of Applied Sciences and Arts Northwestern Switzerland",
       description:
-        "I am currently one year away from completing my studies at University of Applied Sciences and working on my bachelor's degree in Data Science. The degree focuses on data analysis and machine learning, while enabling me to learn about the mathematical background behind these algorithms.",
+        "I am currently a few months away from completing my studies at University of Applied Sciences and working on my bachelor's degree in Data Science. The degree focuses on data analysis and machine learning, while enabling me to learn about the mathematical background behind these algorithms.",
       icon: fhnwLogo,
     },
     {
