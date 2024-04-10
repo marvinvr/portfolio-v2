@@ -56,7 +56,7 @@
       title: "Institute for Data Science at FHNW",
       position: "AI Researcher",
       description:
-        "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from many different fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation (RAG) system and is designed to help students navigate through their studies.",
+        "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation (RAG) system.",
       icon: fhnwLogo,
     },
     {
@@ -74,7 +74,7 @@
       title: "Product Team at Apiax",
       position: "Software Engineer",
       description:
-        "I joined Apiax while it still was a StartUp. My first year at Apiax as an intern, I took part in shaping the IT infrastructure of a fast growing startup. After that, I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
+        "I joined Apiax while it was still a Start-Up. In my first year as an intern, I took part in shaping the IT infrastructure for a fast-growing team. After that, I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
       icon: apiaxLogo,
     },
   ]}
