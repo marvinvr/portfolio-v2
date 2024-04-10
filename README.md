@@ -1,4 +1,6 @@
-# Portfolio-v2
+<p align="left">
+    <h1 align="left">Portfolio-v2</h1>
+</p>
 
 <p align="left">
 	<img src="https://img.shields.io/github/license/marvinvr/portfolio-v2?style=flat-square&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
