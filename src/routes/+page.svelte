@@ -74,7 +74,7 @@
       title: "Product Team at Apiax",
       position: "Software Engineer",
       description:
-        "My first year at Apiax as an intern, I took part in shaping the IT infrastructure of a fast growing startup. After that I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
+        "I joined Apiax while it still was a StartUp. My first year at Apiax as an intern, I took part in shaping the IT infrastructure of a fast growing startup. After that, I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
       icon: apiaxLogo,
     },
   ]}
