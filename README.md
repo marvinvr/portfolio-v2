@@ -91,7 +91,7 @@ This project contains my personal portfolio website. It's build using sveltekit 
 > Run portfolio-v2 using the command below:
 >
 > ```console
-> $ npm run build && node dist/main.js
+> $ npm run build
 > ```
 
 <h4> For <code>development</code></h4>
