@@ -56,7 +56,7 @@
       title: "Institute for Data Science at FHNW",
       position: "AI Researcher",
       description:
-        "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation (RAG) system.",
+        "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation system.",
       icon: fhnwLogo,
     },
     {
@@ -65,7 +65,7 @@
       title: "AI Lab at Apiax",
       position: "Data Scientist",
       description:
-        "As part of our AI Lab team, I was working on understanding, processing and eventually digitizing Legal Documents using state-of-the-art Natural Language Processing technologies. As part of that, we developed multiple Transformer-Based models including Large Language Models partly in combination with Retrieval Augmented Generation (RAG) systems.",
+        "As part of our AI Lab team, I was working on understanding, processing and eventually digitizing Legal Documents using state-of-the-art Natural Language Processing technologies. As part of that, we developed multiple Transformer-Based models including Large Language Models partly in combination with Retrieval Augmented Generation systems.",
       icon: apiaxLogo,
     },
     {
