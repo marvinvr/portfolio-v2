@@ -45,7 +45,7 @@
 </svelte:head>
 
 <Hero
-  subtitle="I'm currently working at Apiax as part of a team developing state-of-the-art compliance AI, harnessing the power of natural language processing and advanced technologies like LLMs. In addition, I'm studying Data Science at the University of Applied Sciences Northwestern Switzerland."
+  subtitle="I'm currently working at the Institute for Data Science at FHNW as part of a team developing a state-of-the-art AI-Tutor for students using the power of Large Language Models. In addition, I'm studying Data Science at the University of Applied Sciences Northwestern Switzerland."
 />
 <Timeline
   title="My Professional History"
@@ -54,7 +54,7 @@
       date: "Feb\xa02024 - Present",
       link: "https://www.fhnw.ch/de/die-fhnw/hochschulen/ht/institute/institut-fuer-data-science",
       title: "Institute for Data Science at FHNW",
-      position: "AI Researcher",
+      position: "Artificial Intelligence Researcher",
       description:
         "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation system.",
       icon: fhnwLogo,
