@@ -5,7 +5,7 @@ date: "2023-11-18"
 categories:
   - report-gpt
   - artificial-intelligence
-published: true
+published: false
 header: header.png
 ---
 
