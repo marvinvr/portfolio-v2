@@ -54,7 +54,7 @@
       date: "Feb\xa02024 - Present",
       link: "https://www.fhnw.ch/de/die-fhnw/hochschulen/ht/institute/institut-fuer-data-science",
       title: "Institute for Data Science at FHNW",
-      position: "Artificial Intelligence Researcher",
+      position: "Research Scientist",
       description:
         "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation system.",
       icon: fhnwLogo,
