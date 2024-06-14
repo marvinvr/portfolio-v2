@@ -11,6 +11,8 @@
 
     // @ts-ignore
     import portrait from "$lib/assets/portrait.jpeg?format=webp&w=200&h=200";
+
+    import { useLazyImage as lazyImage } from "svelte-lazy-image";
 </script>
 
 <!-- Timeline -->
@@ -33,7 +35,7 @@
                 class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-gray-200 ">
                 <div class="relative z-10 w-7 h-7 flex justify-center items-center">
                     <a href={item.link} target="_blank">
-                        <img class="flex-shrink-0 w-7 h-7 rounded-full" src={item.icon} alt={`${item.title} logo`}>
+                        <img use:lazyImage class="flex-shrink-0 w-7 h-7 rounded-full" height="28" width="28" data-src={item.icon} alt={`${item.title} logo`}>
                     </a>
                 </div>
             </div>
@@ -46,7 +48,7 @@
             </span>
                 <span
                     class="mt-1 -ms-1 p-1 inline-flex items-center gap-x-2 text-sm rounded-lg border border-transparent text-gray-500 disabled:opacity-50 disabled:pointer-events-none     ">
-            <img class="flex-shrink-0 w-5 h-5 rounded-full" src={portrait} alt="Portrait of Marvin von Rappard">
+            <img use:lazyImage class="flex-shrink-0 w-5 h-5 rounded-full" height="20" width="20" data-src={portrait} alt="Portrait of Marvin von Rappard">
                     {item.position}
             </span>
                 <p class="mt-1 text-sm text-gray-600 ">
