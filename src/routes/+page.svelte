@@ -9,11 +9,21 @@
   // @ts-ignore
   import kantiLogo from "$lib/assets/logo_kanti.jpeg?format=webp&w=100&h=100";
 
+  // @ts-ignore
+  //import computerVisionChallengeHeader from "$lib/posts/2023-11-13-wildlife-cameras/header.png?format=webp&w=480";
+  // @ts-ignore
+  import autoYtShortsHeader from "$lib/projects/auto-yt-shorts.png?format=webp&w=560";
+  // @ts-ignore
+  import reportGptHeader from "$lib/projects/report-gpt.png?format=webp&w=560";
+  // @ts-ignore
+  import postPulseHeader from "$lib/projects/post-pulse.png?format=webp&w=560";
+
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
   import Posts from "$lib/components/Posts.svelte";
 
   import type { PageData } from "./$types";
+  import Projects from "$lib/components/Projects.svelte";
 
   export let data: PageData;
   const { latestPosts } = data;
@@ -77,6 +87,44 @@
         "I joined Apiax while it was still a Start-Up. In my first year as an intern, I took part in shaping the IT infrastructure for a fast-growing team. After that, I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
       icon: apiaxLogo,
     },
+  ]}
+/>
+<Projects
+  title="My Latest Projects"
+  description="I'm currently working on a few projects in my free time. Here are some of my latest ones:"
+  projects={[
+    {
+      title: "PostPulse",
+      image: postPulseHeader,
+      description:
+        "PostPulse is a service designed specifically for SaaS founders. Each month, we publish high-quality, AI-crafted posts about your Startup on premium, SEO-optimized domains.",
+      url: "https://post-pulse.io",
+      release: "2024-06-01",
+    },
+    {
+      title: "ReportGPT",
+      image: reportGptHeader,
+      description:
+        "ReportGPT is a web-based tool that helps you write reports and other documents faster and more efficiently with the help of Large Language Models.",
+      url: "https://report-gpt.io",
+      release: "2023-11-01",
+    },
+    {
+      title: "Auto-yt-shorts",
+      image: autoYtShortsHeader,
+      description:
+        "Auto-yt-shorts is an open-source project designed to automate the process of generating engaging short videos for platforms like YouTube and TikTok.",
+      url: "https://github.com/marvinvr/auto-yt-shorts",
+      release: "2023-10-15",
+    },
+    /*{
+      title: "Conser-vision Practice Area: Image Classification",
+      image: computerVisionChallengeHeader,
+      description:
+        "I recently participated in a computer vision challenge where I had to classify images of wildlife cameras. Our findings are available on GitHub.",
+      url: "https://github.com/marvinvr/ccv1",
+      release: "2023-07-01",
+    },*/
   ]}
 />
 <Skills />
