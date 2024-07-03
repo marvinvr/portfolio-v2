@@ -32,7 +32,7 @@
 <svelte:head>
   <meta
     name="keywords"
-    content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Deep Learning, Data, Science"
+    content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Deep Learning, Data Science , AI"
   />
   <link rel="canonical" href="https://marvinvr.ai" />
   <meta
