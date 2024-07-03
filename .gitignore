@@ -48,3 +48,6 @@ Temporary Items
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Sentry Config File
+.sentryclirc
