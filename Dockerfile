@@ -12,8 +12,6 @@ RUN bun install
 # Copy the rest of the application files
 COPY . .
 
-RUN bun install
-
 RUN bun run build
 
 # Stage 2 - run the app
