@@ -1,9 +1,10 @@
-<script>
-    import Footer from "$lib/components/Footer.svelte";
-    import {dev} from "$app/environment";
+<script lang="ts">
+  import Footer from "$lib/components/Footer.svelte";
 
-    import "../app.scss";
+  import "../app.scss";
+  import Analytics from "$lib/components/Analytics.svelte";
 </script>
 
-<slot/>
-<Footer/>
+<Analytics />
+<slot />
+<Footer />
