@@ -55,7 +55,7 @@
 </svelte:head>
 
 <Hero
-  subtitle="I'm currently working at the Institute for Data Science at FHNW as part of a team developing a state-of-the-art AI-Tutor for students using the power of Large Language Models. In addition, I'm studying Data Science at the University of Applied Sciences Northwestern Switzerland."
+  subtitle="I'm currently working at the Institute for Data Science at FHNW as part of a team developing a state-of-the-art AI-Tutor for students using the power of Large Language Models. In addition, I recently completed my Bachelor's degree in Data Science at FHNW in Switzerland."
 />
 <Timeline
   title="My Professional History"
@@ -137,7 +137,7 @@
       position: "Bachelor of Science in Data Science",
       title: "University of Applied Sciences and Arts Northwestern Switzerland",
       description:
-        "I am currently a few months away from completing my studies at University of Applied Sciences and working on my bachelor's degree in Data Science. The degree focuses on data analysis and machine learning, while enabling me to learn about the mathematical background behind these algorithms.",
+        "I recently completed my studies at University of Applied Sciences and working on my bachelor's degree in Data Science. The degree focuses on data analysis and machine learning, while enabling me to learn about the mathematical background behind these algorithms.",
       icon: fhnwLogo,
     },
     {
