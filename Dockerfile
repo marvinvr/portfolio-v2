@@ -18,7 +18,8 @@ RUN bun run build
 FROM node:20-alpine AS run
 
 # Install wget 
-RUN apt-get update && apt-get install -y wget
+RUN apk add --no-cache wget
+
 
 WORKDIR /app
 
