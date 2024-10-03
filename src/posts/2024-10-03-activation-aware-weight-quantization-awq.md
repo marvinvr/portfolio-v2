@@ -1,6 +1,6 @@
 ---
-title: Activation-aware Quantization (AWQ) for LLM Compression and Acceleration
-description: How to use Activation-aware Quantization (AWQ) to compress and accelerate LLMs.
+title: Activation-aware Weight Quantization (AWQ) for LLM Compression and Acceleration
+description: How to use Activation-aware Weight Quantization (AWQ) to compress and accelerate LLMs.
 date: "2024-10-03"
 categories:
   - machine-learning
