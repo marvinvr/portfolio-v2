@@ -83,7 +83,7 @@
                 >Marvin von Rappard</a
               >
               <span class="text-gray-500 text-md block">
-                Data Scientist & Bachelor of Science Student
+                Data Scientist & Software Engineer
               </span>
               <p class="text-gray-500 text-sm">
                 Published on {formatDate(meta.date)}

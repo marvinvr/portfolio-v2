@@ -21,7 +21,7 @@
         Hey, I'm Marvin
       </h1>
       <h2 class="text-gray-800 font-medium text-xl xl:text-2xl">
-        Data Scientist & Bachelor of Science Student
+        Data Scientist & Software Engineer
       </h2>
       <!-- Location marker -->
       <a
