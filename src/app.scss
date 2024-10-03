@@ -150,4 +150,24 @@
         -8.2px 8.2px 13px -1.7px hsl(var(--shadow-color) / 0.36),
         -20px 20px 31.8px -2.5px hsl(var(--shadow-color) / 0.36);
     }
+
+    table {
+      @apply w-full my-6 border-collapse border border-gray-200;
+    }
+  
+    th, td {
+      @apply border px-2 py-1 text-left border-gray-300;
+    }
+  
+    th {
+      @apply bg-gray-100 font-semibold;
+    }
+  
+    tr:nth-child(even) {
+      @apply bg-gray-50;
+    }
+  
+    td {
+      @apply text-gray-800;
+    }
  }
