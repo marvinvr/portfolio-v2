@@ -12,7 +12,7 @@ header: image.png
 <script lang="ts">
     import { image } from "$lib/utils/images";
 
-    const slug = "2024-10-03-activation-aware-quantization-awq";
+    const slug = "2024-10-03-activation-aware-weight-quantization-awq";
     const overviewImage = image(slug, 'overview.png');
 </script>
 
