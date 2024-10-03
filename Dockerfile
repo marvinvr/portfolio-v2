@@ -15,7 +15,7 @@ COPY . .
 RUN bun run build
 
 # Stage 2 - run the app
-FROM oven/bun:1 as run
+FROM node:20-alpine AS run
 
 # Install wget 
 RUN apt-get update && apt-get install -y wget
@@ -28,4 +28,4 @@ COPY --from=build /app/svelte.config.js ./svelte.config.js
 COPY --from=build /app/build ./build
 
 EXPOSE 3000
-ENTRYPOINT ["bun", "./build"]
+ENTRYPOINT ["node", "./build"]
