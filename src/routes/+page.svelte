@@ -55,7 +55,7 @@
 </svelte:head>
 
 <Hero
-  subtitle="I'm currently working at the Institute for Data Science at FHNW as part of a team developing a state-of-the-art AI-Tutor for students using the power of Large Language Models. In addition, I recently completed my Bachelor's degree in Data Science at FHNW in Switzerland."
+  subtitle="I'm currently working at the Institute for Data Science at FHNW as part of a team developing an AI-Tutor for students using the power of Large Language Models. In addition, I recently completed my Bachelor's degree in Data Science at FHNW in Switzerland."
 />
 <Timeline
   title="My Professional History"
@@ -66,7 +66,7 @@
       title: "Institute for Data Science at FHNW",
       position: "Research Scientist",
       description:
-        "I am currently working as a Research Assistant at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation system.",
+        "I am currently working as a Researcher at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation system.",
       icon: fhnwLogo,
     },
     {
