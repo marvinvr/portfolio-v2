@@ -34,16 +34,16 @@
     name="keywords"
     content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Deep Learning, Data Science , AI"
   />
-  <link rel="canonical" href="https://marvinvr.ai" />
+  <link rel="canonical" href="https://marvinvr.ch" />
   <meta
     name="description"
     property="og:description"
     content="The personal portfolio of Marvin von Rappard. This is an overview of my recent posts and current projects i'm working on."
   />
 
-  <meta property="og:url" content="https://marvinvr.ai" />
+  <meta property="og:url" content="https://marvinvr.ch" />
   <meta property="og:title" content="Marvin von Rappard | Portfolio" />
-  <meta property="og:image" content="https://marvinvr.ai/og-image.png" />
+  <meta property="og:image" content="https://marvinvr.ch/og-image.png" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:title" content="Marvin von Rappard | Portfolio" />
@@ -51,7 +51,7 @@
     name="twitter:description"
     content="The personal portfolio of Marvin von Rappard. This is an overview of my recent posts and current projects i'm working on."
   />
-  <meta name="twitter:image" content="https://marvinvr.ai/og-image.png" />
+  <meta name="twitter:image" content="https://marvinvr.ch/og-image.png" />
 </svelte:head>
 
 <Hero

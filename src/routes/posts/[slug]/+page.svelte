@@ -22,7 +22,7 @@
   <title>{data.meta.title}</title>
 
   <meta name="keywords" content={meta.categories.join(", ")} />
-  <link rel="canonical" href="https://marvinvr.ai/posts/{slug}" />
+  <link rel="canonical" href="https://marvinvr.ch/posts/{slug}" />
   <meta
     name="description"
     property="og:description"
@@ -30,14 +30,14 @@
   />
 
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://marvinvr.ai/posts/{slug}" />
+  <meta property="og:url" content="https://marvinvr.ch/posts/{slug}" />
   <meta property="og:title" content="{meta.title} | Marvin von Rappard" />
-  <meta property="og:image" content="https://marvinvr.ai{headerImage}" />
+  <meta property="og:image" content="https://marvinvr.ch{headerImage}" />
   <meta property="og:type" content="article" />
 
   <meta name="twitter:title" content={meta.title} />
   <meta name="twitter:description" content={meta.description} />
-  <meta name="twitter:image" content="https://marvinvr.ai{headerImage}" />
+  <meta name="twitter:image" content="https://marvinvr.ch{headerImage}" />
 </svelte:head>
 
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white antialiased">

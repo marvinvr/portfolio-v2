@@ -12,8 +12,8 @@
     content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Deep Learning, Data, Science"
   />
 
-  <link rel="canonical" href="https://marvinvr.ai/blog" />
-  <meta property="og:url" content="https://marvinvr.ai/blog" />
+  <link rel="canonical" href="https://marvinvr.ch/blog" />
+  <meta property="og:url" content="https://marvinvr.ch/blog" />
 
   <meta property="og:title" content="Marvin von Rappard | Blog" />
   <title>Marvin von Rappard | Blog</title>

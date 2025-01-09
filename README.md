@@ -28,7 +28,7 @@
 
 ## Overview
 
-This project contains my personal portfolio website. It's build using sveltekit and tailwindcss. The website incorporates a blog section where I can write about my experiences and projects. The blog posts are written in plain markdown and parsed into html on build time. The website is deployed on vercel and can be accessed at [marvinvr.ai](https://marvinvr.ai).
+This project contains my personal portfolio website. It's build using sveltekit and tailwindcss. The website incorporates a blog section where I can write about my experiences and projects. The blog posts are written in plain markdown and parsed into html on build time. The website is deployed on my own VPS using [coolify](https://coolify.io) and can be accessed at [marvinvr.ch](https://marvinvr.ch).
 
 ---
 
