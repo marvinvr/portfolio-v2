@@ -32,7 +32,7 @@
       title: "Email",
       label: "Send me an Email",
       icon: logoEmail,
-      link: "mailto:marvin@von-rappard.ch",
+      link: "mailto:hello@marvinvr.ch",
     },
   ];
 </script>
