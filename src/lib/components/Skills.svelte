@@ -8,34 +8,34 @@
 
   const skills: { title: string; desc: string; icon: any }[] = [
     {
-      title: "Deep Learning",
-      desc: "Specialized in PyTorch for building and training neural networks. Proficient with Weights & Biases for experiment tracking and model optimization.",
-      icon: GraphOutline,
-    },
-    {
-      title: "Natural Language Processing",
-      desc: "Skilled in applying NLP techniques to derive meaningful insights from textual data, leveraging my experience with state-of-the-art compliance AI.",
-      icon: Translate,
-    },
-    {
-      title: "Prompt Engineering",
-      desc: "Innovative in crafting and refining prompts for AI models, specializing in achieving desired responses and fine-tuning interactions to optimize user experience.",
-      icon: HeadCogOutline,
-    },
-    {
-      title: "Software Engineering Expertise",
-      desc: "Proficient in backend development with Java and TypeScript, coupled with strong Python programming skills for data analysis, machine learning, and algorithm development using tools like Jupyter.",
+      title: "Software Engineering",
+      desc: "Backend development with <b>Java</b>, <b>TypeScript</b> and <b>Golang</b>. <b>Python</b> for data analysis and machine learning. Focus on scalable architecture and clean code.",
       icon: CodeBraces,
     },
     {
       title: "Database Technologies",
-      desc: "Experienced with SQL, MongoDB, and GraphQL, achieving efficient data storage, retrieval, and manipulation.",
+      desc: "<b>SQL</b>, <b>MongoDB</b>, and <b>GraphQL</b> for data storage and retrieval. Design of efficient database schemas and queries.",
       icon: Database,
     },
     {
       title: "Frontend Web Development",
-      desc: "Skilled in creating user-friendly web applications using Angular and SvelteKit, focusing on responsive design and intuitive user experiences.",
+      desc: "Web applications with <b>Angular</b>, <b>React</b> and <b>SvelteKit</b>. Component-based architecture and responsive design.",
       icon: Web,
+    },
+    {
+      title: "Deep Learning",
+      desc: "Neural network development with <b>PyTorch</b>. Experiment tracking and optimization using <b>Weights & Biases</b>.",
+      icon: GraphOutline,
+    },
+    {
+      title: "Natural Language Processing",
+      desc: "Text processing and analysis using transformer models. Implementation of <b>LLMs</b> and <b>RAG</b> systems.",
+      icon: Translate,
+    },
+    {
+      title: "Prompt Engineering",
+      desc: "<b>LLM</b> prompt design and optimization. System prompts for complex AI applications.",
+      icon: HeadCogOutline,
     },
   ];
 </script>
@@ -46,10 +46,7 @@
       <div class="relative z-10">
         <h2 class="text-gray-800">My Skills</h2>
         <p class="mt-3">
-          I am a data scientist and software engineer with a strong background
-          in machine learning and natural language processing. I'm passionate
-          about leveraging AI to solve real-world problems and create value for
-          businesses and society.
+          I build end-to-end software solutions, from backend systems to user interfaces. My technical toolkit includes <b>full-stack development</b>, <b>data engineering</b>, and <b>machine learning</b>, which I've applied across manufacturing, compliance, and education sectors.
         </p>
       </div>
     </div>
@@ -64,7 +61,7 @@
               {item.title}
             </span>
             <p>
-              {item.desc}
+              {@html item.desc}
             </p>
           </li>
         {/each}

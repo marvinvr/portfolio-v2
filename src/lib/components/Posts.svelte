@@ -16,7 +16,7 @@
         <div>
             <h2 class="text-gray-800">{title}</h2>
             {#if description}
-                <p class="text-gray-600">{description}</p>
+                <p class="text-gray-600 max-w-2xl">{description}</p>
             {/if}
             <slot/>
         </div>

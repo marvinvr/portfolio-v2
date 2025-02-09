@@ -1,41 +1,39 @@
 <script lang="ts">
-  import logoX from "$lib/assets/logo_x.svg";
-  import logoLinkedin from "$lib/assets/logo_linkedin.svg";
-  import logoEmail from "$lib/assets/logo_email.svg";
-  import logoGithub from "$lib/assets/logo_github.svg";
+  import { Twitter, Linkedin, Github, Mail, Phone } from "lucide-svelte";
+
 
   const socials: { icon: any; link: string }[] = [
     {
-      icon: logoX,
+      icon: Twitter,
       link: "https://twitter.com/marvinvr",
     },
     {
-      icon: logoLinkedin,
+      icon: Linkedin,
       link: "https://www.linkedin.com/in/marvinvr",
     },
     {
-      icon: logoGithub,
+      icon: Github,
       link: "https://github.com/marvinvr",
     },
     {
-      icon: logoEmail,
+      icon: Mail,
       link: "mailto:hello@marvinvr.ch",
+    },
+    {
+      icon: Phone,
+      link: "tel:+41774488352",
     },
   ];
 </script>
 
-<div class="mt-3 space-x-1">
+<div class="space-x-2">
   {#each socials as social}
     <a
-      class="inline-flex justify-center items-center w-8 h-8 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition"
+      class="inline-flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition"
       href={social.link}
       target="_blank"
     >
-      <img
-        src={social.icon}
-        class="flex-shrink-0 w-3.5 h-3.5"
-        alt="Social Icon"
-      />
+      <svelte:component this={social.icon} class="size-5" alt="Social Icon" />
     </a>
   {/each}
 </div>

@@ -8,6 +8,8 @@
   import fhnwLogo from "$lib/assets/logo_fhnw.webp?format=webp&w=100&h=100";
   // @ts-ignore
   import kantiLogo from "$lib/assets/logo_kanti.jpeg?format=webp&w=100&h=100";
+  // @ts-ignore
+  import octotronicLogo from "$lib/assets/logo_octotronic.jpeg?format=webp&w=100&h=100";
 
   // @ts-ignore
   //import computerVisionChallengeHeader from "$lib/posts/2023-11-13-wildlife-cameras/header.png?format=webp&w=480";
@@ -32,7 +34,7 @@
 <svelte:head>
   <meta
     name="keywords"
-    content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Deep Learning, Data Science , AI"
+    content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Full Stack Engineer, Full Stack Developer, Deep Learning, Data Scientist, AI"
   />
   <link rel="canonical" href="https://marvinvr.ch" />
   <meta
@@ -55,18 +57,30 @@
 </svelte:head>
 
 <Hero
-  subtitle="I'm currently working at the Institute for Data Science at FHNW as part of a team developing an AI-Tutor for students using the power of Large Language Models. In addition, I recently completed my Bachelor's degree in Data Science at FHNW in Switzerland."
+  greeting="Hey, I'm Marvin"
+  tagline="Full-Stack Engineer / Data Scientist"
+  location="Baden, Switzerland"
+  subtitle="I'm a Full-Stack Engineer and Data Scientist who transforms complex technical challenges into practical solutions. Currently at Octotronic, I develop a smart factory platform that revolutionizes manufacturing operations. Previously, I developed AI compliance tools at Apiax and led the development of an AI Tutor at FHNW's Institute for Data Science.\nI run several side projects, including PostPulse (AI content for startups) and ReportGPT (document automation). In addition, I recently completed my B.Sc. in Data Science at FHNW, where I balanced studies with simultaious work in tech."
 />
 <Timeline
   title="My Professional History"
   items={[
     {
-      date: "Feb\xa02024 - Present",
+      date: "Jan\xa02025 - Present",
+      link: "https://www.octotronic.com/",
+      title: "Octotronic AG",
+      position: "Full-Stack Engineer",
+      description:
+        "At Octotronic, I develop smart factory solutions that bridge the gap between operational technology and IT systems. As a Full Stack Engineer, I contribute to OctoCore's unified data platform, implementing scalable architectures that transform manufacturing operations. My role involves creating solutions that help leading manufacturers break down data silos and achieve full transparency across their production processes.",
+      icon: octotronicLogo,
+    },
+    {
+      date: "Feb\xa02024 - Jan\xa02025",
       link: "https://www.fhnw.ch/de/die-fhnw/hochschulen/ht/institute/institut-fuer-data-science",
       title: "Institute for Data Science at FHNW",
       position: "Research Scientist",
       description:
-        "I am currently working as a Researcher at the Institute for Data Science at FHNW. My team and I are working on developing an AI-Tutor for bachelor students from various fields of study. The AI-Tutor is based on a Large Language Model together with a Retrieval Augmented Generation system.",
+        "At FHNW's Institute for Data Science, I led the development of an innovative AI tutoring system that transformed learning experiences for Bachelor students across multiple disciplines. By constructing a platform that combined Large Language Models with Retrieval Augmented Generation (RAG) technology, I created an adaptive learning environment that provided personalized support to students. The system bridged the gap between traditional education and cutting-edge AI technology, making advanced tutoring accessible to various academic fields.",
       icon: fhnwLogo,
     },
     {
@@ -75,16 +89,16 @@
       title: "AI Lab at Apiax",
       position: "Data Scientist",
       description:
-        "As part of our AI Lab team, I was working on understanding, processing and eventually digitizing Legal Documents using state-of-the-art Natural Language Processing technologies. As part of that, we developed multiple Transformer-Based models including Large Language Models partly in combination with Retrieval Augmented Generation systems.",
+        "In Apiax's AI Lab, my teammates and I spearheaded the development of advanced compliance automation systems using cutting-edge AI technologies. I architected and implemented document processing solutions powered by Large Language Models (LLMs) and Retrieval Augmented Generation systems. Our work streamlined regulatory workflows and automated compliance verification processes, which in turn significantly reduced manual work for our clients.",
       icon: apiaxLogo,
     },
     {
       date: "Aug\xa02019 - Oct\xa02022",
       link: "https://www.apiax.com/",
       title: "Product Team at Apiax",
-      position: "Software Engineer",
+      position: "Full Stack Engineer",
       description:
-        "I joined Apiax while it was still a Start-Up. In my first year as an intern, I took part in shaping the IT infrastructure for a fast-growing team. After that, I joined the Product Team which is responsible for simplifying digital compliance by building state of the art software in the form of web applications. In addition to that I had some first leadership experiences by managing smaller projects at the company and leading multiple EFZ candidates through their final exams.",
+        "At Apiax, I drove key technical initiatives during the company's critical growth phase. I architected and implemented scalable IT infrastructure that supported the company's expansion from start-up to established FinTech player. As a core member of the Product Team, I built progressive web applications that simplified digital compliance for enterprise clients. In addition, I led multiple projects and mentored EFZ candidates through their final examinations, which contributed to both product development and team growth.",
       icon: apiaxLogo,
     },
   ]}
@@ -135,9 +149,9 @@
       date: "Sep\xa02021 - Sep\xa02024",
       link: "https://www.fhnw.ch/de/studium/technik/data-science",
       position: "Bachelor of Science in Data Science",
-      title: "University of Applied Sciences and Arts Northwestern Switzerland",
+      title: "FHNW - University of Applied Sciences Northwestern Switzerland",
       description:
-        "I recently completed my studies at University of Applied Sciences and working on my bachelor's degree in Data Science. The degree focuses on data analysis and machine learning, while enabling me to learn about the mathematical background behind these algorithms.",
+        "BSc in Data Science covering statistical analysis, machine learning, and software engineering. Completed while working in tech, combining academic theory with practical industry experience.",
       icon: fhnwLogo,
     },
     {
@@ -146,7 +160,7 @@
       position: "Student at Informatics Middle School",
       title: "Kanti Baden",
       description:
-        "At Kantonsschule Baden I studied in “Informatikmittelschule” which was my first touchpoint with IT. I learned programming primarily in Java and was introduced to various technologies whilst doing my Berufsmatura (BM) in economics.",
+      "Technical education focused on Java programming and IT fundamentals. Completed with Berufsmatura in economics, combining technical and business knowledge.",
       icon: kantiLogo,
     },
   ]}
