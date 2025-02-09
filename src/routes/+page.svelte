@@ -60,7 +60,7 @@
   greeting="Hey, I'm Marvin"
   tagline="Full-Stack Engineer / Data Scientist"
   location="Baden, Switzerland"
-  subtitle="I'm a Full-Stack Engineer and Data Scientist who transforms complex technical challenges into practical solutions. Currently at Octotronic, I develop a smart factory platform that revolutionizes manufacturing operations. Previously, I developed AI compliance tools at Apiax and led the development of an AI Tutor at FHNW's Institute for Data Science.\nI run several side projects, including PostPulse (AI content for startups) and ReportGPT (document automation). In addition, I recently completed my B.Sc. in Data Science at FHNW, where I balanced studies with simultaious work in tech."
+  subtitle="I'm a Full-Stack Engineer and Data Scientist who transforms complex technical challenges into practical solutions. Currently at Octotronic, I develop a smart factory platform that revolutionizes manufacturing operations. Previously, I developed AI compliance tools at Apiax and led the development of an AI Tutor at FHNW's Institute for Data Science.\nI run several side projects, including PostPulse (AI content for startups) and ReportGPT (document automation). In addition, I recently completed my B.Sc. in Data Science at FHNW, where I balanced studies with simulations work in tech."
 />
 <Timeline
   title="My Professional History"
