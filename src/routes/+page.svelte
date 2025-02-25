@@ -112,7 +112,7 @@
       image: postPulseHeader,
       description:
         "PostPulse is a service designed specifically for SaaS founders. Each month, we publish high-quality, AI-crafted posts about your Startup on premium, SEO-optimized domains.",
-      url: "https://post-pulse.io",
+      url: "https://PostPulseAI.com",
       release: "2024-06-01",
     },
     {
@@ -120,7 +120,7 @@
       image: reportGptHeader,
       description:
         "ReportGPT is a web-based tool that helps you write reports and other documents faster and more efficiently with the help of Large Language Models.",
-      url: "https://report-gpt.io",
+      url: "https://ReportGPT.app",
       release: "2023-11-01",
     },
     {
