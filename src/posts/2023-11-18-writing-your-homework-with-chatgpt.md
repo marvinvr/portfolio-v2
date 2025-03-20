@@ -43,7 +43,7 @@ Finally, the platform offers various export options, enabling you to save your c
 
 ReportGPT is more than just a writing tool, it's a companion for your writing, augmenting your abilities with AI to redefine the process of doing homework.
 
-**Try it yourself** for **free** at [report-gpt.io](https://report-gpt.io)
+**Try it yourself** for **free** at [ReportGPT.app](https://ReportGPT.app)
 
 ## Getting Started with ReportGPT
 
@@ -136,4 +136,4 @@ Students should approach AI as a partnership wherein they lead the process, with
 
 Encouraging the use of AI prepares students for a future where technology and human insight coexist, complementing one another to achieve greater educational outcomes and, fostering a generation of learners who can adapt quickly in the digital world.
 
-**Try it for free at** [report-gpt.io](https://report-gpt.io)
+**Try it for free at** [ReportGPT.app](https://ReportGPT.app)
