@@ -4,6 +4,6 @@
 
 <svelte:head>
   {#if PUBLIC_ENVIRONMENT === "production"}
-    <script defer data-domain="marvinvr.ch" src="https://stats.mvr.bz/js/script.js"></script>
+    <script defer data-domain="marvinvr.ch" src="https://stats.marvinvr.ch/js/script.js"></script>
   {/if}
 </svelte:head>
