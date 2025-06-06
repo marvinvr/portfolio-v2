@@ -114,7 +114,7 @@
       image: writeABookAIHeader,
       description:
         "WriteABookAI is an AI-native book writing tool that helps You bring your Book to Life. It's powered by Large Language Models among other AI technologies.",
-      url: "https://WriteABookAI.app",
+      url: "https://WriteABookAI.com",
       release: "2025-06-01",
     },
     {
