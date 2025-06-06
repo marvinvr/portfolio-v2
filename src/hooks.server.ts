@@ -11,6 +11,7 @@ Sentry.init({
   // spotlight: import.meta.env.DEV,
 
   environment: PUBLIC_ENVIRONMENT,
+	enabled: PUBLIC_ENVIRONMENT !== 'local'
 });
 
 // If you have custom handlers, make sure to place them after `sentryHandle()` in the `sequence` function.

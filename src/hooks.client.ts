@@ -18,6 +18,7 @@ Sentry.init({
   integrations: [replayIntegration()],
 
   environment: PUBLIC_ENVIRONMENT,
+	enabled: PUBLIC_ENVIRONMENT !== 'local'
 });
 
 // If you have a custom error handler, pass it to `handleErrorWithSentry`
