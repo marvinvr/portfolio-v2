@@ -12,13 +12,15 @@
   import octotronicLogo from "$lib/assets/logo_octotronic.jpeg?format=webp&w=100&h=100";
 
   // @ts-ignore
-  //import computerVisionChallengeHeader from "$lib/posts/2023-11-13-wildlife-cameras/header.png?format=webp&w=480";
+  import computerVisionChallengeHeader from "$lib/posts/2023-11-13-wildlife-cameras/header.png?format=webp&w=480";
   // @ts-ignore
   import autoYtShortsHeader from "$lib/projects/auto-yt-shorts.png?format=webp&w=560";
   // @ts-ignore
   import reportGptHeader from "$lib/projects/report-gpt.png?format=webp&w=560";
   // @ts-ignore
   import postPulseHeader from "$lib/projects/post-pulse.png?format=webp&w=560";
+  // @ts-ignore
+  import writeABookAIHeader from "$lib/projects/write-a-book-ai.png?format=webp&w=560";
 
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
@@ -108,6 +110,14 @@
   description="I'm currently working on a few projects in my free time. Here are some of my latest ones:"
   projects={[
     {
+      title: "WriteABookAI",
+      image: writeABookAIHeader,
+      description:
+        "WriteABookAI is an AI-native book writing tool that helps You bring your Book to Life. It's powered by Large Language Models among other AI technologies.",
+      url: "https://WriteABookAI.app",
+      release: "2025-06-01",
+    },
+    {
       title: "PostPulse",
       image: postPulseHeader,
       description:
@@ -131,14 +141,14 @@
       url: "https://github.com/marvinvr/auto-yt-shorts",
       release: "2023-10-15",
     },
-    /*{
+    {
       title: "Conser-vision Practice Area: Image Classification",
       image: computerVisionChallengeHeader,
       description:
         "I recently participated in a computer vision challenge where I had to classify images of wildlife cameras. Our findings are available on GitHub.",
       url: "https://github.com/marvinvr/ccv1",
       release: "2023-07-01",
-    },*/
+    },
   ]}
 />
 <Skills />
