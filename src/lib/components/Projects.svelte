@@ -31,7 +31,7 @@
         <li
           class="w-full mx-auto group sm:max-w-sm rounded-md hover:bg-gray-50 transition p-3"
         >
-          <a href={project.url} target="_blank" rel="dofollow">
+          <a href={project.url} target="_blank">
             <img
               data-src={project.image}
               use:lazyImage
