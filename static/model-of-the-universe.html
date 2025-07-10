@@ -376,6 +376,22 @@
             }
         }
 
+        // Add ISS
+        const issGeometry = new THREE.BoxGeometry(1, 0.5, 2); // Small model for ISS
+        const issMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const iss = new THREE.Mesh(issGeometry, issMaterial);
+        iss.userData.rotationAngle = 0;
+        scene.add(iss);
+        bodies.push(iss);
+
+        // Add Moon
+        const moonGeometry = new THREE.SphereGeometry(2, 32, 16);
+        const moonMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+        const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+        moon.userData.rotationAngle = 0;
+        scene.add(moon);
+        bodies.push(moon);
+
         // Set default date to current
         const today = new Date().toISOString().split('T')[0];
         datePicker.value = today;
@@ -403,7 +419,7 @@
             if (intersects.length > 0) {
                 const intersected = intersects[0].object;
                 const index = bodies.indexOf(intersected);
-                tooltip.textContent = planetsData[index].name;
+                tooltip.textContent = index < planetsData.length ? planetsData[index].name : (index === 9 ? 'ISS' : 'Moon');
                 tooltip.style.display = 'block';
                 tooltip.style.left = `${event.clientX + 10}px`;
                 tooltip.style.top = `${event.clientY + 10}px`;
@@ -549,6 +565,23 @@
 
         function animate(time = 0) {
             requestAnimationFrame(animate);
+
+            // Update ISS orbit around Earth
+            const earth = planets[2];
+            const issOrbitRadius = planetsData[3].radius + 1; // Earth radius + small altitude
+            const issOrbitSpeed = 0.005; // 10x slower
+            iss.userData.rotationAngle += issOrbitSpeed;
+            iss.position.x = earth.position.x + issOrbitRadius * Math.cos(iss.userData.rotationAngle);
+            iss.position.y = 0;
+            iss.position.z = earth.position.z + issOrbitRadius * Math.sin(iss.userData.rotationAngle);
+
+            // Update Moon orbit around Earth
+            const moonOrbitRadius = planetsData[3].radius + 20;
+            const moonOrbitSpeed = 0.0016;
+            moon.userData.rotationAngle += moonOrbitSpeed;
+            moon.position.x = earth.position.x + moonOrbitRadius * Math.cos(moon.userData.rotationAngle);
+            moon.position.y = 0;
+            moon.position.z = earth.position.z + moonOrbitRadius * Math.sin(moon.userData.rotationAngle);
 
             // Animate asteroids and rockets
             for (let i = asteroids.length - 1; i >= 0; i--) {
