@@ -69,13 +69,24 @@
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.25;
+        controls.target.set(0, 0, 0);
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+
+        controls.addEventListener('start', () => {
+            controls.autoRotate = false;
+        });
+
+        controls.addEventListener('end', () => {
+            controls.autoRotate = true;
+        });
 
         const tooltip = document.getElementById('tooltip');
         const launchRocketBtn = document.getElementById('launchRocket');
         const datePicker = document.getElementById('datePicker');
 
         const GM = 0.12;
-        const homing = 0.0005; // Small homing factor
+        const homing = 0.001; // Increased homing factor
         const au_km = 149597870; // 1 AU in km
         const earth_distance_units = 110; // Model Earth distance
         const scale_km_per_unit = au_km / earth_distance_units;
@@ -257,7 +268,7 @@
             updatePositions(selectedDate);
         });
 
-        camera.position.z = 500;
+        camera.position.set(300, 200, 400);
 
         // Hover detection
         const raycaster = new THREE.Raycaster();
@@ -364,63 +375,37 @@
             const earthPos = planets[earthIndex].position.clone();
             const marsData = planetsData[marsIndex + 1];
             const angleMars = angles[marsIndex + 1];
-            const omegaMars = marsData.speed * 0.01;
-            const rMars = marsData.distance;
             const rocketSpeed = 0.15; // Adjusted for better warping without hitting sun
 
-            // Binary search for intercept time
-            let low = 0;
-            let high = 10000; // Increased for slower speed
-            for (let i = 0; i < 50; i++) {
-                let mid = (low + high) / 2;
-                let futureAngle = angleMars + omegaMars * mid;
-                let futureMars = new THREE.Vector3(
-                    rMars * Math.cos(futureAngle),
-                    0,
-                    rMars * Math.sin(futureAngle)
-                );
-                let dist = futureMars.distanceTo(earthPos);
-                let tNeeded = dist / rocketSpeed;
-                if (tNeeded < mid) {
-                    high = mid;
-                } else {
-                    low = mid;
-                }
-            }
-            let t = (low + high) / 2;
-
-            // Calculate future Mars position
-            let futureAngle = angleMars + omegaMars * t;
-            let futureMars = new THREE.Vector3(
-                rMars * Math.cos(futureAngle),
-                0,
-                rMars * Math.sin(futureAngle)
-            );
+            // Aim directly at current Mars position since planet positions don't advance during simulation
+            let futureMars = planets[marsIndex].position.clone();
 
             // Direction and velocity
             let dir = futureMars.sub(earthPos).normalize();
             let vel = dir.multiplyScalar(rocketSpeed);
 
-            // Create rocket as cylinder + cone
+            // Create rocket as cylinder + cone along z
             const rocketGroup = new THREE.Group();
             const bodyGeo = new THREE.CylinderGeometry(0.8, 0.8, 4, 8);
             const bodyMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
             const body = new THREE.Mesh(bodyGeo, bodyMat);
-            body.position.y = 1.5;
+            body.position.z = 2;
+            body.rotation.x = Math.PI / 2; // Rotate cylinder to along z
             rocketGroup.add(body);
 
             const noseGeo = new THREE.ConeGeometry(0.8, 1.5, 8);
             const noseMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
             const nose = new THREE.Mesh(noseGeo, noseMat);
-            nose.position.y = 3.75;
+            nose.position.z = 4.75;
+            nose.rotation.x = Math.PI / 2;
             rocketGroup.add(nose);
 
             const finGeo = new THREE.BoxGeometry(0.2, 0.5, 1);
             const finMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
             for (let k = 0; k < 4; k++) {
                 const fin = new THREE.Mesh(finGeo, finMat);
-                fin.position.set(Math.cos(k * Math.PI / 2) * 0.8, 0.25, Math.sin(k * Math.PI / 2) * 0.8);
-                fin.rotation.y = k * Math.PI / 2;
+                fin.position.set(Math.cos(k * Math.PI / 2) * 0.8, Math.sin(k * Math.PI / 2) * 0.8, 0.25);
+                fin.rotation.z = k * Math.PI / 2;
                 rocketGroup.add(fin);
             }
 
@@ -433,7 +418,6 @@
 
             // Initial orientation
             rocketGroup.lookAt(rocketGroup.position.clone().add(vel));
-            rocketGroup.rotateX(Math.PI / 2); // Adjust to point nose in direction of travel
 
             const trailMaterial = new THREE.LineBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
             const trailGeometry = new THREE.BufferGeometry();
@@ -448,14 +432,6 @@
 
         function animate(time = 0) {
             requestAnimationFrame(animate);
-
-            // Animate planets
-            for (let i = 0; i < planets.length; i++) {
-                const data = planetsData[i + 1];
-                angles[i + 1] += data.speed * 0.01;
-                planets[i].position.x = data.distance * Math.cos(angles[i + 1]);
-                planets[i].position.z = data.distance * Math.sin(angles[i + 1]);
-            }
 
             // Animate asteroids and rockets
             for (let i = asteroids.length - 1; i >= 0; i--) {
@@ -488,7 +464,6 @@
                         const direction = ast.userData.velocity.clone().normalize();
                         if (direction.length() > 0) {
                             ast.lookAt(ast.position.clone().add(direction));
-                            ast.rotateX(Math.PI / 2); // Adjust if model is along y
                         }
                     }
 
