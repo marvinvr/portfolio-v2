@@ -21,6 +21,8 @@
   import postPulseHeader from "$lib/projects/post-pulse.png?format=webp&w=560";
   // @ts-ignore
   import writeABookAIHeader from "$lib/projects/write-a-book-ai.png?format=webp&w=560";
+  // @ts-ignore
+  import modelOfOurGalaxyHeader from "$lib/projects/model-of-our-solar-system.png?format=webp&w=560";
 
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
@@ -118,12 +120,12 @@
       release: "2025-06-01",
     },
     {
-      title: "PostPulse",
-      image: postPulseHeader,
+      title: "Model of our Solar System",
+      image: modelOfOurGalaxyHeader,
       description:
-        "PostPulse is a service designed specifically for SaaS founders. Each month, we publish high-quality, AI-crafted posts about your Startup on premium, SEO-optimized domains.",
-      url: "https://PostPulseAI.com",
-      release: "2024-06-01",
+        "This is a small model of our Solar System running entirely in your Browser and accurately depicting the positions of Planets at specific dates",
+      url: "/model-of-the-universe.html",
+      release: "2025-07-10",
     },
     {
       title: "ReportGPT",
@@ -140,6 +142,14 @@
         "Auto-yt-shorts is an open-source project designed to automate the process of generating engaging short videos for platforms like YouTube and TikTok.",
       url: "https://github.com/marvinvr/auto-yt-shorts",
       release: "2023-10-15",
+    },
+    {
+      title: "PostPulse",
+      image: postPulseHeader,
+      description:
+        "PostPulse is a service designed specifically for SaaS founders. Each month, we publish high-quality, AI-crafted posts about your Startup on premium, SEO-optimized domains.",
+      url: "https://PostPulseAI.com",
+      release: "2024-06-01",
     },
     {
       title: "Conser-vision Practice Area: Image Classification",
