@@ -111,20 +111,138 @@
         const orbits = [];
         const asteroids = [];
 
-        // Reference data for real positions
-        const refDate = new Date('2025-07-10');
-        const periods = [0, 87.969, 224.701, 365.256, 686.98, 4332.59, 10759.22, 30685.4, 60190]; // days
-        const refAngles = [0, -1.9979, -0.0703, -1.2550, -2.9088, 1.6447, -0.0746, 1.0042, -0.0010];
-        let angles;
+        // Helper functions
+        const degToRad = Math.PI / 180;
+        const radToDeg = 180 / Math.PI;
+        function sind(x) { return Math.sin(x * degToRad); }
+        function cosd(x) { return Math.cos(x * degToRad); }
+        function tand(x) { return Math.tan(x * degToRad); }
+        function atand(x) { return radToDeg * Math.atan(x); }
+        function atan2d(y, x) { return radToDeg * Math.atan2(y, x); }
+        function rev(x) { return x - Math.floor(x / 360) * 360; }
+
+        function solveKepler(M, e) {
+            M = rev(M);
+            let E = M + (radToDeg) * e * sind(M);
+            let dE;
+            do {
+                let dm = M - (E - (radToDeg) * e * sind(E));
+                dE = dm / (1 - e * cosd(E));
+                E += dE;
+            } while (Math.abs(dE) > 0.0001);
+            return E;
+        }
+
+        function trueAnomaly(E, e) {
+            let tan_v2 = Math.sqrt((1 + e) / (1 - e)) * tand(E / 2);
+            let v = 2 * atand(tan_v2);
+            return rev(v);
+        }
+
+        function getJD(date) {
+            let year = date.getUTCFullYear();
+            let month = date.getUTCMonth() + 1;
+            let day = date.getUTCDate();
+            if (month <= 2) {
+                year -= 1;
+                month += 12;
+            }
+            let a = Math.floor(year / 100);
+            let b = 2 - a + Math.floor(a / 4);
+            return Math.floor(365.25 * (year + 4716)) + Math.floor(30.6001 * (month + 1)) + day + b - 1524.5;
+        }
+
+        // Orbital data (functions of d)
+        const orbitalData = [
+            null, // Sun
+            { // Mercury
+                N: d => 48.3313 + 3.24587e-5 * d,
+                i: d => 7.0047 + 5.00e-8 * d,
+                w: d => 29.1241 + 1.01444e-5 * d,
+                a: d => 0.387098,
+                e: d => 0.205635 + 5.59e-10 * d,
+                M: d => 168.6562 + 4.0923344368 * d
+            },
+            { // Venus
+                N: d => 76.6799 + 2.46590e-5 * d,
+                i: d => 3.3946 + 2.75e-8 * d,
+                w: d => 54.8910 + 1.38374e-5 * d,
+                a: d => 0.723330,
+                e: d => 0.006773 - 1.302e-9 * d,
+                M: d => 48.0052 + 1.6021302244 * d
+            },
+            { // Earth
+                N: d => 0.0,
+                i: d => 0.0,
+                w: d => 282.9404 + 4.70935e-5 * d,
+                a: d => 1.000000,
+                e: d => 0.016709 - 1.151e-9 * d,
+                M: d => 356.0470 + 0.9856002585 * d
+            },
+            { // Mars
+                N: d => 49.5574 + 2.11081e-5 * d,
+                i: d => 1.8497 - 1.78e-8 * d,
+                w: d => 286.5016 + 2.92961e-5 * d,
+                a: d => 1.523688,
+                e: d => 0.093405 + 2.516e-9 * d,
+                M: d => 18.6021 + 0.5240207766 * d
+            },
+            { // Jupiter
+                N: d => 100.4542 + 2.76854e-5 * d,
+                i: d => 1.3030 - 1.557e-7 * d,
+                w: d => 273.8777 + 1.64505e-5 * d,
+                a: d => 5.20256,
+                e: d => 0.048498 + 4.469e-9 * d,
+                M: d => 19.8950 + 0.0830853001 * d
+            },
+            { // Saturn
+                N: d => 113.6634 + 2.38980e-5 * d,
+                i: d => 2.4886 - 1.081e-7 * d,
+                w: d => 339.3939 + 2.97661e-5 * d,
+                a: d => 9.55475,
+                e: d => 0.055546 - 9.499e-9 * d,
+                M: d => 316.9670 + 0.0334442282 * d
+            },
+            { // Uranus
+                N: d => 74.0005 + 1.3978e-5 * d,
+                i: d => 0.7733 + 1.9e-8 * d,
+                w: d => 96.6612 + 3.0565e-5 * d,
+                a: d => 19.18171 - 1.55e-8 * d,
+                e: d => 0.047318 + 7.45e-9 * d,
+                M: d => 142.5905 + 0.011725806 * d
+            },
+            { // Neptune
+                N: d => 131.7806 + 3.0173e-5 * d,
+                i: d => 1.7700 - 2.55e-7 * d,
+                w: d => 272.8461 + 6.027e-6 * d,
+                a: d => 30.05826 + 3.313e-8 * d,
+                e: d => 0.008606 + 2.15e-9 * d,
+                M: d => 260.2471 + 0.005995147 * d
+            }
+        ];
 
         function updatePositions(selectedDate) {
-            const deltaDays = (selectedDate - refDate) / (1000 * 60 * 60 * 24);
-            angles = refAngles.map((ref, i) => (i === 0 ? 0 : ref + (2 * Math.PI / periods[i]) * deltaDays));
+            const jd = getJD(selectedDate);
+            const d = jd - 2451543.5;
 
             for (let i = 0; i < planets.length; i++) {
-                const data = planetsData[i + 1];
-                planets[i].position.x = data.distance * Math.cos(angles[i + 1]);
-                planets[i].position.z = data.distance * Math.sin(angles[i + 1]);
+                const orb = orbitalData[i + 1];
+                const modelData = planetsData[i + 1];
+                const N = rev(orb.N(d));
+                const inc = orb.i(d);
+                const w = rev(orb.w(d));
+                const a = orb.a(d);
+                const e = orb.e(d);
+                const MM = rev(orb.M(d));
+                const E = solveKepler(MM, e);
+                const v = trueAnomaly(E, e);
+                const r = a * (1 - e * e) / (1 + e * cosd(v)); // not used for position, but computed for completeness
+                const xh = r * (cosd(N) * cosd(v + w) - sind(N) * sind(v + w) * cosd(inc));
+                const yh = r * (sind(N) * cosd(v + w) + cosd(N) * sind(v + w) * cosd(inc));
+                const lon = atan2d(yh, xh);
+                const lon_rad = lon * degToRad;
+                planets[i].position.x = modelData.distance * Math.cos(lon_rad);
+                planets[i].position.z = modelData.distance * Math.sin(lon_rad);
             }
         }
 
@@ -374,7 +492,6 @@
             const marsIndex = 3; // planets[3] = Mars
             const earthPos = planets[earthIndex].position.clone();
             const marsData = planetsData[marsIndex + 1];
-            const angleMars = angles[marsIndex + 1];
             const rocketSpeed = 0.15; // Adjusted for better warping without hitting sun
 
             // Aim directly at current Mars position since planet positions don't advance during simulation
