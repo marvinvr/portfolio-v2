@@ -27,6 +27,7 @@
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
   import Posts from "$lib/components/Posts.svelte";
+  import YouTube from "$lib/components/YouTube.svelte";
 
   import type { PageData } from "./$types";
   import Projects from "$lib/components/Projects.svelte";
@@ -124,7 +125,7 @@
       image: modelOfOurGalaxyHeader,
       description:
         "This is a small model of our Solar System running entirely in your Browser and accurately depicting the positions of Planets at specific dates",
-      url: "/model-of-the-universe.html",
+      url: "/model-of-the-solar-system.html",
       release: "2025-07-10",
     },
     {
@@ -189,5 +190,9 @@
   title="My Latest Posts"
   description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
   posts={latestPosts}
+/>
+<YouTube
+  title="My Latest Drone Videos"
+  description="I shoot drone videos and upload them to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
 <Contact />
