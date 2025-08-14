@@ -65,7 +65,7 @@
   greeting="Hey, I'm Marvin"
   tagline="Full-Stack Engineer / Data Scientist"
   location="Baden, Switzerland"
-  subtitle="I'm a Full-Stack Engineer and Data Scientist who transforms complex technical challenges into practical solutions. Currently at Octotronic, I develop a smart factory platform that revolutionizes manufacturing operations. Previously, I developed AI compliance tools at Apiax and led the development of an AI Tutor at FHNW's Institute for Data Science.\nI run several side projects, including PostPulse (AI content for startups) and ReportGPT (document automation). In addition, I recently completed my B.Sc. in Data Science at FHNW, where I studied part-time while working in tech."
+  subtitle="I'm a Full-Stack Engineer and Data Scientist who transforms complex technical challenges into practical solutions. Currently at Octotronic, I develop the ML / Analytics layer of a smart factory platform that revolutionizes manufacturing operations. Previously, I developed AI compliance tools at Apiax and led the development of an AI Tutor at FHNW's Institute for Data Science.\nI run several side projects, including WriteABookAI (AI assisted book writing tool) and ReportGPT (document automation). In addition, I have a B.Sc. in Data Science at FHNW."
 />
 <Timeline
   title="My Professional History"
@@ -76,7 +76,7 @@
       title: "Octotronic AG",
       position: "Full-Stack Engineer",
       description:
-        "At Octotronic, I develop smart factory solutions that bridge the gap between operational technology and IT systems. As a Full Stack Engineer, I contribute to OctoCore's unified data platform, implementing scalable architectures that transform manufacturing operations. My role involves creating solutions that help leading manufacturers break down data silos and achieve full transparency across their production processes.",
+        "At Octotronic, I develop the ML / Analytics layer of a smart factory solution that bridge the gap between operational technology and IT systems. As a Full Stack Engineer, I contribute to OctoCore's unified data platform, which analyzes and automates manufacturing operations.",
       icon: octotronicLogo,
     },
     {
