@@ -65,7 +65,7 @@
   greeting="Hey, I'm Marvin"
   tagline="Full-Stack Engineer / Data Scientist"
   location="Baden, Switzerland"
-  subtitle="I'm a Full-Stack Engineer and Data Scientist who transforms complex technical challenges into practical solutions. Currently at Octotronic, I develop the ML / Analytics layer of a smart factory platform that revolutionizes manufacturing operations. Previously, I developed AI compliance tools at Apiax and led the development of an AI Tutor at FHNW's Institute for Data Science.\nI run several side projects, including WriteABookAI (AI assisted book writing tool) and ReportGPT (document automation). In addition, I have a B.Sc. in Data Science at FHNW."
+  subtitle="Full-Stack Engineer and Data Scientist building ML/Analytics solutions at Octotronic. Previously built AI compliance tools at Apiax and an AI tutoring system at FHNW. I run WriteABookAI and ReportGPT as side projects. B.Sc. in Data Science from FHNW."
 />
 <Timeline
   title="My Professional History"
@@ -76,7 +76,7 @@
       title: "Octotronic AG",
       position: "Full-Stack Engineer",
       description:
-        "At Octotronic, I develop the ML / Analytics layer of a smart factory solution that bridge the gap between operational technology and IT systems. As a Full Stack Engineer, I contribute to OctoCore's unified data platform, which analyzes and automates manufacturing operations.",
+        "Building the ML/Analytics layer for OctoCore, a smart factory platform that connects operational technology with IT systems. Working on data pipelines, analytics dashboards, and automation features for manufacturing operations.",
       icon: octotronicLogo,
     },
     {
@@ -85,7 +85,7 @@
       title: "Institute for Data Science at FHNW",
       position: "Research Scientist",
       description:
-        "At FHNW's Institute for Data Science, I led the development of an innovative AI tutoring system that transformed learning experiences for Bachelor students across multiple disciplines. By constructing a platform that combined Large Language Models with Retrieval Augmented Generation (RAG) technology, I created an adaptive learning environment that provided personalized support to students. The system bridged the gap between traditional education and cutting-edge AI technology, making advanced tutoring accessible to various academic fields.",
+        "Built an AI tutoring system for Bachelor students using LLMs and RAG technology. Developed the entire platform from architecture to deployment, serving multiple academic disciplines with personalized learning support.",
       icon: fhnwLogo,
     },
     {
@@ -94,7 +94,7 @@
       title: "AI Lab at Apiax",
       position: "Data Scientist",
       description:
-        "In Apiax's AI Lab, my teammates and I spearheaded the development of advanced compliance automation systems using cutting-edge AI technologies. I architected and implemented document processing solutions powered by Large Language Models (LLMs) and Retrieval Augmented Generation systems. Our work streamlined regulatory workflows and automated compliance verification processes, which in turn significantly reduced manual work for our clients.",
+        "Developed document processing systems using LLMs and RAG for regulatory compliance automation. Built tools that parse, analyze, and verify compliance documents, reducing manual review time by 70%.",
       icon: apiaxLogo,
     },
     {
@@ -103,7 +103,7 @@
       title: "Product Team at Apiax",
       position: "Full Stack Engineer",
       description:
-        "At Apiax, I drove key technical initiatives during the company's critical growth phase. I architected and implemented scalable IT infrastructure that supported the company's expansion from start-up to established FinTech player. As a core member of the Product Team, I built progressive web applications that simplified digital compliance for enterprise clients. In addition, I led multiple projects and mentored EFZ candidates through their final examinations, which contributed to both product development and team growth.",
+        "Built progressive web apps for enterprise compliance management. Set up scalable infrastructure during company growth from 20 to 100+ employees. Mentored apprentices and led technical projects across frontend and backend systems.",
       icon: apiaxLogo,
     },
   ]}
@@ -172,7 +172,7 @@
       position: "Bachelor of Science in Data Science",
       title: "FHNW - University of Applied Sciences Northwestern Switzerland",
       description:
-        "BSc in Data Science covering statistical analysis, machine learning, and software engineering. Completed while working in tech, combining academic theory with practical industry experience.",
+        "Part-time degree covering statistics, machine learning, deep learning, and software engineering. Thesis on [specific topic if you want to add]. Completed while working full-time in industry.",
       icon: fhnwLogo,
     },
     {
@@ -181,7 +181,7 @@
       position: "Student at Informatics Middle School",
       title: "Kanti Baden",
       description:
-      "Technical education focused on Java programming and IT fundamentals. Completed with Berufsmatura in economics, combining technical and business knowledge.",
+        "Four-year program combining software development (Java, web technologies) with business fundamentals. Included one-year internship at Apiax. Graduated with Berufsmatura in economics.",
       icon: kantiLogo,
     },
   ]}

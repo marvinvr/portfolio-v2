@@ -5,7 +5,6 @@
 
     export let title: string;
     export let description: string = "";
-    export let playlistUrl: string;
 
     interface YouTubeVideo {
         id: string;
@@ -19,11 +18,6 @@
     let videos: YouTubeVideo[] = [];
     let loading = true;
     let error = false;
-
-    function extractPlaylistId(url: string): string | null {
-        const match = url.match(/[?&]list=([a-zA-Z0-9_-]+)/);
-        return match ? match[1] : null;
-    }
 
     onMount(async () => {
         try {
