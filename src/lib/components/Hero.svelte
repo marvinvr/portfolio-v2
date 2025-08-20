@@ -4,6 +4,8 @@
   // @ts-ignore
   import portrait from "$lib/assets/portrait.jpeg?format=webp&w=600&h=600";
   import Socials from "./Socials.svelte";
+  import { SquareKanban } from "lucide-svelte";
+  import { getEmailUrl } from "$lib/utils/email";
 
   export let greeting: string;
   export let tagline: string;
@@ -42,16 +44,30 @@
           </p>
         {/each}
       </div>
-      <Socials />
+      <button
+        class="bg-slate-700 hover:bg-slate-800 transition-all duration-200 shadow-md hover:shadow-lg text-white px-5 py-2 rounded-md flex items-center flex-row gap-3 w-full md:w-auto text-center items-center justify-center"
+        on:click={() => {
+          window.open(getEmailUrl(), "_blank");
+        }}
+      >
+        <SquareKanban class="size-5" />
+        <span>Hire me</span>
+      </button>
+      <div class="block md:hidden pt-3">
+        <Socials />
+      </div>
     </div>
     <div class="flex-1 text-center mt-7 lg:mt-0 lg:ml-3 mb-6 lg:mb-0">
       <img
         src={portrait}
         width="384"
         height="384"
-        class="w-full mx-auto sm:w-10/12 md:w-96 rounded-lg shadow-2xl"
+        class="w-full mb-8 mx-auto sm:w-10/12 md:w-96 rounded-lg shadow-2xl"
         alt="Portrait of Marvin von Rappard"
       />
+      <div class="hidden md:block">
+        <Socials />
+      </div>
     </div>
   </section>
 </div>

@@ -28,6 +28,7 @@
   import Contact from "$lib/components/Contact.svelte";
   import Posts from "$lib/components/Posts.svelte";
   import YouTube from "$lib/components/YouTube.svelte";
+  import HireMe from "$lib/components/HireMe.svelte";
 
   import type { PageData } from "./$types";
   import Projects from "$lib/components/Projects.svelte";
@@ -65,7 +66,7 @@
   greeting="Hey, I'm Marvin"
   tagline="Full-Stack Engineer / Data Scientist"
   location="Baden, Switzerland"
-  subtitle="Full-Stack Engineer and Data Scientist building ML/Analytics solutions at Octotronic. Previously built AI compliance tools at Apiax and an AI tutoring system at FHNW. I run WriteABookAI and ReportGPT as side projects. B.Sc. in Data Science from FHNW."
+  subtitle="Full-Stack Engineer and Data Scientist building ML/Analytics solutions at Octotronic. Previously built AI compliance tools at Apiax and an AI tutoring system at FHNW. I run WriteABookAI and ReportGPT as side projects. B.Sc. in Data Science from FHNW.\n I'm also available for hire as a freelancer. I specialize in process automation and workflow integrations between different systems. Feel free to reach out to me if you have any questions or you are interested to work together."
 />
 <Timeline
   title="My Professional History"
@@ -196,3 +197,9 @@
   description="I shoot drone videos and upload them to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
 <Contact />
+<HireMe 
+  title="Want to Work Together?"
+  subtitle="I'm available for freelance projects focusing on process automation and workflow integrations between different systems."
+  description="If you need to connect APIs, automate business processes, build data pipelines, or create custom integrations, I can you optimize your operations and save you time."
+  buttonText="Let's Talk"
+/>

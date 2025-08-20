@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Twitter, Linkedin, Github, Mail, Phone } from "lucide-svelte";
-
+  import { getEmailUrl } from "$lib/utils/email";
 
   const socials: { icon: any; link: string }[] = [
     {
@@ -17,7 +17,7 @@
     },
     {
       icon: Mail,
-      link: "mailto:hello@marvinvr.ch",
+      link: getEmailUrl(),
     },
     {
       icon: Phone,
@@ -26,7 +26,7 @@
   ];
 </script>
 
-<div class="space-x-2">
+<div class="space-x-3 md:space-x-2 flex flex-row justify-center items-center">
   {#each socials as social}
     <a
       class="inline-flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition"

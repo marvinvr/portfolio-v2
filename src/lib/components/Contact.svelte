@@ -7,7 +7,7 @@
     Phone,
     ArrowRight,
   } from "lucide-svelte";
-
+  import { getEmailUrl } from "$lib/utils/email";
   const contactMethods: {
     title: string;
     icon: any;
@@ -36,7 +36,7 @@
       title: "Email",
       label: "Send me an Email",
       icon: Mail,
-      link: "mailto:hello@marvinvr.ch",
+      link: getEmailUrl(),
     },
     {
       title: "Phone",
