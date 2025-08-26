@@ -29,6 +29,7 @@
   import Posts from "$lib/components/Posts.svelte";
   import YouTube from "$lib/components/YouTube.svelte";
   import HireMe from "$lib/components/HireMe.svelte";
+  import WhoopStats from "$lib/components/WhoopStats.svelte";
 
   import type { PageData } from "./$types";
   import Projects from "$lib/components/Projects.svelte";
@@ -164,6 +165,7 @@
   ]}
 />
 <Skills />
+<WhoopStats />
 <Timeline
   title="My Education"
   items={[
