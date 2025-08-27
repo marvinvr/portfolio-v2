@@ -9,6 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "whoop:token": "node scripts/get-whoop-token.js",
+    "whoop:clear": "node scripts/clear-whoop-stats.js",
     "postbuild": "bunx svelte-sitemap --out-dir ./build/prerendered --change-freq daily --domain https://marvinvr.ch && mv ./build/prerendered/sitemap.xml ./build/client/sitemap.xml"
   },
   "devDependencies": {

@@ -293,7 +293,7 @@ export const GET: RequestHandler = async () => {
 	const now = new Date();
 	const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 	nextDay.setHours(7, 30, 0, 0);
-    await setCachedWhoopStats(stats, (nextDay.getTime() - now.getTime()) / 1000);
+    await setCachedWhoopStats(stats, Math.floor((nextDay.getTime() - now.getTime()) / 1000));
 
     return json(stats);
   } catch (err) {
