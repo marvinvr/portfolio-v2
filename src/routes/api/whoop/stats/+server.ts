@@ -289,11 +289,8 @@ export const GET: RequestHandler = async () => {
       lastUpdated: new Date().toISOString(),
     };
 
-    // Cache the stats until 7:30am the next day 
-	const now = new Date();
-	const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-	nextDay.setHours(7, 30, 0, 0);
-    await setCachedWhoopStats(stats, Math.floor((nextDay.getTime() - now.getTime()) / 1000));
+    // Cache the stats for 1 hour
+    await setCachedWhoopStats(stats, 60 * 60);
 
     return json(stats);
   } catch (err) {
