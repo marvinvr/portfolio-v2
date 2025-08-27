@@ -4,7 +4,7 @@
   // @ts-ignore
   import portrait from "$lib/assets/portrait.jpeg?format=webp&w=600&h=600";
   import Socials from "./Socials.svelte";
-  import { SquareKanban } from "lucide-svelte";
+  import { Mail } from "lucide-svelte";
   import { getEmailUrl } from "$lib/utils/email";
 
   export let greeting: string;
@@ -50,7 +50,7 @@
           window.open(getEmailUrl(), "_blank");
         }}
       >
-        <SquareKanban class="size-5" />
+        <Mail class="size-5" />
         <span>Hire me</span>
       </button>
       <div class="block md:hidden pt-3">
