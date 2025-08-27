@@ -1,6 +1,11 @@
 <script lang="ts">
     import Hero from "$lib/components/Hero.svelte";
     import Contact from "$lib/components/Contact.svelte";
+    interface Props {
+        children?: import('svelte').Snippet;
+    }
+
+    let { children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -18,5 +23,5 @@
 
 <Hero
     subtitle="This is where you can find my most recent blog posts. Usually in the domain of Artificial Intelligence. Use any of the links below to get in touch!"/>
-<slot/>
+{@render children?.()}
 <Contact/>

@@ -1,18 +1,22 @@
 <script lang="ts">
-    export let title: string
-    export let items: {
+
+    // @ts-ignore
+    import portrait from "$lib/assets/portrait.jpeg?format=webp&w=200&h=200";
+
+    import { useLazyImage as lazyImage } from "svelte-lazy-image";
+    interface Props {
+        title: string;
+        items?: {
         date: string,
         title: string,
         position: string,
         link: string,
         description: string,
         icon: any
-    }[] = []
+    }[];
+    }
 
-    // @ts-ignore
-    import portrait from "$lib/assets/portrait.jpeg?format=webp&w=200&h=200";
-
-    import { useLazyImage as lazyImage } from "svelte-lazy-image";
+    let { title, items = [] }: Props = $props();
 </script>
 
 <!-- Timeline -->

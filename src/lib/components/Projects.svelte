@@ -3,15 +3,25 @@
 
   import { useLazyImage as lazyImage } from "svelte-lazy-image";
 
-  export let title: string;
-  export let description: string = "";
-  export let projects: {
+  interface Props {
+    title: string;
+    description?: string;
+    projects?: {
     title: string;
     image: any;
     description: string;
     url: string;
     release: string;
-  }[] = [];
+  }[];
+    children?: import('svelte').Snippet;
+  }
+
+  let {
+    title,
+    description = "",
+    projects = [],
+    children
+  }: Props = $props();
 </script>
 
 <section class="py-24">
@@ -21,7 +31,7 @@
       {#if description}
         <p class="text-gray-600">{description}</p>
       {/if}
-      <slot />
+      {@render children?.()}
     </div>
     <ul
       class="grid gap-x-8 mt-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-3"

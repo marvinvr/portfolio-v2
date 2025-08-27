@@ -33,7 +33,7 @@
       href={social.link}
       target="_blank"
     >
-      <svelte:component this={social.icon} class="size-5" alt="Social Icon" />
+      <social.icon class="size-5" alt="Social Icon" />
     </a>
   {/each}
 </div>

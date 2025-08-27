@@ -7,7 +7,7 @@ export const load = (async ({ params }) => {
 	try {
 		const post = await import(`../../../posts/${slug}.md`)
 
-		if (!post.metadata.published) throw error(404, `Could not find ${params.slug}`);
+		if (!post.metadata.published) error(404, `Could not find ${params.slug}`);
 
 		return {
 			content: post.default as ConstructorOfATypedSvelteComponent,
@@ -15,6 +15,6 @@ export const load = (async ({ params }) => {
 			slug
 		}
 	} catch (e) {
-		throw error(404, `Could not find ${params.slug}`)
+		error(404, `Could not find ${params.slug}`);
 	}
 }) satisfies PageLoad

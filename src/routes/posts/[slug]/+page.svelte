@@ -7,15 +7,21 @@
   import { onMount } from "svelte";
   import { image } from "$lib/utils/images";
 
-  let mounted = false;
+  let mounted = $state(false);
 
   onMount(() => {
     mounted = true;
   });
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
   const { content, meta, slug } = data;
   const headerImage = image(slug, meta.header);
+
+  const SvelteComponent = $derived(content);
 </script>
 
 <svelte:head>
@@ -93,7 +99,7 @@
         </address>
       </header>
       <div class="prose prose-lg mb-12">
-        <svelte:component this={content} />
+        <SvelteComponent />
       </div>
       {#if mounted}
         <script

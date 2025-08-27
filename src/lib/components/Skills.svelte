@@ -55,7 +55,7 @@
         {#each skills as item}
           <li class="bg-white space-y-3 p-4 border rounded-lg">
             <div class="text-indigo-600 pb-3">
-              <svelte:component this={item.icon} class="w-6 h-6" />
+              <item.icon class="w-6 h-6" />
             </div>
             <span class="text-lg text-gray-800 font-semibold">
               {item.title}

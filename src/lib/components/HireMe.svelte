@@ -2,10 +2,19 @@
   import { MailIcon, SquareKanban } from "lucide-svelte";
   import { getEmailUrl } from "$lib/utils/email";
 
-  export let title: string;
-  export let subtitle: string;
-  export let description: string;
-  export let buttonText: string;
+  interface Props {
+    title: string;
+    subtitle: string;
+    description: string;
+    buttonText: string;
+  }
+
+  let {
+    title,
+    subtitle,
+    description,
+    buttonText
+  }: Props = $props();
 </script>
 
 <section class="py-16">
@@ -23,7 +32,7 @@
       <div class="pt-4">
         <button
           class="bg-slate-700 hover:bg-slate-800 transition-all duration-200 shadow-md hover:shadow-lg text-white px-6 py-3 rounded-md flex items-center flex-row gap-3 mx-auto text-md font-medium"
-          on:click={() => {
+          onclick={() => {
             window.open(getEmailUrl(), "_blank");
           }}
         >

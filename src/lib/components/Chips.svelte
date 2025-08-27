@@ -1,6 +1,10 @@
 <script lang="ts">
-  export let options: string[];
-  export let selectedOption: string;
+  interface Props {
+    options: string[];
+    selectedOption: string;
+  }
+
+  let { options, selectedOption }: Props = $props();
 </script>
 
 <div class="flex overflow-x-auto py-4 space-x-2">

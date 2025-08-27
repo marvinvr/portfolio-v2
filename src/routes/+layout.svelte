@@ -4,6 +4,11 @@
   import "../app.scss";
   import Analytics from "$lib/components/Analytics.svelte";
   import { onMount } from "svelte";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
   //import { HEYO } from '@heyo.so/js';
 
   onMount(() => {
@@ -12,5 +17,5 @@
 </script>
 
 <Analytics />
-<slot />
+{@render children?.()}
 <Footer />

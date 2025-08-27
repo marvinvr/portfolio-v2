@@ -97,7 +97,7 @@ async function getAccessToken(): Promise<string> {
   
   // If not in Redis, use env variable and store it
   if (!refreshToken) {
-	throw error(500, "Missing refresh token");
+	error(500, "Missing refresh token");
   }
 
   if (!refreshToken || !WHOOP_CLIENT_ID || !WHOOP_CLIENT_SECRET) {
@@ -295,6 +295,6 @@ export const GET: RequestHandler = async () => {
     return json(stats);
   } catch (err) {
     console.error("Failed to fetch Whoop stats:", err);
-    throw error(500, `Failed to fetch Whoop stats: ${err}`);
+    error(500, `Failed to fetch Whoop stats: ${err}`);
   }
 };

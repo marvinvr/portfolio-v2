@@ -3,8 +3,13 @@
     import { useLazyImage as lazyImage } from "svelte-lazy-image";
     import { onMount } from "svelte";
 
-    export let title: string;
-    export let description: string = "";
+    interface Props {
+        title: string;
+        description?: string;
+        children?: import('svelte').Snippet;
+    }
+
+    let { title, description = "", children }: Props = $props();
 
     interface YouTubeVideo {
         id: string;
@@ -15,9 +20,9 @@
         url: string;
     }
 
-    let videos: YouTubeVideo[] = [];
-    let loading = true;
-    let error = false;
+    let videos: YouTubeVideo[] = $state([]);
+    let loading = $state(true);
+    let error = $state(false);
 
     onMount(async () => {
         try {
@@ -50,7 +55,7 @@
             {#if description}
                 <p class="text-gray-600 max-w-2xl">{description}</p>
             {/if}
-            <slot />
+            {@render children?.()}
         </div>
         
         {#if loading}

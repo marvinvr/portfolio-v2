@@ -1,5 +1,5 @@
 import adapter from "@sveltejs/adapter-node";
-import { vitePreprocess } from "@sveltejs/kit/vite";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 import highlighter from "./src/lib/utils/codeHighlighter.js";
 import rehypeExternalLinks from "rehype-external-links";

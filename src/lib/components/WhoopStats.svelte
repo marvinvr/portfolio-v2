@@ -18,9 +18,9 @@
     lastUpdated: string;
   }
 
-  let stats: WhoopStats | null = null;
-  let loading = true;
-  let error: string | null = null;
+  let stats: WhoopStats | null = $state(null);
+  let loading = $state(true);
+  let error: string | null = $state(null);
 
   const statConfig = [
     {
@@ -138,7 +138,7 @@
             <div class="bg-white space-y-3 p-4 border rounded-lg hover:shadow-lg transition-shadow relative">
               <div class="flex justify-between items-start">
                 <div class="text-indigo-600 pb-3">
-                  <svelte:component this={config.icon} class="w-6 h-6" />
+                  <config.icon class="w-6 h-6" />
                 </div>
                 <div class="group relative">
                   <InformationOutline class="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-help" />

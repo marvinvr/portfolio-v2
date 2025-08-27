@@ -64,14 +64,13 @@
         {#each contactMethods as item (item.title)}
           <button
             type="button"
-            on:click={() => window.open(item.link, "_blank")}
+            onclick={() => window.open(item.link, "_blank")}
             class="space-y-3 px-2 py-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer text-left w-full"
           >
             <div
               class="w-12 h-12 rounded-full border flex items-center justify-center text-gray-700"
             >
-              <svelte:component
-                this={item.icon}
+              <item.icon
                 class="size-5"
                 alt="Social Icon"
               />

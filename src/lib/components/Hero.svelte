@@ -7,10 +7,19 @@
   import { Mail } from "lucide-svelte";
   import { getEmailUrl } from "$lib/utils/email";
 
-  export let greeting: string;
-  export let tagline: string;
-  export let location: string;
-  export let subtitle: string;
+  interface Props {
+    greeting: string;
+    tagline: string;
+    location: string;
+    subtitle: string;
+  }
+
+  let {
+    greeting,
+    tagline,
+    location,
+    subtitle
+  }: Props = $props();
 </script>
 
 <svelte:head>
@@ -46,7 +55,7 @@
       </div>
       <button
         class="bg-slate-700 hover:bg-slate-800 transition-all duration-200 shadow-md hover:shadow-lg text-white px-5 py-2 rounded-md flex items-center flex-row gap-3 w-full md:w-auto text-center items-center justify-center"
-        on:click={() => {
+        onclick={() => {
           window.open(getEmailUrl(), "_blank");
         }}
       >
