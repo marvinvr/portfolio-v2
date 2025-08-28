@@ -30,7 +30,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@heyo.so/js": "^1.0.8",
     "@sentry/sveltekit": "^8.13.0",
     "@sveltejs/adapter-node": "^5.2.5",
     "lucide-svelte": "^0.540.0",

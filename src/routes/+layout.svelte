@@ -9,11 +9,6 @@
   }
 
   let { children }: Props = $props();
-  //import { HEYO } from '@heyo.so/js';
-
-  onMount(() => {
-    //HEYO.init({ projectId: "68a5dd5d654df4068e71a8a1" });
-  });
 </script>
 
 <Analytics />
