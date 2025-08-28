@@ -101,7 +101,7 @@ async function getAccessToken(): Promise<string> {
   }
 
   if (!refreshToken || !WHOOP_CLIENT_ID || !WHOOP_CLIENT_SECRET) {
-    throw new Error("Missing required Whoop credentials");
+	 error(500, "Missing required Whoop credentials");
   }
 
   // Clean up any potential whitespace issues
@@ -130,7 +130,7 @@ async function getAccessToken(): Promise<string> {
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Token refresh failed: ${response.status} ${errorText}`);
+    error(500, `Token refresh failed: ${response.status} ${errorText}`);
   }
 
   const tokenData: TokenResponse = await response.json();
@@ -144,9 +144,9 @@ async function getAccessToken(): Promise<string> {
 
 async function fetchWhoopData<T>(
   endpoint: string,
+  accessToken: string,
   params?: Record<string, string>
 ): Promise<T[]> {
-  const accessToken = await getAccessToken();
 
   const url = new URL(`${WHOOP_API_BASE}/${endpoint}`);
   if (params) {
@@ -166,8 +166,8 @@ async function fetchWhoopData<T>(
     if (response.status === 404) {
       return [];
     }
-    throw new Error(
-      `Failed to fetch ${endpoint}: ${response.status} ${response.statusText}`
+    error(500,
+      `Failed to fetch ${endpoint}: ${response.statusText}`
     );
   }
 
@@ -201,100 +201,97 @@ function calculateAverages(data: number[]): {
 }
 
 export const GET: RequestHandler = async () => {
-  try {
-    // Check for cached stats first
-    const cachedStats = await getCachedWhoopStats();
-    if (cachedStats) {
-      return json(cachedStats);
-    }
-
-    // Use a 30 day window for data
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    const startDate = thirtyDaysAgo.toISOString();
-
-    const endDate = new Date().toISOString();
-
-    // Fetch data from Whoop API
-    const [cycles, recoveries, sleeps] = await Promise.all([
-      fetchWhoopData<WhoopCycle>("cycle", {
-        start: startDate,
-        end: endDate,
-        limit: "25",
-      }),
-      fetchWhoopData<WhoopRecovery>("recovery", {
-        start: startDate,
-        end: endDate,
-        limit: "25",
-      }),
-      fetchWhoopData<WhoopSleep>("activity/sleep", {
-        start: startDate,
-        end: endDate,
-        limit: "25",
-      }),
-    ]);
-
-    // Extract values for calculations
-    const strainValues = cycles
-      .map((c) => c.score?.strain || 0)
-      .filter((v) => v > 0);
-    const recoveryValues = recoveries
-      .map((r) => r.score?.recovery_score || 0)
-      .filter((v) => v > 0);
-    const hrvValues = recoveries
-      .map((r) => r.score?.hrv_rmssd_milli || 0)
-      .filter((v) => v > 0);
-    const rhrValues = recoveries
-      .map((r) => r.score?.resting_heart_rate || 0)
-      .filter((v) => v > 0);
-    const sleepEfficiencyValues = sleeps
-      .map((s) => s.score?.sleep_efficiency_percentage || 0)
-      .filter((v) => v > 0);
-    const sleepDurationValues = sleeps
-      .map((s) => {
-        const totalSleep =
-          (s.score?.stage_summary?.total_light_sleep_time_milli || 0) +
-          (s.score?.stage_summary?.total_slow_wave_sleep_time_milli || 0) +
-          (s.score?.stage_summary?.total_rem_sleep_time_milli || 0);
-        return totalSleep / (1000 * 60 * 60); // Convert to hours
-      })
-      .filter((v) => v > 0);
-
-    // Calculate averages
-    const stats = {
-      recovery: {
-        latest: recoveries[0]?.score?.recovery_score || 0,
-        ...calculateAverages(recoveryValues),
-      },
-      strain: {
-        latest: cycles[0]?.score?.strain || 0,
-        ...calculateAverages(strainValues),
-      },
-      hrv: {
-        latest: recoveries[0]?.score?.hrv_rmssd_milli || 0,
-        ...calculateAverages(hrvValues),
-      },
-      rhr: {
-        latest: recoveries[0]?.score?.resting_heart_rate || 0,
-        ...calculateAverages(rhrValues),
-      },
-      sleepEfficiency: {
-        latest: sleeps[0]?.score?.sleep_efficiency_percentage || 0,
-        ...calculateAverages(sleepEfficiencyValues),
-      },
-      sleepDuration: {
-        latest: sleepDurationValues[0] || 0,
-        ...calculateAverages(sleepDurationValues),
-      },
-      lastUpdated: new Date().toISOString(),
-    };
-
-    // Cache the stats for 1 hour
-    await setCachedWhoopStats(stats, 60 * 60);
-
-    return json(stats);
-  } catch (err) {
-    console.error("Failed to fetch Whoop stats:", err);
-    error(500, `Failed to fetch Whoop stats: ${err}`);
+  // Check for cached stats first
+  const cachedStats = await getCachedWhoopStats();
+  if (cachedStats) {
+    return json(cachedStats);
   }
+
+  // Use a 30 day window for data
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  const startDate = thirtyDaysAgo.toISOString();
+
+  const endDate = new Date().toISOString();
+
+  const accessToken = await getAccessToken();
+
+  // Fetch data from Whoop API
+  const [cycles, recoveries, sleeps] = await Promise.all([
+    fetchWhoopData<WhoopCycle>("cycle", accessToken, {
+      start: startDate,
+      end: endDate,
+      limit: "25",
+    }),
+    fetchWhoopData<WhoopRecovery>("recovery", accessToken, {
+      start: startDate,
+      end: endDate,
+      limit: "25",
+    }),
+    fetchWhoopData<WhoopSleep>("activity/sleep", accessToken, {
+      start: startDate,
+      end: endDate,
+      limit: "25",
+    }),
+  ]);
+
+  // Extract values for calculations
+  const strainValues = cycles
+    .map((c) => c.score?.strain || 0)
+    .filter((v) => v > 0);
+  const recoveryValues = recoveries
+    .map((r) => r.score?.recovery_score || 0)
+    .filter((v) => v > 0);
+  const hrvValues = recoveries
+    .map((r) => r.score?.hrv_rmssd_milli || 0)
+    .filter((v) => v > 0);
+  const rhrValues = recoveries
+    .map((r) => r.score?.resting_heart_rate || 0)
+    .filter((v) => v > 0);
+  const sleepEfficiencyValues = sleeps
+    .map((s) => s.score?.sleep_efficiency_percentage || 0)
+    .filter((v) => v > 0);
+  const sleepDurationValues = sleeps
+    .map((s) => {
+      const totalSleep =
+        (s.score?.stage_summary?.total_light_sleep_time_milli || 0) +
+        (s.score?.stage_summary?.total_slow_wave_sleep_time_milli || 0) +
+        (s.score?.stage_summary?.total_rem_sleep_time_milli || 0);
+      return totalSleep / (1000 * 60 * 60); // Convert to hours
+    })
+    .filter((v) => v > 0);
+
+  // Calculate averages
+  const stats = {
+    recovery: {
+      latest: recoveries[0]?.score?.recovery_score || 0,
+      ...calculateAverages(recoveryValues),
+    },
+    strain: {
+      latest: cycles[0]?.score?.strain || 0,
+      ...calculateAverages(strainValues),
+    },
+    hrv: {
+      latest: recoveries[0]?.score?.hrv_rmssd_milli || 0,
+      ...calculateAverages(hrvValues),
+    },
+    rhr: {
+      latest: recoveries[0]?.score?.resting_heart_rate || 0,
+      ...calculateAverages(rhrValues),
+    },
+    sleepEfficiency: {
+      latest: sleeps[0]?.score?.sleep_efficiency_percentage || 0,
+      ...calculateAverages(sleepEfficiencyValues),
+    },
+    sleepDuration: {
+      latest: sleepDurationValues[0] || 0,
+      ...calculateAverages(sleepDurationValues),
+    },
+    lastUpdated: new Date().toISOString(),
+  };
+
+  // Cache the stats for 1 hour
+  await setCachedWhoopStats(stats, 60 * 60);
+
+  return json(stats);
 };
