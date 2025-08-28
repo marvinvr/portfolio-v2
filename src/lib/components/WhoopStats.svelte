@@ -101,7 +101,7 @@
       <div class="relative z-10">
         <h2 class="text-gray-800">🏃‍♂️ My Stats</h2>
         <p class="mt-3">
-          I track my health and activity using a <a href="https://www.whoop.com" class="text-indigo-600 hover:text-indigo-700 underline">Whoop 5.0</a> device. 
+          I track my health and activity using a <a target="_blank" href="https://www.whoop.com" class="text-indigo-600 hover:text-indigo-700 underline">Whoop 5.0</a> device. 
           These numbers reflect my daily activity and recovery as well as my heart health metrics averaged over monthly and annual periods. I'm sharing this to keep myself accountable and because I thought this would be cool. 🤓
         </p>
       </div>
