@@ -21,7 +21,7 @@ export async function GET() {
     const cachedVideos = cache.get<YouTubeVideo[]>(cacheKey);
     
     if (cachedVideos) {
-        return json(cachedVideos);
+        return json({ videos: cachedVideos, playlistUrl: `https://www.youtube.com/playlist?list=${PLAYLIST_ID}` });
     }
 
     const response = await fetch(
@@ -47,5 +47,5 @@ export async function GET() {
     }));
 
     cache.set(cacheKey, videos);
-    return json(videos);
+    return json({ videos, playlistUrl: `https://www.youtube.com/playlist?list=${PLAYLIST_ID}` });
 }

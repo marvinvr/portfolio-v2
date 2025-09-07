@@ -23,6 +23,8 @@
   import writeABookAIHeader from "$lib/projects/write-a-book-ai.png?format=webp&w=560";
   // @ts-ignore
   import modelOfOurGalaxyHeader from "$lib/projects/model-of-our-solar-system.png?format=webp&w=560";
+  // @ts-ignore
+  import thisCarIsNotRealHeader from "$lib/projects/this-car-is-not-real.png?format=webp&w=560";
 
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
@@ -30,6 +32,8 @@
   import YouTube from "$lib/components/YouTube.svelte";
   import HireMe from "$lib/components/HireMe.svelte";
   import WhoopStats from "$lib/components/WhoopStats.svelte";
+  import SetupShowcase from "$lib/components/SetupShowcase.svelte";
+  import SubHeading from "$lib/components/SubHeading.svelte";
 
   import type { PageData } from "./$types";
   import Projects from "$lib/components/Projects.svelte";
@@ -119,6 +123,14 @@
   description="I'm currently working on a few projects in my free time. Here are some of my latest ones:"
   projects={[
     {
+      title: "ThisCarIsNotReal.org",
+      image: thisCarIsNotRealHeader,
+      description:
+        "ThisCarIsNotReal.org is a small project of mine where you can up or downvote images of AI generated fictional cars with insane designs.",
+      url: "https://ThisCarIsNotReal.org",
+      release: "2025-09-07",
+    },
+    {
       title: "WriteABookAI",
       image: writeABookAIHeader,
       description:
@@ -144,6 +156,7 @@
     },
     {
       title: "Auto-yt-shorts",
+      hidden: true,
       image: autoYtShortsHeader,
       description:
         "Auto-yt-shorts is an open-source project designed to automate the process of generating engaging short videos for platforms like YouTube and TikTok.",
@@ -169,7 +182,52 @@
   ]}
 />
 <Skills />
+<Posts
+  title="My Latest Blog Posts"
+  description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
+  posts={latestPosts}
+/>
+<SubHeading
+  title="👋 More About Me"
+  description="Below this, you'll find a few personal things I enjoy. Less professional, more me."
+/>
+<!--
+<SetupShowcase
+  title="My Espresso Setup"
+  subtitle="Dialed for consistency and taste — daily driver for great coffee at home."
+  image="https://placehold.co/1200x1200?text=Espresso+Setup"
+  imageAlt="Espresso setup photo"
+  items={[
+    { name: "Espresso Machine", detail: "Dual-boiler with PID", link: "https://example.com/dual-boiler-espresso-machine" },
+    { name: "Grinder", detail: "Flat burrs, single-dosing", link: "https://example.com/flat-burr-grinder" },
+    { name: "Scale", detail: "0.1g precision with timer", link: "https://example.com/coffee-scale" },
+    { name: "Tamper & Distributor", detail: "58.5mm calibrated" },
+    { name: "Basket", detail: "18g precision basket" },
+    { name: "WDT Tool", detail: "Fine needles for distribution" }
+  ]}
+/>
+-->
 <WhoopStats />
+<!--
+<SetupShowcase
+  title="My Drone Setup"
+  subtitle="A compact, reliable FPV setup I use for casual flying and capturing dynamic footage."
+  image="https://placehold.co/1200x1200?text=Drone+Setup"
+  imageAlt="Drone setup photo"
+  items={[
+    { name: "Frame", detail: "5-inch freestyle frame", link: "https://example.com/drone-frame" },
+    { name: "Motors", detail: "2306 1750KV brushless", link: "https://example.com/2306-1750kv-motors" },
+    { name: "Flight Controller", detail: "F7 with 45A 4-in-1 ESC" },
+    { name: "VTX", detail: "HD digital video transmitter" },
+    { name: "Goggles", detail: "Digital FPV goggles", link: "https://example.com/digital-fpv-goggles" },
+    { name: "Radio", detail: "ELRS-compatible transmitter", link: "https://example.com/elrs-transmitter" }
+  ]}
+/>
+<YouTube
+  title="My Latest Drone Videos"
+  description="I shoot drone videos and upload them to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
+/>
+-->
 <Timeline
   title="My Education"
   items={[
@@ -192,15 +250,6 @@
       icon: kantiLogo,
     },
   ]}
-/>
-<Posts
-  title="My Latest Posts"
-  description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
-  posts={latestPosts}
-/>
-<YouTube
-  title="My Latest Drone Videos"
-  description="I shoot drone videos and upload them to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
 <Contact />
 <HireMe 

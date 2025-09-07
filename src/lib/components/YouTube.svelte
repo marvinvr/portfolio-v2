@@ -2,6 +2,7 @@
     import { formatDate } from "$lib/utils/date";
     import { useLazyImage as lazyImage } from "svelte-lazy-image";
     import { onMount } from "svelte";
+    import { ArrowRightIcon } from "lucide-svelte";
 
     interface Props {
         title: string;
@@ -21,6 +22,7 @@
     }
 
     let videos: YouTubeVideo[] = $state([]);
+    let playlistUrl: string = $state("");
     let loading = $state(true);
     let error = $state(false);
 
@@ -37,8 +39,11 @@
             if (data.error) {
                 throw new Error(data.error);
             }
+
+            const { videos: newVideos, playlistUrl: newPlaylistUrl } = data;
             
-            videos = data;
+            videos = newVideos;
+            playlistUrl = newPlaylistUrl;
         } catch (e) {
             console.error('Error loading YouTube videos:', e);
             error = true;
@@ -53,7 +58,7 @@
         <div>
             <h2 class="text-gray-800">{title}</h2>
             {#if description}
-                <p class="text-gray-600 max-w-2xl">{description}</p>
+                <p class="text-gray-600 max-w-2xl">{description} <br /><a href={playlistUrl} target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline inline-flex items-center gap-2">View all videos on YouTube →</a></p>
             {/if}
             {@render children?.()}
         </div>
