@@ -26,6 +26,23 @@
   // @ts-ignore
   import thisCarIsNotRealHeader from "$lib/projects/this-car-is-not-real.png?format=webp&w=560";
 
+
+  // @ts-ignore
+  import espressoFull from "$lib/assets/showcase/coffee-full.jpg?format=webp&w=720";
+  // @ts-ignore
+  import espressoMachine from "$lib/assets/showcase/coffee-machine.jpg?format=webp&w=720";
+  // @ts-ignore
+  import espressoGrinder from "$lib/assets/showcase/coffee-grinder.jpg?format=webp&w=720";
+  // @ts-ignore
+  import espressoBeans from "$lib/assets/showcase/coffee-beans.jpg?format=webp&w=720";
+
+  // @ts-ignore
+  import droneFull from "$lib/assets/showcase/drone-full.jpg?format=webp&w=720";
+  // @ts-ignore
+  import droneUav from "$lib/assets/showcase/drone-uav.jpg?format=webp&w=720";
+  // @ts-ignore
+  import droneLenses from "$lib/assets/showcase/drone-lenses.jpg?format=webp&w=720";
+
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
   import Posts from "$lib/components/Posts.svelte";
@@ -191,43 +208,83 @@
   title="👋 More About Me"
   description="Below this, you'll find a few personal things I enjoy. Less professional, more me."
 />
-<!--
 <SetupShowcase
-  title="My Espresso Setup"
-  subtitle="Dialed for consistency and taste — daily driver for great coffee at home."
-  image="https://placehold.co/1200x1200?text=Espresso+Setup"
-  imageAlt="Espresso setup photo"
+  product="My Espresso Setup"
+  description="I own an Espresso Machine! I really enjoy brewing my own Espressos and Cappuchinos at home. So I've built a setup that allows me to do so."
+  images={[
+    {
+      src: espressoFull,
+      alt: "Espresso Setup including Grinder, Tamper and other gear.",
+      productName: "My Espresso Setup",
+    },
+    {
+      src: espressoMachine,
+      alt: "Espresso Machine",
+      productName: "Lelit Glenda",
+      subtitle: "Single Boiler Espresso Machine with a Steam Wand",
+      link: "https://coffeecoachingclub.ch/products/lelit-pl-41-plus-glenda?variant=44122281476355&country=CH&currency=CHF",
+    },
+    {
+      src: espressoGrinder,
+      alt: "Espresso Grinder",
+      productName: "Eureka Libra",
+      subtitle: "Eureka Espresso Grinder with integrated Scale for precise dosing",
+      link: "https://www.eureka.co.it/de/products/eureka+1920/mignon+grinders/libra+range/117.aspx",
+    },
+    {
+      src: espressoBeans,
+      alt: "Espresso Beans",
+      productName: "Cafe  UNO - Mezzo Mezzo",
+      subtitle: "Coffee Beans, great for Espresso and Cappuchino roasted in Baden, Switzerland",
+      link: "https://caffe-uno.ch/products/mezzomezzo-unsere-hausmischung?variant=51991870931277",
+    }
+  ]}
   items={[
-    { name: "Espresso Machine", detail: "Dual-boiler with PID", link: "https://example.com/dual-boiler-espresso-machine" },
-    { name: "Grinder", detail: "Flat burrs, single-dosing", link: "https://example.com/flat-burr-grinder" },
-    { name: "Scale", detail: "0.1g precision with timer", link: "https://example.com/coffee-scale" },
-    { name: "Tamper & Distributor", detail: "58.5mm calibrated" },
-    { name: "Basket", detail: "18g precision basket" },
-    { name: "WDT Tool", detail: "Fine needles for distribution" }
+    { name: "Lelit Glenda", detail: "Single Boiler Espresso Machine with a Steam Wand", link: "https://coffeecoachingclub.ch/products/lelit-pl-41-plus-glenda?variant=44122281476355&country=CH&currency=CHF" },
+    { name: "Eureka Libra", detail: "Eureka Espresso Grinder with integrated Scale for precise dosing", link: "https://www.eureka.co.it/de/products/eureka+1920/mignon+grinders/libra+range/117.aspx" },
+    { name: "MHW-3Bomber Cube", detail: "Precision Espresso Scale", link: "https://mhw3bomber.com/products/mhw-3bomber-espresso-scale" },
+    { name: "Lelit Tamper Ross", detail: "58.5mm Tamper", link: "https://www.galaxus.ch/en/s2/product/lelit-tamper-rosso-zubehoer-kaffeemaschinen-10978349" },
+    { name: "Lelit PLA582W", detail: "Filter Basket with Precision Portafilters in various sizes", link: "https://www.galaxus.ch/en/s2/product/lelit-siebtraeger-zubehoer-kaffeemaschinen-13602179" },
+    { name: "Cafe UNO - Mezzo Mezzo", detail: "Coffee Beans roasted in Baden, Switzerland", link: "https://caffe-uno.ch/products/mezzomezzo-unsere-hausmischung?variant=51991870931277" }
   ]}
 />
--->
 <WhoopStats />
-<!--
 <SetupShowcase
-  title="My Drone Setup"
-  subtitle="A compact, reliable FPV setup I use for casual flying and capturing dynamic footage."
-  image="https://placehold.co/1200x1200?text=Drone+Setup"
-  imageAlt="Drone setup photo"
+  product="My Drone Setup"
+  description="I like to travel in Switzerland and abroad. And while doing so, I love to take stunning drone shots of the scenery."
+  images={[
+    {
+      src: droneFull,
+      alt: "Drone frame",
+      productName: "My Drone Setup",
+      subtitle: "DJI Mini 4 Pro Fly More Combo",
+      link: "https://www.dji.com/ch/mini-4-pro?site=brandsite&from=landing_page",
+    },
+    {
+      src: droneUav,
+      alt: "DJI Mini 4 Pro",
+      productName: "DJI Mini 4 Pro",
+      subtitle: "DJI Mini 4 Pro with a 1-inch sensor and a 48-megapixel camera",
+      link: "https://www.dji.com/ch/mini-4-pro?site=brandsite&from=landing_page",
+    },
+    {
+      src: droneLenses,
+      alt: "DJI Mini 4 Pro Filters",
+      productName: "Freewell Mega Filter Kit",
+      subtitle: "Filters for the DJI Mini 4 Pro to make it work in various light conditions",
+      link: "https://www.galaxus.ch/de/s1/product/freewell-mega-filter-kit-drohnen-filter-dji-mini-4-pro-drohne-zubehoer-40265561",
+    },
+  ]}
   items={[
-    { name: "Frame", detail: "5-inch freestyle frame", link: "https://example.com/drone-frame" },
-    { name: "Motors", detail: "2306 1750KV brushless", link: "https://example.com/2306-1750kv-motors" },
-    { name: "Flight Controller", detail: "F7 with 45A 4-in-1 ESC" },
-    { name: "VTX", detail: "HD digital video transmitter" },
-    { name: "Goggles", detail: "Digital FPV goggles", link: "https://example.com/digital-fpv-goggles" },
-    { name: "Radio", detail: "ELRS-compatible transmitter", link: "https://example.com/elrs-transmitter" }
+    { name: "DJI Mini 4 Pro", detail: "DJI Mini 4 Pro Fly More Combo", link: "https://www.dji.com/ch/mini-4-pro?site=brandsite&from=landing_page" },
+    { name: "Freewell Mega Filter Kit", detail: "Filters for the DJI Mini 4 Pro to make it work in various light conditions", link: "https://www.galaxus.ch/de/s1/product/freewell-mega-filter-kit-drohnen-filter-dji-mini-4-pro-drohne-zubehoer-40265561" },
+    { name: "Final Cut Pro", detail: "Final Cut Pro for editing the drone videos", link: "https://www.apple.com/final-cut-pro/" },
   ]}
 />
 <YouTube
   title="My Latest Drone Videos"
-  description="I shoot drone videos and upload them to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
+  description="I publish my drone videos to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
--->
 <Timeline
   title="My Education"
   items={[
