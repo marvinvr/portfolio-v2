@@ -28,20 +28,20 @@
 
 
   // @ts-ignore
-  import espressoFull from "$lib/assets/showcase/coffee-full.jpg?format=webp&w=720";
+  import espressoFull from "$lib/assets/showcase/coffee-full.png?format=webp&w=720";
   // @ts-ignore
-  import espressoMachine from "$lib/assets/showcase/coffee-machine.jpg?format=webp&w=720";
+  import espressoMachine from "$lib/assets/showcase/coffee-machine.png?format=webp&w=720";
   // @ts-ignore
-  import espressoGrinder from "$lib/assets/showcase/coffee-grinder.jpg?format=webp&w=720";
+  import espressoGrinder from "$lib/assets/showcase/coffee-grinder.png?format=webp&w=720";
   // @ts-ignore
-  import espressoBeans from "$lib/assets/showcase/coffee-beans.jpg?format=webp&w=720";
+  import espressoBeans from "$lib/assets/showcase/coffee-beans.png?format=webp&w=720";
 
   // @ts-ignore
-  import droneFull from "$lib/assets/showcase/drone-full.jpg?format=webp&w=720";
+  import droneFull from "$lib/assets/showcase/drone-full.png?format=webp&w=720";
   // @ts-ignore
-  import droneUav from "$lib/assets/showcase/drone-uav.jpg?format=webp&w=720";
+  import droneUav from "$lib/assets/showcase/drone-uav.png?format=webp&w=720";
   // @ts-ignore
-  import droneLenses from "$lib/assets/showcase/drone-lenses.jpg?format=webp&w=720";
+  import droneLenses from "$lib/assets/showcase/drone-lenses.png?format=webp&w=720";
 
   import Skills from "$lib/components/Skills.svelte";
   import Contact from "$lib/components/Contact.svelte";
