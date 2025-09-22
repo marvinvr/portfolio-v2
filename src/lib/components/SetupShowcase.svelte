@@ -431,8 +431,10 @@
       {/if}
 
       <!-- Bottom caption -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div class="inline-flex flex-col items-center gap-1 rounded-lg bg-black/70 text-white backdrop-blur-md px-4 py-3 shadow-xl">
+      <div class="absolute bottom-8 left-1/2 w-full -translate-x-1/2 px-4 sm:w-auto sm:px-0">
+        <div
+          class="mx-auto flex w-full flex-col items-center gap-1 rounded-lg bg-black/70 text-white backdrop-blur-md px-4 py-3 text-center shadow-xl sm:inline-flex sm:w-auto"
+        >
           <div class="flex items-center gap-2 text-base font-medium">
             <span>{images[currentIndex].productName}</span>
             {#if images[currentIndex].link}
