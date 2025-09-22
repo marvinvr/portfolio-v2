@@ -199,6 +199,29 @@
   ]}
 />
 <Skills />
+<Timeline
+  title="My Education"
+  items={[
+    {
+      date: "Sep\xa02021 - Sep\xa02024",
+      link: "https://www.fhnw.ch/de/studium/technik/data-science",
+      position: "Bachelor of Science in Data Science",
+      title: "FHNW - University of Applied Sciences Northwestern Switzerland",
+      description:
+        "Part-time degree covering statistics, machine learning, deep learning, and software engineering. Thesis on [specific topic if you want to add]. Completed while working full-time in industry.",
+      icon: fhnwLogo,
+    },
+    {
+      date: "Aug\xa02016 - Jul\xa02020",
+      link: "https://www.kanti-baden.ch/informatikmittelschule/",
+      position: "Student at Informatics Middle School",
+      title: "Kanti Baden",
+      description:
+        "Four-year program combining software development (Java, web technologies) with business fundamentals. Included one-year internship at Apiax. Graduated with Berufsmatura in economics.",
+      icon: kantiLogo,
+    },
+  ]}
+/>
 <Posts
   title="My Latest Blog Posts"
   description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
@@ -284,29 +307,6 @@
 <YouTube
   title="My Latest Drone Videos"
   description="I publish my drone videos to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
-/>
-<Timeline
-  title="My Education"
-  items={[
-    {
-      date: "Sep\xa02021 - Sep\xa02024",
-      link: "https://www.fhnw.ch/de/studium/technik/data-science",
-      position: "Bachelor of Science in Data Science",
-      title: "FHNW - University of Applied Sciences Northwestern Switzerland",
-      description:
-        "Part-time degree covering statistics, machine learning, deep learning, and software engineering. Thesis on [specific topic if you want to add]. Completed while working full-time in industry.",
-      icon: fhnwLogo,
-    },
-    {
-      date: "Aug\xa02016 - Jul\xa02020",
-      link: "https://www.kanti-baden.ch/informatikmittelschule/",
-      position: "Student at Informatics Middle School",
-      title: "Kanti Baden",
-      description:
-        "Four-year program combining software development (Java, web technologies) with business fundamentals. Included one-year internship at Apiax. Graduated with Berufsmatura in economics.",
-      icon: kantiLogo,
-    },
-  ]}
 />
 <Contact />
 <HireMe 
