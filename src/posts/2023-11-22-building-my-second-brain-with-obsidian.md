@@ -126,19 +126,6 @@ To reliably sync data across all platforms, including iOS, Obsidian's proprietar
 
 Personally, as someone who utilizes multiple devices for my work, I've opted for subscribing to the Obsidian Sync service, primarily due to its limitations of its syncing within the iOS ecosystem.
 
-## Public Knowledge Base: A Tour of My Obsidian Library
-
-![My Obsidian Valut]({myObsidianVault})
-
-My public Obsidian library offers a view into the essence of what I've learned until now. Located at [docs.marvinvr.ch](https://docs.marvinvr.ch), you can navigate through my personal repository of knowledge. It's a dynamic library, growing with each semester and letting the public see, what I've been learning.
-
-My Obsidian setup constitutes a series of main categories, some of which are divided into further subcategories.
-
-My primary Obsidian Vault is called "Documentation". Here, you will find a mix of notes on `Code`, `Deep Learning`, `Natural Language Processing`, `Hardware`, and `Maths`. Each of these categories is broken down into more specialized subtopics. For instance, under `Deep Learning`, you can delve into notes covering everything from `Activation Functions` to `Models`.
-
-`Hardware` includes what I'm tinkering with on my spare time. With sections dedicated to `OPNSense`, `Raspberry Pi`, `Ubuntu Server`, and `Unraid`. These notes serve as technical guides based on my personal setup experiences.
-
-_Note:_ Parts of my library, specifically the math parts, are written in German, this is due to my education taking place in Switzerland.
 
 ## Conclusion
 
