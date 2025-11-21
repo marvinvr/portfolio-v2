@@ -1,5 +1,6 @@
 <script lang="ts">
   import { formatDate } from "$lib/utils/date";
+  import { getTagColor } from "$lib/utils/tagColors";
 
   import { useLazyImage as lazyImage } from "svelte-lazy-image";
 
@@ -13,6 +14,7 @@
     description: string;
     url: string;
     release: string;
+    tags?: string[];
   }[];
     children?: import('svelte').Snippet;
   }
@@ -63,6 +65,18 @@
                 >
                   {project.description}
                 </p>
+                {#if project.tags && project.tags.length > 0}
+                  <div class="flex flex-wrap gap-2 pt-2">
+                    {#each project.tags as tag}
+                      <span
+                        class="px-2 py-1 text-xs font-medium rounded-full"
+                        style="background-color: {getTagColor(tag)}; color: #4b5563; border: 1px solid {getTagColor(tag)};"
+                      >
+                        {tag}
+                      </span>
+                    {/each}
+                  </div>
+                {/if}
               </div>
             </a>
             </li>
