@@ -13,7 +13,7 @@ import {
   setCachedWhoopStats,
 } from "$lib/redis";
 
-const WHOOP_API_BASE = "https://api.prod.whoop.com/developer/v1";
+const WHOOP_API_BASE = "https://api.prod.whoop.com/developer/v2";
 
 interface WhoopCycle {
   id: number;
@@ -69,7 +69,13 @@ interface WhoopSleep {
       sleep_cycle_count: number;
       disturbance_count: number;
     };
-    sleep_needed_baseline_milli: number;
+    sleep_needed: {
+      baseline_milli: number;
+      need_from_sleep_debt_milli: number;
+      need_from_recent_strain_milli: number;
+      need_from_recent_nap_milli: number;
+    };
+    respiratory_rate: number;
     sleep_performance_percentage: number;
     sleep_consistency_percentage: number;
     sleep_efficiency_percentage: number;
