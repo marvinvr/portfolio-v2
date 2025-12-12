@@ -243,7 +243,9 @@
   title="My Latest Blog Posts"
   description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
   posts={latestPosts}
-/>
+>
+  <a href="/blog" class="text-indigo-600 hover:text-indigo-800 font-medium">View all posts →</a>
+</Posts>
 <SubHeading
   title="👋 More About Me"
   description="Below this, you'll find a few personal things I enjoy. Less professional, more me."

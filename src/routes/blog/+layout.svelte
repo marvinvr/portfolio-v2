@@ -22,6 +22,9 @@
 </svelte:head>
 
 <Hero
+    greeting="Hey, I'm Marvin"
+    tagline="Full-Stack Engineer / Data Scientist"
+    location="Baden, Switzerland"
     subtitle="This is where you can find my most recent blog posts. Usually in the domain of Artificial Intelligence. Use any of the links below to get in touch!"/>
 {@render children?.()}
 <Contact/>
