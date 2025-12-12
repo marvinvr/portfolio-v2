@@ -1,9 +1,9 @@
-const images: Record<string, any> = import.meta.glob("$lib/posts/**/*.png", {
+const images: Record<string, any> = import.meta.glob("$lib/posts/**/*.{png,jpg}", {
   eager: true,
   query: { format: "webp", h: 1000 },
 });
 const thumbnails: Record<string, any> = import.meta.glob(
-  "$lib/posts/**/*.png",
+  "$lib/posts/**/*.{png,jpg}",
   { eager: true, query: { format: "webp", w: 400 } }
 );
 
