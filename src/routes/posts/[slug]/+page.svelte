@@ -13,6 +13,18 @@
     mounted = true;
   });
 
+  function handleBack(e: MouseEvent) {
+    e.preventDefault();
+    const referrer = document.referrer;
+    const currentDomain = window.location.origin;
+
+    if (referrer && referrer.startsWith(currentDomain)) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
+    }
+  }
+
   interface Props {
     data: PageData;
   }
@@ -51,7 +63,7 @@
     <article
       class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue"
     >
-      <a href="/" class="flex items-center justify-start mb-8 text-indigo-900">
+      <a href="/" onclick={handleBack} class="flex items-center justify-start mb-8 text-indigo-900 hover:text-indigo-700 cursor-pointer">
         <svg
           class="w-6 h-6 mr-2"
           fill="none"
@@ -66,7 +78,7 @@
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
           />
         </svg>
-        <span>Go Back Home</span>
+        <span>Back</span>
       </a>
       <header class="mb-4 lg:mb-6 not-format">
         <img
