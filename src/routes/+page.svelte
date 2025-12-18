@@ -172,7 +172,7 @@
       image: modelOfOurGalaxyHeader,
       description:
         "This is a small model of our Solar System running entirely in your Browser and accurately depicting the positions of Planets at specific dates.",
-      url: "https://tools.marvinvr.ch/model-of-the-solar-system",
+      url: "https://tools.marvinvr.ch/model-of-the-solar-system/",
       release: "2025-07-10",
       tags: ["Visualization", "Fun"],
     },
