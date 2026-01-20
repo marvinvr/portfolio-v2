@@ -75,12 +75,13 @@
     content="Full-Stack Engineer building Industrial AI. Currently building an ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
   />
 
+  <title>About Me - Marvin von Rappard</title>
   <meta property="og:url" content="https://marvinvr.ch" />
-  <meta property="og:title" content="Marvin von Rappard | Portfolio" />
+  <meta property="og:title" content="About Me - Marvin von Rappard" />
   <meta property="og:image" content="https://marvinvr.ch/og-image.png" />
   <meta property="og:type" content="website" />
 
-  <meta name="twitter:title" content="Marvin von Rappard | Portfolio" />
+  <meta name="twitter:title" content="About Me - Marvin von Rappard" />
   <meta
     name="twitter:description"
     content="Full-Stack Engineer building Industrial AI. Currently building a ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
