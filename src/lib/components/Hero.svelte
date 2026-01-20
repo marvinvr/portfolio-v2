@@ -4,11 +4,12 @@
   // @ts-ignore
   import portrait from "$lib/assets/portrait.jpeg?format=webp&w=600&h=600";
   import Socials from "./Socials.svelte";
-  import { Mail } from "lucide-svelte";
+  import { Mail, ArrowRight } from "lucide-svelte";
   import { getEmailUrl } from "$lib/utils/email";
 
   interface Props {
-    greeting: string;
+    greetingSmall: string;
+    greetingName: string;
     tagline: string;
     location: string;
     subtitle: string;
@@ -16,7 +17,8 @@
   }
 
   let {
-    greeting,
+    greetingSmall,
+    greetingName,
     tagline,
     location,
     subtitle,
@@ -33,21 +35,18 @@
     class="md:pt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center flex-col-reverse lg:flex-row flex md:px-8"
   >
     <div class="space-y-4 flex-1 sm:text-center lg:text-left">
-      <h1 class="text-gray-800 font-semibold text-4xl xl:text-5xl">
-        {greeting}
+      <h1>
+        <span class="block text-gray-600 font-medium text-xl xl:text-2xl mb-1">{greetingSmall}</span>
+        <span class="block text-gray-800 font-bold text-5xl xl:text-6xl">{greetingName}</span>
       </h1>
       <h2 class="text-gray-800 font-medium text-xl xl:text-2xl">
         {tagline}
       </h2>
       <!-- Location marker -->
-      <a
-        href="https://maps.app.goo.gl/R5u3Xi7rhmvvguwU9"
-        aria-label="Baden, Switzerland"
-        class="flex items-center justify-start sm:justify-center lg:justify-start space-x-2"
-      >
+      <div class="flex items-center justify-start sm:justify-center lg:justify-start space-x-2">
         <MapMarkerOutline class="w-5 h-5 text-gray-700" />
         <span class="text-gray-700">{location}</span>
-      </a>
+      </div>
       <div>
         {#each subtitle.split("\\n") as line}
           <p class="text-gray-700 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
@@ -58,13 +57,14 @@
       <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
         {@render additionalActions?.()}
         <button
-          class="border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 px-5 py-2 rounded-md flex items-center gap-3 w-full md:w-auto justify-center"
+          class="group border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 px-5 py-2 rounded-md flex items-center gap-3 w-full md:w-auto justify-center"
           onclick={() => {
             window.open(getEmailUrl(), "_blank");
           }}
         >
           <Mail class="size-5" />
-          <span>Hire me</span>
+          <span>Get in touch</span>
+          <ArrowRight class="size-4 transition-transform duration-200 group-hover:translate-x-1" />
         </button>
       </div>
       <div class="block md:hidden pt-3">

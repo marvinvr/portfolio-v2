@@ -24,7 +24,7 @@
 <section class="py-24">
     <div class="max-w-screen-xl mx-auto px-4 md:px-8">
         <div>
-            <h2 class="text-gray-800">{title}</h2>
+            <h2 class="text-gray-800 text-xl font-semibold mb-2">{title}</h2>
             {#if description}
                 <p class="text-gray-600 max-w-2xl">{description}</p>
             {/if}
@@ -36,7 +36,7 @@
         >
             {#each posts as post (post.title)}
                 <li
-                    class="w-full mx-auto group sm:max-w-sm rounded-md hover:bg-gray-50 transition p-3"
+                    class="w-full group sm:max-w-sm"
                 >
                     <a href={`/posts/${post.slug}`}>
                         <img
@@ -46,7 +46,7 @@
                             height="192"
                             class="w-full rounded-md h-48 object-cover"
                         />
-                        <div class="mt-3 space-y-2 mx-2 my-4">
+                        <div class="mt-3 space-y-2">
               <span class="block text-indigo-600 text-sm"
               >{formatDate(post.date)}</span
               >

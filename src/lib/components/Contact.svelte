@@ -48,46 +48,23 @@
 </script>
 
 <section class="py-14">
-  <div
-    class="max-w-screen-xl mx-auto px-4 text-gray-600 gap-12 md:px-8 lg:flex flex-col"
-  >
-    <div class="">
-      <h2 class="text-gray-800">Contact me</h2>
-      <p class="mt-3 text-gray-600 max-w-2xl">
-        I'd love to talk! Feel free to reach out via any of the following channels:
-      </p>
-    </div>
-    <div>
-      <div
-        class="mb-8 mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4"
-      >
-        {#each contactMethods as item (item.title)}
-          <button
-            type="button"
-            onclick={() => window.open(item.link, "_blank")}
-            class="space-y-3 px-2 py-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer text-left w-full"
-          >
-            <div
-              class="w-12 h-12 rounded-full border flex items-center justify-center text-gray-700"
-            >
-              <item.icon
-                class="size-5"
-                alt="Social Icon"
-              />
-            </div>
-            <h4 class="text-gray-800 text-lg font-medium xl:text-xl">
-              {item.title}
-            </h4>
-            <a
-              href={item.link}
-              class="text-blue-600 hover:text-blue-500 inline-flex items-center gap-1"
-            >
-              {item.label}
-              <ArrowRight class="size-4" />
-            </a>
-          </button>
-        {/each}
-      </div>
+  <div class="max-w-screen-xl mx-auto px-4 md:px-8">
+    <h2 class="text-gray-800 text-xl font-semibold mb-2">Contact me</h2>
+    <p class="text-gray-600 max-w-2xl mb-6">
+      I'd love to talk! Feel free to reach out via any of the following channels:
+    </p>
+    <div class="flex flex-wrap gap-3">
+      {#each contactMethods as item (item.title)}
+        <a
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all text-gray-700 hover:text-gray-900"
+        >
+          <item.icon class="size-4" />
+          <span class="text-sm font-medium">{item.title}</span>
+        </a>
+      {/each}
     </div>
   </div>
 </section>

@@ -1,7 +1,5 @@
 <script lang="ts">
   import { formatDate } from "$lib/utils/date";
-  import { getTagColor } from "$lib/utils/tagColors";
-
   import { useLazyImage as lazyImage } from "svelte-lazy-image";
 
   interface Props {
@@ -30,7 +28,7 @@
 <section class="py-24">
   <div class="max-w-screen-xl mx-auto px-4 md:px-8">
     <div>
-      <h2 class="text-gray-800">{title}</h2>
+      <h2 class="text-gray-800 text-xl font-semibold mb-2">{title}</h2>
       {#if description}
         <p class="text-gray-600">{description}</p>
       {/if}
@@ -43,7 +41,7 @@
       {#each projects as project (project.title)}
         {#if !project.hidden}
           <li
-            class="w-full mx-auto group sm:max-w-sm rounded-md hover:bg-gray-50 transition p-3"
+            class="w-full group sm:max-w-sm"
           >
             <a href={project.url} target="_blank">
               <img
@@ -53,30 +51,27 @@
                 height="192"
                 class="w-full rounded-md h-48 object-cover"
               />
-              <div class="mt-3 space-y-2 mx-2 my-4">
+              <div class="mt-3 space-y-2">
                 <span class="block text-indigo-600 text-sm">
                   {formatDate(project.release)}
                 </span>
                 <span class="text-lg text-gray-800 duration-150 font-semibold">
                   {project.title}
                 </span>
-                <p
-                  class="text-gray-600 text-sm duration-150 group-hover:text-gray-800"
-                >
-                  {project.description}
-                </p>
                 {#if project.tags && project.tags.length > 0}
-                  <div class="flex flex-wrap gap-2 pt-2">
+                  <div class="flex flex-wrap gap-1.5">
                     {#each project.tags as tag}
-                      <span
-                        class="px-2 py-1 text-xs font-medium rounded-full"
-                        style="background-color: {getTagColor(tag)}; color: #4b5563; border: 1px solid {getTagColor(tag)};"
-                      >
+                      <span class="px-2 py-0.5 text-xs text-gray-600 border border-gray-200 rounded-full">
                         {tag}
                       </span>
                     {/each}
                   </div>
                 {/if}
+                <p
+                  class="text-gray-600 text-sm duration-150 group-hover:text-gray-800"
+                >
+                  {project.description}
+                </p>
               </div>
             </a>
             </li>
