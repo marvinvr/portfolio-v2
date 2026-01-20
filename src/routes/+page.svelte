@@ -72,7 +72,7 @@
   <meta
     name="description"
     property="og:description"
-    content="Full-Stack Engineer building Industrial AI. Currently building a ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
+    content="Full-Stack Engineer building Industrial AI. Currently building an ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
   />
 
   <meta property="og:url" content="https://marvinvr.ch" />
@@ -93,7 +93,7 @@
   greetingName="I'm Marvin"
   tagline="Full-Stack Engineer building Industrial AI"
   location="Zurich, Switzerland"
-  subtitle="Currently developing a ML Platform at Octotronic to accelerate Industrial AI. Before that, I worked on Large Language Model research at the University of Applied Sciences FHNW. Prior to that, I built a digital compliance platform for large enterprise customers at Apiax.\nOn the side, I develop WriteABookAI, an AI-native book writing platform, among other smaller and open source projects."
+  subtitle="Currently developing an ML Platform at Octotronic to accelerate Industrial AI. Before that, I worked on Large Language Model research at the University of Applied Sciences FHNW. Prior to that, I built a digital compliance platform for large enterprise customers at Apiax.\nOn the side, I develop WriteABookAI, an AI-native book writing platform, among other smaller and open source projects."
 />
 <Timeline
   title="My Professional History"
