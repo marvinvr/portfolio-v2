@@ -44,7 +44,7 @@
   <div class="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
     <div class="relative max-w-2xl">
       <div class="relative z-10">
-        <h2 class="text-gray-800">My Skills</h2>
+        <h2 class="text-gray-800 text-xl font-semibold mb-2">My Skills</h2>
         <p class="mt-3">
           I build end-to-end software solutions, from backend systems to user interfaces. My technical toolkit includes <b>full-stack development</b>, <b>data engineering</b>, and <b>machine learning</b>, which I've applied across manufacturing, compliance, and education sectors.
         </p>

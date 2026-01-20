@@ -199,19 +199,16 @@
   });
 </script>
 
-<section class="py-16">
+<section class="pt-8 pb-16">
   <div class="max-w-screen-xl mx-auto px-4 md:px-8">
-    <!-- Mobile: title first, then image, then items -->
-    <!-- Desktop: side by side layout controlled by reverse prop -->
-    
     <!-- Mobile-only title section -->
     <div class="lg:hidden mb-6">
-      <h2 class="text-gray-800 mb-2">{product}</h2>
+      <h2 class="text-gray-800 text-xl font-semibold mb-2">{product}</h2>
       {#if description}
         <p class="text-gray-600">{description}</p>
       {/if}
     </div>
-    
+
     <div
       class={`flex items-start gap-8 lg:gap-12 flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"}`}
     >
@@ -314,15 +311,15 @@
 
       <!-- Text content -->
       <div class="flex-1 w-full">
-        <!-- Desktop-only title (hidden on mobile since it's shown above) -->
-        <div class="hidden lg:block">
-          <h2 class="text-gray-800 mb-2">{product}</h2>
+        <!-- Desktop-only title -->
+        <div class="hidden lg:block mb-4">
+          <h2 class="text-gray-800 text-xl font-semibold mb-2 -mt-1">{product}</h2>
           {#if description}
-            <p class="text-gray-600 mb-6">{description}</p>
+            <p class="text-gray-600">{description}</p>
           {/if}
         </div>
 
-        <div class="lg:mt-2">
+        <div>
           <h3 class="text-gray-800 text-lg font-semibold mb-3">{setupTitle}</h3>
 
           {#if items.length === 0}

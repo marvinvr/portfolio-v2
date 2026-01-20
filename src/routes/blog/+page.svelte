@@ -13,7 +13,7 @@
 <svelte:head>
   <meta
     name="keywords"
-    content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Deep Learning, Data, Science"
+    content="Marvin von Rappard, von Rappard, Switzerland, Zurich, Full Stack Engineer, Deep Learning, Machine Learning, AI, Blog"
   />
 
   <link rel="canonical" href="https://marvinvr.ch/blog" />
@@ -24,7 +24,7 @@
   <meta
     name="description"
     property="og:description"
-    content="The personal blog of Marvin von Rappard. This is an overview of my recent posts and current projects I'm working on."
+    content="Full-Stack Engineer building Industrial AI. My blog posts usually center around Software / AI projects I've been working on."
   />
 </svelte:head>
 

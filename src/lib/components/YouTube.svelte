@@ -12,6 +12,11 @@
 
     let { title, description = "", children }: Props = $props();
 
+    function truncate(text: string, maxLength: number = 100): string {
+        if (!text || text.length <= maxLength) return text;
+        return text.slice(0, maxLength).trim() + "...";
+    }
+
     interface YouTubeVideo {
         id: string;
         title: string;
@@ -56,9 +61,10 @@
 <section class="py-24">
     <div class="max-w-screen-xl mx-auto px-4 md:px-8">
         <div>
-            <h2 class="text-gray-800">{title}</h2>
+            <h2 class="text-gray-800 text-xl font-semibold mb-2">{title}</h2>
             {#if description}
-                <p class="text-gray-600 max-w-2xl">{description} <br /><a href={playlistUrl} target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline inline-flex items-center gap-2">View all videos on YouTube →</a></p>
+                <p class="text-gray-600 max-w-2xl">{description}</p>
+            <a href={playlistUrl} target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-medium">View all videos on YouTube →</a>
             {/if}
             {@render children?.()}
         </div>
@@ -77,7 +83,7 @@
             >
                 {#each videos as video (video.id)}
                     <li
-                        class="w-full mx-auto group sm:max-w-sm rounded-md hover:bg-gray-50 transition p-3"
+                        class="w-full group sm:max-w-sm"
                     >
                         <a href={video.url} target="_blank" rel="noopener noreferrer">
                             <img
@@ -87,17 +93,15 @@
                                 height="192"
                                 class="w-full rounded-md h-48 object-cover"
                             />
-                            <div class="mt-3 space-y-2 mx-2 my-4">
+                            <div class="mt-3 space-y-2">
                                 <span class="block text-indigo-600 text-sm">
                                     {formatDate(video.publishedAt)}
                                 </span>
                                 <span class="text-lg text-gray-800 duration-150 font-semibold">
                                     {video.title}
                                 </span>
-                                <p
-                                    class="text-gray-600 text-sm duration-150 group-hover:text-gray-800 line-clamp-3"
-                                >
-                                    {video.description || "No description available"}
+                                <p class="text-gray-600 text-sm duration-150 group-hover:text-gray-800">
+                                    {truncate(video.description) || "No description available"}
                                 </p>
                             </div>
                         </a>

@@ -45,7 +45,6 @@
   import droneLenses from "$lib/assets/showcase/drone-lenses.png?format=webp&w=720";
 
   import Skills from "$lib/components/Skills.svelte";
-  import Contact from "$lib/components/Contact.svelte";
   import Posts from "$lib/components/Posts.svelte";
   import YouTube from "$lib/components/YouTube.svelte";
   import HireMe from "$lib/components/HireMe.svelte";
@@ -67,13 +66,13 @@
 <svelte:head>
   <meta
     name="keywords"
-    content="Marvin von Rappard, von Rappard, Switzerland, Baden, Data Scientist, Software Engineer, Full Stack Engineer, Full Stack Developer, Deep Learning, Data Scientist, AI"
+    content="Marvin von Rappard, von Rappard, Switzerland, Zurich, Full Stack Engineer, Full Stack Developer, Industrial AI, Machine Learning, LLM, Deep Learning"
   />
   <link rel="canonical" href="https://marvinvr.ch" />
   <meta
     name="description"
     property="og:description"
-    content="The personal portfolio of Marvin von Rappard. This is an overview of my recent posts and current projects i'm working on."
+    content="Full-Stack Engineer building Industrial AI. Currently building a ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
   />
 
   <meta property="og:url" content="https://marvinvr.ch" />
@@ -84,16 +83,17 @@
   <meta name="twitter:title" content="Marvin von Rappard | Portfolio" />
   <meta
     name="twitter:description"
-    content="The personal portfolio of Marvin von Rappard. This is an overview of my recent posts and current projects i'm working on."
+    content="Full-Stack Engineer building Industrial AI. Currently building a ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
   />
   <meta name="twitter:image" content="https://marvinvr.ch/og-image.png" />
 </svelte:head>
 
 <Hero
-  greeting="Hey, I'm Marvin"
-  tagline="Full-Stack Engineer / Data Scientist"
-  location="Baden, Switzerland"
-  subtitle="Full-Stack Engineer and Data Scientist building ML/Analytics solutions at Octotronic. Previously built AI compliance tools at Apiax and an AI tutoring system at FHNW. I run WriteABookAI and ReportGPT as side projects. B.Sc. in Data Science from FHNW.\n I'm also available for hire as a freelancer. I specialize in process automation and workflow integrations between different systems. Feel free to reach out to me if you have any questions or you are interested to work together."
+  greetingSmall="Hey there,"
+  greetingName="I'm Marvin"
+  tagline="Full-Stack Engineer building Industrial AI"
+  location="Zurich, Switzerland"
+  subtitle="Currently developing a ML Platform at Octotronic to accelerate Industrial AI. Before that, I worked on Large Language Model research at the University of Applied Sciences FHNW. Prior to that, I built a digital compliance platform for large enterprise customers at Apiax.\nOn the side, I develop WriteABookAI, an AI-native book writing platform, among other smaller and open source projects."
 />
 <Timeline
   title="My Professional History"
@@ -183,7 +183,7 @@
         "ReportGPT is a web-based tool that helps you write reports and other documents faster and more efficiently with the help of Large Language Models.",
       url: "https://ReportGPT.app",
       release: "2023-11-01",
-      tags: ["SaaS", "AI", "Writing"],
+      tags: ["SaaS", "AI"],
     },
     {
       title: "Auto-yt-shorts",
@@ -193,7 +193,7 @@
         "Auto-yt-shorts is an open-source project designed to automate the process of generating engaging short videos for platforms like YouTube and TikTok.",
       url: "https://github.com/marvinvr/auto-yt-shorts",
       release: "2023-10-15",
-      tags: ["Automation", "Open Source", "Video"],
+      tags: ["Open Source", "Video"],
     },
     /*{
       title: "PostPulse",
@@ -211,7 +211,7 @@
         "I recently participated in a computer vision challenge where I had to classify images of wildlife cameras. Our findings are available on GitHub.",
       url: "https://github.com/marvinvr/ccv1",
       release: "2023-07-01",
-      tags: ["Challenge", "Computer Vision", "ML"],
+      tags: ["Computer Vision", "ML"],
     },
   ]}
 />
@@ -241,13 +241,13 @@
 />
 <Posts
   title="My Latest Blog Posts"
-  description="My posts usually center around some Deep Learning project I've been working on. These are my most recent ones:"
+  description="My posts usually center around some Software / AI project I've been working on. These are my most recent ones:"
   posts={latestPosts}
 >
   <a href="/blog" class="text-indigo-600 hover:text-indigo-800 font-medium">View all posts →</a>
 </Posts>
 <SubHeading
-  title="👋 More About Me"
+  title="More About Me"
   description="Below this, you'll find a few personal things I enjoy. Less professional, more me."
 />
 <SetupShowcase
@@ -327,10 +327,8 @@
   title="My Latest Drone Videos"
   description="I publish my drone videos to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
-<Contact />
-<HireMe 
-  title="Want to Work Together?"
-  subtitle="I'm available for freelance projects focusing on process automation and workflow integrations between different systems."
-  description="If you need to connect APIs, automate business processes, build data pipelines, or create custom integrations, I can you optimize your operations and save you time."
-  buttonText="Let's Talk"
+<HireMe
+  title="Want to Get in Touch?"
+  subtitle="Do you have a question or want to discuss a project? Feel free to reach me anytime on any of these platforms:"
+  description=""
 />

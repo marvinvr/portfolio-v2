@@ -1,44 +1,76 @@
 <script lang="ts">
-  import { MailIcon, SquareKanban } from "lucide-svelte";
+  import { Twitter, Linkedin, Github, Mail, Phone } from "lucide-svelte";
   import { getEmailUrl } from "$lib/utils/email";
 
   interface Props {
     title: string;
     subtitle: string;
     description: string;
-    buttonText: string;
   }
 
   let {
     title,
     subtitle,
-    description,
-    buttonText
+    description
   }: Props = $props();
+
+  const contactMethods: {
+    title: string;
+    icon: any;
+    link: string;
+  }[] = [
+    {
+      title: "Email",
+      icon: Mail,
+      link: getEmailUrl(),
+    },
+    {
+      title: "LinkedIn",
+      icon: Linkedin,
+      link: "https://www.linkedin.com/in/marvinvr/",
+    },
+    {
+      title: "GitHub",
+      icon: Github,
+      link: "https://github.com/marvinvr",
+    },
+    {
+      title: "X / Twitter",
+      icon: Twitter,
+      link: "https://twitter.com/marvinvr",
+    },
+    {
+      title: "Phone",
+      icon: Phone,
+      link: "tel:+41774488352",
+    },
+  ];
 </script>
 
-<section class="py-16">
+<section class="pt-12 pb-24">
   <div class="max-w-screen-xl mx-auto px-4 md:px-8 text-center">
-    <div class="space-y-6">
-      <h2 class="text-gray-900 font-bold text-4xl xl:text-5xl">
+    <div class="space-y-4">
+      <h2 class="text-gray-900 font-bold text-3xl xl:text-4xl">
         {title}
       </h2>
-      <p class="text-gray-600 text-lg xl:text-xl max-w-2xl mx-auto">
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
         {subtitle}
       </p>
       <p class="text-gray-700 max-w-3xl mx-auto leading-relaxed">
         {description}
       </p>
-      <div class="pt-4">
-        <button
-          class="bg-slate-700 hover:bg-slate-800 transition-all duration-200 shadow-md hover:shadow-lg text-white px-6 py-3 rounded-md flex items-center flex-row gap-3 mx-auto text-md font-medium"
-          onclick={() => {
-            window.open(getEmailUrl(), "_blank");
-          }}
-        >
-          <MailIcon class="size-5" />
-          <span>{buttonText}</span>
-        </button>
+      <div class="flex flex-wrap justify-center gap-3 pt-2">
+        {#each contactMethods as item (item.title)}
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 px-5 py-3 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all text-gray-700 hover:text-gray-900"
+          >
+            <item.icon class="size-5" />
+            <span class="font-medium">{item.title}</span>
+          </a>
+        {/each}
       </div>
     </div>
   </div>
