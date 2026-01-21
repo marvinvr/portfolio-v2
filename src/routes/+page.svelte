@@ -295,7 +295,7 @@
             position: "Bachelor of Science in Data Science",
             title: "FHNW - University of Applied Sciences Northwestern Switzerland",
             description:
-                "Bachelors degree covering statistics, machine learning, deep learning, and software engineering. Thesis on Machine Learning of Engineering Physical Simulations. Completed while working full-time in industry.",
+                "Bachelor's degree covering statistics, machine learning, deep learning, and software engineering. Thesis on Machine Learning of Engineering Physical Simulations. Completed while working full-time in industry.",
             icon: fhnwLogo,
         },
         {
