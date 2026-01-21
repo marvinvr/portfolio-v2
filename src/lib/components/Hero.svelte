@@ -47,7 +47,7 @@
         <MapMarkerOutline class="w-5 h-5 text-gray-700" />
         <span class="text-gray-700">{location}</span>
       </div>
-      <div>
+      <div class="lg:pr-12">
         {#each subtitle.split("\\n") as line}
           <p class="text-gray-700 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
             {@html line}
