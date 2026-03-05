@@ -55,7 +55,7 @@
                 {#each techStack as tech}
                     {@const IconComponent = iconMap[tech.icon]}
                     <div
-                        class="bg-white flex flex-col h-full p-4 border rounded-lg hover:shadow-lg transition-shadow"
+                        class="bg-white flex flex-col h-full p-4 border rounded-lg"
                     >
                         <div class="text-indigo-600 pb-1">
                             <IconComponent class="w-6 h-6" />

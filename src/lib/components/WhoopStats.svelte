@@ -135,7 +135,7 @@
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {#each statConfig as config}
             {@const statData = stats[config.key]}
-            <div class="bg-white space-y-3 p-4 border rounded-lg hover:shadow-lg transition-shadow relative">
+            <div class="bg-white space-y-3 p-4 border rounded-lg relative">
               <div class="flex justify-between items-start">
                 <div class="text-indigo-600 pb-3">
                   <config.icon class="w-6 h-6" />
