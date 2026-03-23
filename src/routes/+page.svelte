@@ -146,7 +146,7 @@
             image: dockTailHeader,
             description:
                 "DockTail advertises your Docker containers as Tailscale Services and makes them accessible from anywhere.",
-            url: "https://github.com/marvinvr/docktail",
+            url: "https://docktail.org",
             release: "2025-11-19",
             tags: ["Open Source", "Docker", "Automation"],
         },
