@@ -230,7 +230,7 @@
                      radial-gradient(circle at 50% 50%, rgba({dominantColor}, 0.5) 0%, transparent 70%);"
             />
 
-            <!-- Foreground image (contain, crossfades) -->
+            <!-- Foreground image (cover, crossfades) -->
             <button 
               class="absolute inset-0 z-[2] cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50"
               on:click={openModal}
@@ -242,7 +242,7 @@
                   loading={i === currentIndex ? 'eager' : 'lazy'}
                   decoding="async"
                   alt={img.alt ?? "Showcase image"}
-                  class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ease-in-out pointer-events-none"
+                  class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out pointer-events-none"
                   class:opacity-100={i === currentIndex}
                   class:opacity-0={i !== currentIndex}
                   aria-hidden={i !== currentIndex}
