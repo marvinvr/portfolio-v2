@@ -397,36 +397,20 @@
             src: droneFull,
             alt: "Drone frame",
             productName: "My Drone Setup",
-            subtitle: "DJI Mini 4 Pro Fly More Combo",
-            link: "https://www.dji.com/ch/mini-4-pro?site=brandsite&from=landing_page",
-        },
-        {
-            src: droneUav,
-            alt: "DJI Mini 4 Pro",
-            productName: "DJI Mini 4 Pro",
-            subtitle:
-                "DJI Mini 4 Pro with a 1-inch sensor and a 48-megapixel camera",
-            link: "https://www.dji.com/ch/mini-4-pro?site=brandsite&from=landing_page",
-        },
-        {
-            src: droneLenses,
-            alt: "DJI Mini 4 Pro Filters",
-            productName: "Freewell Mega Filter Kit",
-            subtitle:
-                "Filters for the DJI Mini 4 Pro to make it work in various light conditions",
-            link: "https://www.galaxus.ch/de/s1/product/freewell-mega-filter-kit-drohnen-filter-dji-mini-4-pro-drohne-zubehoer-40265561",
-        },
+            subtitle: "DJI Mavic 4 Pro",
+            link: "https://www.dji.com/ch/mavic-4-pro",
+        }
     ]}
     items={[
         {
-            name: "DJI Mini 4 Pro",
-            detail: "DJI Mini 4 Pro Fly More Combo",
-            link: "https://www.dji.com/ch/mini-4-pro?site=brandsite&from=landing_page",
+            name: "DJI Mavic 4 Pro",
+            detail: "DJI Mavic 4 Pro Fly More Combo",
+            link: "https://www.dji.com/ch/mavic-4-pro",
         },
         {
-            name: "Freewell Mega Filter Kit",
-            detail: "Filters for the DJI Mini 4 Pro to make it work in various light conditions",
-            link: "https://www.galaxus.ch/de/s1/product/freewell-mega-filter-kit-drohnen-filter-dji-mini-4-pro-drohne-zubehoer-40265561",
+            name: Freewell Split Filters All Day",
+            detail: "Filters for the Mavic 4 Pro to make it work in various light conditions",
+            link: "https://www.digitec.ch/de/s1/product/freewell-split-filters-all-day-drohnen-filter-dji-mavic-4-pro-drohne-zubehoer-59057082",
         },
         {
             name: "Final Cut Pro",
