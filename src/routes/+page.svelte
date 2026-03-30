@@ -40,7 +40,7 @@
     // @ts-ignore
     import droneFull from "$lib/assets/showcase/drone-full.png?format=webp&w=720";
     // @ts-ignore
-    import droneUav from "$lib/assets/showcase/drone-uav.png?format=webp&w=720";
+    import droneController from "$lib/assets/showcase/drone-controller.png?format=webp&w=720";
     // @ts-ignore
     import droneLenses from "$lib/assets/showcase/drone-lenses.png?format=webp&w=720";
 
@@ -398,7 +398,21 @@
             alt: "Drone frame",
             productName: "My Drone Setup",
             subtitle: "DJI Mavic 4 Pro",
-            link: "https://www.dji.com/ch/mavic-4-pro",
+            link: "https://www.dji.com/ch/mavic-4-pro"
+        },
+        {
+        	src: droneController,
+        	alt: "Drone Controller",
+        	productName: "My Controller",
+        	subtitle: "DJI RC Pro 2",
+        	link: "https://www.dji.com/ch/rc-pro-2"
+        },
+        {
+        	src: droneLenses,
+        	alt: "Drone Lenses",
+        	productName: "My ND Filters",
+        	subtitle: "Freewell Split Filters All Day",
+        	link: "https://www.digitec.ch/de/s1/product/freewell-split-filters-all-day-drohnen-filter-dji-mavic-4-pro-drohne-zubehoer-59057082"
         }
     ]}
     items={[
@@ -408,7 +422,12 @@
             link: "https://www.dji.com/ch/mavic-4-pro",
         },
         {
-            name: Freewell Split Filters All Day",
+        	name: "DJI RC Pro 2",
+        	detail: "Professional flight controller by DJI",
+        	link: "https://www.dji.com/ch/rc-pro-2"
+        },
+        {
+            name: "Freewell Split Filters All Day",
             detail: "Filters for the Mavic 4 Pro to make it work in various light conditions",
             link: "https://www.digitec.ch/de/s1/product/freewell-split-filters-all-day-drohnen-filter-dji-mavic-4-pro-drohne-zubehoer-59057082",
         },
