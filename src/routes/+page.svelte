@@ -27,6 +27,8 @@
     import thisCarIsNotRealHeader from "$lib/projects/this-car-is-not-real.png?format=webp&w=560";
     // @ts-ignore
     import dockTailHeader from "$lib/projects/docktail.jpeg?format=webp&w=560";
+    // @ts-ignore
+    import duskPlayerHeader from "$lib/projects/dusk-player.png?format=webp&w=560";
 
     // @ts-ignore
     import espressoFull from "$lib/assets/showcase/coffee-full.png?format=webp&w=720";
@@ -141,6 +143,15 @@
     title="My Latest Projects"
     description="I'm currently working on a few projects in my free time. Here are some of my latest ones:"
     projects={[
+        {
+            title: "Dusk",
+            image: duskPlayerHeader,
+            description:
+                "Dusk is a native Plex client for iPhone, iPad, and Mac with direct play, Picture in Picture, subtitle controls, and a focused UI for self-hosted media libraries.",
+            url: "https://getdusk.app",
+            release: "2026-04-08",
+            tags: ["Open Source", "SwiftUI", "Apple"],
+        },
         {
             title: "DockTail",
             image: dockTailHeader,
