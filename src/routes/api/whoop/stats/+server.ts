@@ -5,13 +5,8 @@ import {
   WHOOP_CLIENT_SECRET,
 } from "$env/static/private";
 import {
-  getWhoopRefreshToken,
-  setWhoopRefreshToken,
   getWhoopAccessToken,
-  setWhoopAccessToken,
-  getCachedWhoopStats,
-  setCachedWhoopStats,
-} from "$lib/redis";
+} from "$lib/whoop-store";
 
 const WHOOP_API_BASE = "https://api.prod.whoop.com/developer/v2";
 
@@ -91,61 +86,53 @@ interface TokenResponse {
   token_type: string;
 }
 
+const STATS_CACHE_TTL_MS = 60 * 60 * 1000;
+
+let cachedStats:
+  | {
+      value: Record<string, unknown>;
+      expiresAtMs: number;
+    }
+  | null = null;
+
 async function getAccessToken(): Promise<string> {
-  // First try to get access token from Redis
-  const cachedAccessToken = await getWhoopAccessToken();
-  if (cachedAccessToken) {
-    return cachedAccessToken;
+  if (!WHOOP_CLIENT_ID || !WHOOP_CLIENT_SECRET) {
+    error(500, "Missing required Whoop credentials");
   }
 
-  // Get refresh token from Redis first, fallback to env variable
-  let refreshToken = await getWhoopRefreshToken();
-  
-  // If not in Redis, use env variable and store it
-  if (!refreshToken) {
-	error(500, "Missing refresh token");
-  }
-
-  if (!refreshToken || !WHOOP_CLIENT_ID || !WHOOP_CLIENT_SECRET) {
-	 error(500, "Missing required Whoop credentials");
-  }
-
-  // Clean up any potential whitespace issues
-  const cleanRefreshToken = refreshToken.trim();
   const cleanClientId = WHOOP_CLIENT_ID.trim();
   const cleanClientSecret = WHOOP_CLIENT_SECRET.trim();
 
-  // Create the request body as per Whoop documentation
-  const bodyParams = {
-    grant_type: "refresh_token",
-    refresh_token: cleanRefreshToken,
-    client_id: cleanClientId,
-    client_secret: cleanClientSecret,
-    scope: "offline" // The offline scope allows you to get a new refresh token and an access token
-  };
+  return getWhoopAccessToken(async (refreshToken) => {
+    const bodyParams = {
+      grant_type: "refresh_token",
+      refresh_token: refreshToken.trim(),
+      client_id: cleanClientId,
+      client_secret: cleanClientSecret,
+      scope: "offline",
+    };
 
-  const requestBody = new URLSearchParams(bodyParams).toString();
+    const response = await fetch(WHOOP_TOKEN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(bodyParams).toString(),
+    });
 
-  const response = await fetch(WHOOP_TOKEN_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: requestBody,
+    if (!response.ok) {
+      const errorText = await response.text();
+      error(500, `Token refresh failed: ${response.status} ${errorText}`);
+    }
+
+    const tokenData: TokenResponse = await response.json();
+
+    return {
+      accessToken: tokenData.access_token,
+      refreshToken: tokenData.refresh_token,
+      expiresIn: tokenData.expires_in,
+    };
   });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    error(500, `Token refresh failed: ${response.status} ${errorText}`);
-  }
-
-  const tokenData: TokenResponse = await response.json();
-  
-  // Store the new tokens in Redis
-  await setWhoopAccessToken(tokenData.access_token, tokenData.expires_in);
-  await setWhoopRefreshToken(tokenData.refresh_token); // Update refresh token as it changes
-
-  return tokenData.access_token;
 }
 
 async function fetchWhoopData<T>(
@@ -207,10 +194,8 @@ function calculateAverages(data: number[]): {
 }
 
 export const GET: RequestHandler = async () => {
-  // Check for cached stats first
-  const cachedStats = await getCachedWhoopStats();
-  if (cachedStats) {
-    return json(cachedStats);
+  if (cachedStats && cachedStats.expiresAtMs > Date.now()) {
+    return json(cachedStats.value);
   }
 
   // Use a 30 day window for data
@@ -296,8 +281,10 @@ export const GET: RequestHandler = async () => {
     lastUpdated: new Date().toISOString(),
   };
 
-  // Cache the stats for 1 hour
-  await setCachedWhoopStats(stats, 60 * 60);
+  cachedStats = {
+    value: stats,
+    expiresAtMs: Date.now() + STATS_CACHE_TTL_MS,
+  };
 
   return json(stats);
 };

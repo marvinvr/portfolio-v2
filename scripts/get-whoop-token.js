@@ -22,7 +22,7 @@ import { URL } from 'url';
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { createClient } from 'redis';
+import pg from 'pg';
 
 const WHOOP_AUTH_URL = 'https://api.prod.whoop.com/oauth/oauth2/auth';
 const WHOOP_TOKEN_URL = 'https://api.prod.whoop.com/oauth/oauth2/token';
@@ -54,7 +54,7 @@ try {
 // Check environment variables
 const CLIENT_ID = process.env.WHOOP_CLIENT_ID;
 const CLIENT_SECRET = process.env.WHOOP_CLIENT_SECRET;
-const REDIS_URL = process.env.REDIS_URL;
+const DATABASE_URL = process.env.DATABASE_URL;
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
   console.error('❌ Missing required environment variables!');
@@ -68,32 +68,55 @@ if (!CLIENT_ID || !CLIENT_SECRET) {
   process.exit(1);
 }
 
-// Setup Redis client if available
-let redisClient = null;
+// Setup Postgres client if available
+let dbClient = null;
 
-async function storeTokenInRedis(refreshToken, accessToken, expiresIn) {
-  if (!REDIS_URL) {
-    console.log('ℹ️  REDIS_URL not configured, skipping Redis storage');
+async function storeTokenInDatabase(refreshToken, accessToken, expiresIn) {
+  if (!DATABASE_URL) {
+    console.log('ℹ️  DATABASE_URL not configured, skipping database storage');
     return;
   }
 
   try {
-    if (!redisClient) {
-      redisClient = createClient({ url: REDIS_URL });
-      redisClient.on('error', (err) => console.error('Redis Client Error:', err));
-      await redisClient.connect();
+    if (!dbClient) {
+      dbClient = new pg.Client({ connectionString: DATABASE_URL });
+      await dbClient.connect();
     }
 
-    // Store refresh token (no expiration)
-    await redisClient.set('whoop:refresh_token', refreshToken);
-    
-    // Store access token with expiration (subtract 60 seconds as buffer)
-    await redisClient.setEx('whoop:access_token', Math.max(expiresIn - 60, 1), accessToken);
-    
-    console.log('✅ Tokens stored in Redis successfully');
+    await dbClient.query(`
+      CREATE TABLE IF NOT EXISTS whoop_oauth_tokens (
+        provider text PRIMARY KEY,
+        refresh_token text NOT NULL,
+        access_token text,
+        access_token_expires_at timestamptz,
+        updated_at timestamptz NOT NULL DEFAULT NOW()
+      )
+    `);
+
+    const expiresAt = new Date(Date.now() + Math.max(expiresIn - 60, 1) * 1000);
+
+    await dbClient.query(
+      `
+        INSERT INTO whoop_oauth_tokens (
+          provider,
+          refresh_token,
+          access_token,
+          access_token_expires_at,
+          updated_at
+        )
+        VALUES ($1, $2, $3, $4, NOW())
+        ON CONFLICT (provider) DO UPDATE
+        SET refresh_token = EXCLUDED.refresh_token,
+            access_token = EXCLUDED.access_token,
+            access_token_expires_at = EXCLUDED.access_token_expires_at,
+            updated_at = NOW()
+      `,
+      ['whoop', refreshToken, accessToken, expiresAt]
+    );
+
+    console.log('✅ Tokens stored in Postgres successfully');
   } catch (error) {
-    console.error('⚠️  Failed to store tokens in Redis:', error.message);
-    console.log('   Tokens will need to be manually added to .env file');
+    console.error('⚠️  Failed to store tokens in Postgres:', error.message);
   }
 }
 
@@ -160,8 +183,8 @@ function startCallbackServer() {
           console.log(JSON.stringify(tokenData, null, 2));
           console.log('');
           
-          // Store tokens in Redis if available
-          await storeTokenInRedis(
+          // Store tokens in Postgres if available
+          await storeTokenInDatabase(
             tokenData.refresh_token,
             tokenData.access_token,
             tokenData.expires_in
@@ -173,12 +196,11 @@ function startCallbackServer() {
           console.log('─'.repeat(80));
           console.log('');
           
-          if (!REDIS_URL) {
+          if (!DATABASE_URL) {
             console.log('');
-            console.log('⚠️  Note: Without Redis, you\'ll need to update the .env file');
-            console.log('   each time the refresh token changes.');
+            console.log('⚠️  Note: Without Postgres, you\'ll need to store the refresh token yourself');
           } else {
-            console.log('✅ Tokens have been stored in Redis');
+            console.log('✅ Tokens have been stored in Postgres');
             console.log('   The application will automatically manage token refresh.');
           }
           
@@ -188,9 +210,8 @@ function startCallbackServer() {
           console.log(`   Expires in: ${tokenData.expires_in} seconds`);
           console.log(`   Token type: ${tokenData.token_type}`);
           
-          // Close Redis connection if it was established
-          if (redisClient && redisClient.isOpen) {
-            await redisClient.quit();
+          if (dbClient) {
+            await dbClient.end();
           }
           
           server.close();

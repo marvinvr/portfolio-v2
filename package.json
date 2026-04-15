@@ -9,7 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "whoop:token": "node scripts/get-whoop-token.js",
-    "whoop:clear": "node scripts/clear-whoop-stats.js",
+    "whoop:clear": "node scripts/clear-whoop-access-token.js",
     "postbuild": "bunx svelte-sitemap --out-dir ./build/prerendered --change-freq daily --domain https://marvinvr.ch && mv ./build/prerendered/sitemap.xml ./build/client/sitemap.xml"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "mathlifier": "^1.3.4",
     "node-cache": "^5.1.2",
     "node-html-parser": "^6.1.11",
-    "redis": "^5.8.2",
+    "pg": "^8.20.0",
     "rehype-external-links": "^3.0.0",
     "shiki": "^0.14.5",
     "svelte-lazy-image": "^0.5.1",
