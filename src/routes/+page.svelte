@@ -22,8 +22,6 @@
     // @ts-ignore
     import writeABookAIHeader from "$lib/projects/write-a-book-ai.png?format=webp&w=560";
     // @ts-ignore
-    import modelOfOurGalaxyHeader from "$lib/projects/model-of-our-solar-system.png?format=webp&w=560";
-    // @ts-ignore
     import thisCarIsNotRealHeader from "$lib/projects/this-car-is-not-real.png?format=webp&w=560";
     // @ts-ignore
     import dockTailHeader from "$lib/projects/docktail.jpeg?format=webp&w=560";
@@ -178,15 +176,6 @@
             url: "https://WriteABookAI.com",
             release: "2025-06-01",
             tags: ["SaaS", "AI", "Writing"],
-        },
-        {
-            title: "Model of our Solar System",
-            image: modelOfOurGalaxyHeader,
-            description:
-                "This is a small model of our Solar System running entirely in your Browser and accurately depicting the positions of Planets at specific dates.",
-            url: "https://tools.marvinvr.ch/model-of-the-solar-system/",
-            release: "2025-07-10",
-            tags: ["Visualization", "Fun"],
         },
         {
             title: "ReportGPT",
