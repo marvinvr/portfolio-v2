@@ -75,13 +75,13 @@
         content="Full-Stack Engineer building Industrial AI. Currently building an ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
     />
 
-    <title>About Me - Marvin von Rappard</title>
+    <title>About Me | Marvin von Rappard</title>
     <meta property="og:url" content="https://marvinvr.ch" />
-    <meta property="og:title" content="About Me - Marvin von Rappard" />
+    <meta property="og:title" content="About Me | Marvin von Rappard" />
     <meta property="og:image" content="https://marvinvr.ch/og-image.png" />
     <meta property="og:type" content="website" />
 
-    <meta name="twitter:title" content="About Me - Marvin von Rappard" />
+    <meta name="twitter:title" content="About Me | Marvin von Rappard" />
     <meta
         name="twitter:description"
         content="Full-Stack Engineer building Industrial AI. Currently building a ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
@@ -90,14 +90,13 @@
 </svelte:head>
 
 <Hero
-    greetingSmall="Hey there,"
     greetingName="I'm Marvin"
     tagline="Full-Stack Engineer building Industrial AI"
-    location="Zurich, Switzerland"
+    location="Switzerland"
     subtitle="Currently developing an ML Platform at Octotronic to accelerate Industrial AI. Before that, I worked on Large Language Model research at the University of Applied Sciences FHNW. Prior to that, I built a digital compliance platform for large enterprise customers at Apiax.\nOn the side, I develop WriteABookAI, an AI-native book writing platform, among other smaller and open source projects."
 />
 <Timeline
-    title="My Professional History"
+    title="Professional Experience"
     items={[
         {
             date: "Jan\xa02025 - Present",
@@ -110,7 +109,7 @@
         },
         {
             date: "Feb\xa02024 - Jan\xa02025",
-            link: "https://www.fhnw.ch/de/die-fhnw/hochschulen/ht/institute/institut-fuer-data-science",
+            link: "https://www.fhnw.ch/de/informatik/ueber-uns/institute/data-science",
             title: "Institute for Data Science at FHNW",
             position: "Research Scientist",
             description:
@@ -138,7 +137,7 @@
     ]}
 />
 <Projects
-    title="My Latest Projects"
+    title="Selected Projects"
     description="I'm currently working on a few projects in my free time. Here are some of my latest ones:"
     projects={[
         {
@@ -217,7 +216,7 @@
     ]}
 />
 <TechStack
-    title="Technologies I Ship With"
+    title="Technologies I Work With"
     description="The tech behind my professional and side projects."
     techStack={[
         {
@@ -287,7 +286,7 @@
     ]}
 />
 <Timeline
-    title="My Education"
+    title="Education"
     items={[
         {
             date: "Sep\xa02021 - Sep\xa02024",
@@ -310,16 +309,14 @@
     ]}
 />
 <Posts
-    title="My Latest Blog Posts"
+    title="Latest Writing"
     description="My posts usually center around some Software / AI project I've been working on. These are my most recent ones:"
     posts={latestPosts}
 >
-    <a href="/blog" class="text-indigo-600 hover:text-indigo-800 font-medium"
-        >View all posts →</a
-    >
+    <a href="/blog" class="text-sm font-medium">view all posts →</a>
 </Posts>
 <SubHeading
-    title="More About Me"
+    title="Beyond Work"
     description="Below this, you'll find a few personal things I enjoy. Less professional, more me."
 />
 <SetupShowcase
@@ -439,11 +436,11 @@
     ]}
 />
 <YouTube
-    title="My Latest Drone Videos"
+    title="Recent Drone Videos"
     description="I publish my drone videos to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
 <HireMe
-    title="Want to Get in Touch?"
+    title="Get in Touch"
     subtitle="Do you have a question or want to discuss a project? Feel free to reach me anytime on any of these platforms:"
     description=""
 />

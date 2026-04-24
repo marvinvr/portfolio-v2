@@ -19,8 +19,9 @@
   <link rel="canonical" href="https://marvinvr.ch/blog" />
   <meta property="og:url" content="https://marvinvr.ch/blog" />
 
-  <meta property="og:title" content="Blog - Marvin von Rappard" />
-  <title>Blog - Marvin von Rappard</title>
+  <meta property="og:title" content="Blog | Marvin von Rappard" />
+  <title>Blog | Marvin von Rappard</title>
+  <meta name="twitter:title" content="Blog | Marvin von Rappard" />
   <meta
     name="description"
     property="og:description"

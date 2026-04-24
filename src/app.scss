@@ -4,31 +4,34 @@
 
 
 @layer base {
+    html, body {
+        @apply bg-white text-gray-600 font-sans;
+        font-feature-settings: "cv11", "ss01", "ss03";
+    }
+
     h1 {
         @apply text-4xl;
     }
     h2 {
         @apply text-3xl;
         @apply font-semibold;
-        @apply mt-8;
-        @apply mb-3;
-
     }
     h3 {
         @apply text-2xl;
         @apply font-semibold;
-        @apply mt-4;
-        @apply mb-2;
     }
     h4 {
         @apply text-xl;
         @apply font-normal;
-        @apply mt-4;
-        @apply mb-2;
     }
     h5 {
         @apply text-lg;
     }
+
+    /* Spacing for headings only inside rendered markdown / prose content */
+    .prose h2 { @apply mt-8 mb-3; }
+    .prose h3 { @apply mt-4 mb-2; }
+    .prose h4 { @apply mt-4 mb-2; }
 
     p {
         @apply text-base;
@@ -36,7 +39,11 @@
     }
 
     a {
-        @apply text-indigo-600;
+        @apply text-sky-700;
+    }
+
+    a:hover {
+        @apply text-sky-800;
     }
 
     .prose ul {
@@ -64,6 +71,8 @@
       @apply rounded-md;
       @apply px-1;
       @apply py-px;
+      @apply font-mono;
+      @apply text-sm;
     }
     p > img {
       @apply my-6;
@@ -80,7 +89,7 @@
       box-shadow: var(--shadow-elevation-medium);
       overflow-x: auto;
       max-width: var(--max-width-full);
-      @apply text-sm;
+      @apply text-sm font-mono;
       line-height: var(--line-height-normal);
       color: var(--colour-light);
       @apply my-6;
@@ -154,19 +163,19 @@
     table {
       @apply w-full my-6 border-collapse border border-gray-200;
     }
-  
+
     th, td {
-      @apply border px-2 py-1 text-left border-gray-300;
+      @apply border px-2 py-1 text-left border-gray-200;
     }
-  
+
     th {
-      @apply bg-gray-100 font-semibold;
+      @apply bg-gray-100 font-semibold text-sm;
     }
-  
+
     tr:nth-child(even) {
       @apply bg-gray-50;
     }
-  
+
     td {
       @apply text-gray-800;
     }

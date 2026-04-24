@@ -37,7 +37,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.meta.title}</title>
+  <title>{data.meta.title} | Marvin von Rappard</title>
 
   <meta name="keywords" content={meta.categories.join(", ")} />
   <link rel="canonical" href="https://marvinvr.ch/posts/{slug}" />
@@ -53,7 +53,7 @@
   <meta property="og:image" content="https://marvinvr.ch{headerImage}" />
   <meta property="og:type" content="article" />
 
-  <meta name="twitter:title" content={meta.title} />
+  <meta name="twitter:title" content="{meta.title} | Marvin von Rappard" />
   <meta name="twitter:description" content={meta.description} />
   <meta name="twitter:image" content="https://marvinvr.ch{headerImage}" />
 </svelte:head>
@@ -61,11 +61,11 @@
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white antialiased">
   <div class="flex justify-between px-4 mx-auto max-w-screen-xl">
     <article
-      class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue"
+      class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg"
     >
-      <a href="/" onclick={handleBack} class="flex items-center justify-start mb-8 text-indigo-900 hover:text-indigo-700 cursor-pointer">
+      <a href="/" onclick={handleBack} class="flex items-center justify-start mb-8 text-sm text-gray-500 hover:text-gray-800 cursor-pointer transition-colors">
         <svg
-          class="w-6 h-6 mr-2"
+          class="w-4 h-4 mr-2"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -78,21 +78,21 @@
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
           />
         </svg>
-        <span>Back</span>
+        <span>back</span>
       </a>
       <header class="mb-4 lg:mb-6 not-format">
         <img
-          class="mb-6 w-full h-64 object-cover rounded-lg"
+          class="mb-6 w-full h-64 object-cover rounded-md border border-gray-200"
           src={headerImage}
           alt={meta.title}
         />
-        <h1 class="mb-4 font-extrabold leading-tight text-gray-900 lg:mb-6">
+        <h1 class="mb-4 font-extrabold leading-tight text-gray-900 lg:mb-6 tracking-tight">
           {meta.title}
         </h1>
         <address class="flex items-center mb-6 not-italic">
           <div class="inline-flex items-center mr-3 text-sm text-gray-900">
             <img
-              class="mr-4 w-14 h-14 rounded-full"
+              class="mr-4 w-14 h-14 rounded-md border border-gray-200"
               src={portrait}
               alt="Marvin von Rappard"
             />
@@ -103,8 +103,8 @@
               <span class="text-gray-500 text-md block">
                 Data Scientist & Software Engineer
               </span>
-              <p class="text-gray-500 text-sm">
-                Published on {formatDate(meta.date)}
+              <p class="text-gray-500 text-sm font-mono">
+                {formatDate(meta.date)}
               </p>
             </div>
           </div>

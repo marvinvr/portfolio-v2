@@ -7,6 +7,7 @@
   import BedOutline from "svelte-material-icons/BedOutline.svelte";
   import Speedometer from "svelte-material-icons/Speedometer.svelte";
   import InformationOutline from "svelte-material-icons/InformationOutline.svelte";
+  import SectionHeader from "./SectionHeader.svelte";
 
   interface WhoopStats {
     recovery: { latest: number; monthly: number; annual?: number };
@@ -97,21 +98,18 @@
 
 <section class="py-24" id="whoop-stats">
   <div class="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
-    <div class="relative max-w-2xl">
-      <div class="relative z-10">
-        <h2 class="text-gray-800 text-xl font-semibold mb-2">My Stats</h2>
-        <p class="mt-3">
-          I track my health and activity using a <a target="_blank" href="https://www.whoop.com" class="text-indigo-600 hover:text-indigo-700">Whoop 5.0</a> device.
-          These numbers reflect my daily activity and recovery as well as my heart health metrics averaged over monthly and annual periods. I'm sharing this to keep myself accountable and because I thought this would be cool.
-        </p>
-      </div>
-    </div>
-    
+    <SectionHeader title="Health & Activity Stats">
+      <p class="text-gray-600 max-w-2xl mt-3">
+        I track my health and activity using a <a target="_blank" href="https://www.whoop.com">Whoop 5.0</a> device.
+        These numbers reflect my daily activity and recovery as well as my heart health metrics averaged over monthly and annual periods. I'm sharing this to keep myself accountable and because I thought this would be cool.
+      </p>
+    </SectionHeader>
+
     {#if loading}
       <div class="relative mt-12">
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {#each Array(6) as _}
-            <div class="bg-white space-y-3 p-4 border rounded-lg animate-pulse">
+            <div class="bg-white space-y-3 p-4 border border-gray-200 rounded-md animate-pulse">
               <div class="w-6 h-6 bg-gray-200 rounded"></div>
               <div class="w-32 h-6 bg-gray-200 rounded"></div>
               <div class="w-16 h-8 bg-gray-200 rounded"></div>
@@ -125,7 +123,7 @@
       </div>
     {:else if error}
       <div class="relative mt-12">
-        <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+        <div class="bg-red-50 border border-red-200 rounded-md p-6 text-center">
           <p class="text-red-600 font-medium">Unable to load Whoop stats</p>
           <p class="text-red-500 text-sm mt-2">{error}</p>
         </div>
@@ -135,14 +133,14 @@
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {#each statConfig as config}
             {@const statData = stats[config.key]}
-            <div class="bg-white space-y-3 p-4 border rounded-lg relative">
+            <div class="bg-white space-y-3 p-4 border border-gray-200 rounded-md relative">
               <div class="flex justify-between items-start">
-                <div class="text-indigo-600 pb-3">
+                <div class="text-sky-700 pb-3">
                   <config.icon class="w-6 h-6" />
                 </div>
                 <div class="group relative">
                   <InformationOutline class="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                  <div class="invisible group-hover:visible absolute right-0 top-6 z-10 w-64 p-3 text-sm text-white bg-gray-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <div class="invisible group-hover:visible absolute right-0 top-6 z-10 w-64 p-3 text-sm text-white bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     <div class="absolute -top-1 right-2 w-2 h-2 bg-gray-800 rotate-45"></div>
                     {config.tooltip}
                   </div>
@@ -151,18 +149,18 @@
               <span class="text-lg text-gray-800 font-semibold">
                 {config.title}
               </span>
-              <div class="text-2xl font-bold text-gray-900">
+              <div class="text-3xl font-mono text-gray-900 tracking-tight">
                 {formatValue(statData.latest, config.unit)}
               </div>
               <div class="space-y-1 text-sm text-gray-600">
-                <div class="flex justify-between">
-                  <span>30-day avg:</span>
-                  <span class="font-medium">{formatValue(statData.monthly, config.unit)}</span>
+                <div class="flex justify-between font-mono text-xs">
+                  <span class="text-gray-500">30d avg</span>
+                  <span class="text-gray-800">{formatValue(statData.monthly, config.unit)}</span>
                 </div>
                 {#if statData.annual !== undefined}
-                  <div class="flex justify-between">
-                    <span>Annual avg:</span>
-                    <span class="font-medium">{formatValue(statData.annual, config.unit)}</span>
+                  <div class="flex justify-between font-mono text-xs">
+                    <span class="text-gray-500">365d avg</span>
+                    <span class="text-gray-800">{formatValue(statData.annual, config.unit)}</span>
                   </div>
                 {/if}
               </div>
@@ -174,7 +172,7 @@
         </div>
         <div class="text-center mt-8">
           <p class="text-xs text-gray-400">
-            Last updated: {new Date(stats.lastUpdated).toLocaleString()}
+            Updated {new Date(stats.lastUpdated).toLocaleString()}
           </p>
         </div>
       </div>

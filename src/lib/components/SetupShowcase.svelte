@@ -1,6 +1,7 @@
 <script lang="ts">
   import { ExternalLink, ChevronLeft, ChevronRight, X, Expand } from "lucide-svelte";
   import { onMount } from "svelte";
+  import SectionHeader from "./SectionHeader.svelte";
 
   interface SetupItem {
     name: string;
@@ -203,10 +204,7 @@
   <div class="max-w-screen-xl mx-auto px-4 md:px-8">
     <!-- Mobile-only title section -->
     <div class="lg:hidden mb-6">
-      <h2 class="text-gray-800 text-xl font-semibold mb-2">{product}</h2>
-      {#if description}
-        <p class="text-gray-600">{description}</p>
-      {/if}
+      <SectionHeader title={product} {description} />
     </div>
 
     <div
@@ -215,7 +213,7 @@
       <!-- Image -->
       <div class="flex-1 w-full">
         {#if images?.length}
-          <div class={`relative ${aspectClass} rounded-lg shadow-lg overflow-hidden group`}>
+          <div class={`relative ${aspectClass} rounded-md border border-gray-200 overflow-hidden group`}>
             <!-- Dynamic gradient background based on image colors -->
             <div 
               class="absolute inset-0 transition-all duration-700 ease-in-out"
@@ -250,8 +248,8 @@
               {/each}
               
               <!-- Expand icon overlay -->
-              <div class="absolute top-2 right-2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                <Expand class="size-5" />
+              <div class="absolute top-2 right-2 p-2 rounded-sm bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <Expand class="size-4" />
               </div>
             </button>
 
@@ -264,31 +262,31 @@
 
             {#if images.length > 1}
               <button
-                class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg backdrop-blur-sm z-10 transition-all hover:scale-105"
+                class="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-sm bg-white/80 hover:bg-white backdrop-blur-sm z-10 transition-colors duration-150 border border-gray-200"
                 type="button"
                 aria-label="Previous image"
                 on:click={prev}
               >
-                <ChevronLeft class="size-5 text-gray-700" />
+                <ChevronLeft class="size-6 text-gray-700" />
               </button>
               <button
-                class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg backdrop-blur-sm z-10 transition-all hover:scale-105"
+                class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-sm bg-white/80 hover:bg-white backdrop-blur-sm z-10 transition-colors duration-150 border border-gray-200"
                 type="button"
                 aria-label="Next image"
                 on:click={next}
               >
-                <ChevronRight class="size-5 text-gray-700" />
+                <ChevronRight class="size-6 text-gray-700" />
               </button>
             {/if}
 
             <!-- Bottom-centered overlay caption -->
             <div class="absolute inset-0 z-10 pointer-events-none flex items-end justify-center p-3" aria-live="polite">
-              <div class="pointer-events-auto inline-flex flex-col items-center gap-1 rounded-md bg-black/60 text-white backdrop-blur-md px-3 py-2 shadow-lg">
+              <div class="pointer-events-auto inline-flex flex-col items-center gap-1 rounded-sm bg-black/60 text-white backdrop-blur-md px-3 py-2 shadow-lg">
                 <div class="flex items-center gap-2 text-sm font-medium">
                   <span>{images[currentIndex].productName}</span>
                   {#if images[currentIndex].link}
                     <a
-                      class="inline-flex items-center text-blue-300 hover:text-white transition-colors"
+                      class="inline-flex items-center text-gray-200 hover:text-white transition-colors"
                       href={images[currentIndex].link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -305,7 +303,7 @@
             </div>
           </div>
         {:else}
-          <div class="w-full aspect-square rounded-lg bg-gradient-to-br from-gray-100 to-gray-200" />
+          <div class="w-full aspect-square rounded-md border border-gray-200 bg-gray-50" />
         {/if}
       </div>
 
@@ -313,10 +311,7 @@
       <div class="flex-1 w-full">
         <!-- Desktop-only title -->
         <div class="hidden lg:block mb-4">
-          <h2 class="text-gray-800 text-xl font-semibold mb-2 -mt-1">{product}</h2>
-          {#if description}
-            <p class="text-gray-600">{description}</p>
-          {/if}
+          <SectionHeader title={product} {description} />
         </div>
 
         <div>
@@ -328,13 +323,13 @@
             <ul class="space-y-4">
               {#each items as item (item.name)}
                 <li class="flex items-start gap-3">
-                  <div class="mt-2 h-2 w-2 rounded-full bg-gray-300 shrink-0"></div>
+                  <div class="mt-2 h-1.5 w-1.5 rounded-sm bg-sky-700/70 shrink-0"></div>
                   <div>
                     <div class="flex items-center gap-2 text-gray-800 font-medium">
                       <span>{item.name}</span>
                       {#if item.link}
                         <a
-                          class="inline-flex items-center text-indigo-600 hover:text-indigo-700"
+                          class="inline-flex items-center"
                           href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -370,24 +365,23 @@
   >
     <!-- Close button -->
     <button
-      class="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-50"
+      class="absolute top-4 right-4 p-2 rounded-sm bg-white/10 hover:bg-white/20 text-white transition-colors duration-150 z-50"
       on:click={closeModal}
       aria-label="Close fullscreen view"
     >
-      <X class="size-6" />
+      <X class="size-5" />
     </button>
 
     <!-- Image counter -->
     {#if images.length > 1}
-      <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/50 text-white text-sm backdrop-blur-sm z-50">
+      <div class="absolute top-4 left-4 px-3 py-1 rounded-sm bg-black/50 text-white text-xs backdrop-blur-sm z-50">
         {currentIndex + 1} / {images.length}
       </div>
     {/if}
 
     <!-- Main image container -->
-    <div 
+    <div
       class="relative w-full h-full flex items-center justify-center p-8 md:p-16"
-      on:click|stopPropagation
     >
       <!-- Dynamic background gradient -->
       <div 
@@ -412,31 +406,31 @@
       <!-- Navigation buttons -->
       {#if images.length > 1}
         <button
-          class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all hover:scale-105"
+          class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 rounded-sm bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors duration-150"
           on:click|stopPropagation={prev}
           aria-label="Previous image"
         >
-          <ChevronLeft class="size-6 text-white" />
+          <ChevronLeft class="size-8 text-white" />
         </button>
         <button
-          class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all hover:scale-105"
+          class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 rounded-sm bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors duration-150"
           on:click|stopPropagation={next}
           aria-label="Next image"
         >
-          <ChevronRight class="size-6 text-white" />
+          <ChevronRight class="size-8 text-white" />
         </button>
       {/if}
 
       <!-- Bottom caption -->
       <div class="absolute bottom-8 left-1/2 w-full -translate-x-1/2 px-4 sm:w-auto sm:px-0">
         <div
-          class="mx-auto flex w-full flex-col items-center gap-1 rounded-lg bg-black/70 text-white backdrop-blur-md px-4 py-3 text-center shadow-xl sm:inline-flex sm:w-auto"
+          class="mx-auto flex w-full flex-col items-center gap-1 rounded-sm bg-black/70 text-white backdrop-blur-md px-4 py-3 text-center shadow-xl sm:inline-flex sm:w-auto"
         >
           <div class="flex items-center gap-2 text-base font-medium">
             <span>{images[currentIndex].productName}</span>
             {#if images[currentIndex].link}
               <a
-                class="inline-flex items-center text-blue-300 hover:text-white transition-colors"
+                class="inline-flex items-center text-gray-200 hover:text-white transition-colors"
                 href={images[currentIndex].link}
                 target="_blank"
                 rel="noopener noreferrer"

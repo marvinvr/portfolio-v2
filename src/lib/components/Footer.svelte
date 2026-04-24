@@ -2,13 +2,17 @@
     import Socials from "./Socials.svelte";
 </script>
 
-<footer class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+<footer class="w-full py-10">
+    <div class="max-w-[88rem] mx-auto px-4 md:px-8">
+        <div class="border-t border-gray-200"></div>
+    </div>
+
     <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-5 text-center">
+    <div class="max-w-screen-xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 items-center gap-5 text-center mt-8">
         <div class="text-center md:text-left">
-      <span class="flex-none text-md text-gray-600"
-      >&copy; {new Date().getFullYear()} - Marvin von Rappard</span
-      >
+            <span class="flex-none text-sm text-gray-500">
+                &copy; {new Date().getFullYear()} — Marvin von Rappard
+            </span>
         </div>
         <!-- End Col -->
 
@@ -20,7 +24,7 @@
                     class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 transition"
                     href="/"
                 >
-                    About
+                    about
                 </a>
             </li>
             <li
@@ -30,7 +34,7 @@
                     class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 transition"
                     href="/blog"
                 >
-                    Blog
+                    blog
                 </a>
             </li>
         </ul>
@@ -38,7 +42,7 @@
 
         <!-- Social Brands -->
         <div class="md:text-end space-x-2">
-            <Socials/>
+            <Socials align="end" />
         </div>
         <!-- End Social Brands -->
     </div>

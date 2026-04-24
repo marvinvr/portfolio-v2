@@ -1,6 +1,5 @@
 <script lang="ts">
   import {
-    Twitter,
     Linkedin,
     Github,
     Mail,
@@ -14,12 +13,6 @@
     label: string;
     link: string;
   }[] = [
-    {
-      title: "X / Twitter",
-      label: "Follow me on X",
-      icon: Twitter,
-      link: "https://twitter.com/marvinvr",
-    },
     {
       title: "LinkedIn",
       label: "Let's connect on LinkedIn",

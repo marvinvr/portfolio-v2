@@ -3,6 +3,7 @@
     import { useLazyImage as lazyImage } from "svelte-lazy-image";
     import { onMount } from "svelte";
     import { ArrowRightIcon } from "lucide-svelte";
+    import SectionHeader from "./SectionHeader.svelte";
 
     interface Props {
         title: string;
@@ -12,7 +13,7 @@
 
     let { title, description = "", children }: Props = $props();
 
-    function truncate(text: string, maxLength: number = 100): string {
+    function truncate(text: string, maxLength: number = 150): string {
         if (!text || text.length <= maxLength) return text;
         return text.slice(0, maxLength).trim() + "...";
     }
@@ -60,18 +61,16 @@
 
 <section class="py-24">
     <div class="max-w-screen-xl mx-auto px-4 md:px-8">
-        <div>
-            <h2 class="text-gray-800 text-xl font-semibold mb-2">{title}</h2>
+        <SectionHeader {title} {description}>
             {#if description}
-                <p class="text-gray-600 max-w-2xl">{description}</p>
-            <a href={playlistUrl} target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-medium">View all videos on YouTube →</a>
+                <a href={playlistUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium">view all on youtube →</a>
             {/if}
             {@render children?.()}
-        </div>
-        
+        </SectionHeader>
+
         {#if loading}
             <div class="mt-12 flex justify-center">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-700"></div>
             </div>
         {:else if error}
             <div class="mt-12 text-center">
@@ -90,14 +89,15 @@
                                 data-src={video.thumbnail}
                                 use:lazyImage
                                 alt={video.title}
-                                height="192"
-                                class="w-full rounded-md h-48 object-cover"
+                                class="w-full rounded-md aspect-[1200/630] object-cover border border-gray-200"
                             />
                             <div class="mt-3 space-y-2">
-                                <span class="block text-indigo-600 text-sm">
-                                    {formatDate(video.publishedAt)}
-                                </span>
-                                <span class="text-lg text-gray-800 duration-150 font-semibold">
+                                <div>
+                                    <span class="font-mono text-xs text-gray-500">
+                                        {formatDate(video.publishedAt)}
+                                    </span>
+                                </div>
+                                <span class="text-lg text-gray-800 duration-150 font-semibold block">
                                     {video.title}
                                 </span>
                                 <p class="text-gray-600 text-sm duration-150 group-hover:text-gray-800">

@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { Twitter, Linkedin, Github, Mail, Phone } from "lucide-svelte";
+  import { Linkedin, Github, Mail, Phone } from "lucide-svelte";
   import { getEmailUrl } from "$lib/utils/email";
+  import SectionHeader from "./SectionHeader.svelte";
 
   interface Props {
     title: string;
@@ -35,11 +36,6 @@
       link: "https://github.com/marvinvr",
     },
     {
-      title: "X / Twitter",
-      icon: Twitter,
-      link: "https://twitter.com/marvinvr",
-    },
-    {
       title: "Phone",
       icon: Phone,
       link: "tel:+41774488352",
@@ -47,31 +43,26 @@
   ];
 </script>
 
-<section class="pt-12 pb-24">
-  <div class="max-w-screen-xl mx-auto px-4 md:px-8 text-center">
-    <div class="space-y-4">
-      <h2 class="text-gray-900 font-bold text-3xl xl:text-4xl">
-        {title}
-      </h2>
-      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        {subtitle}
-      </p>
-      <p class="text-gray-700 max-w-3xl mx-auto leading-relaxed">
+<section class="py-24">
+  <div class="max-w-screen-xl mx-auto px-4 md:px-8">
+    <SectionHeader {title} description={subtitle} />
+    {#if description}
+      <p class="text-gray-600 text-sm max-w-2xl mt-2 leading-relaxed">
         {description}
       </p>
-      <div class="flex flex-wrap justify-center gap-3 pt-2">
-        {#each contactMethods as item (item.title)}
-          <a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 px-5 py-3 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all text-gray-700 hover:text-gray-900"
-          >
-            <item.icon class="size-5" />
-            <span class="font-medium">{item.title}</span>
-          </a>
-        {/each}
-      </div>
+    {/if}
+    <div class="flex flex-wrap gap-3 mt-6">
+      {#each contactMethods as item (item.title)}
+        <a
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-sm hover:border-gray-300 hover:bg-gray-50 transition-colors text-gray-700 hover:text-gray-900 text-sm"
+        >
+          <item.icon class="size-4" />
+          <span>{item.title}</span>
+        </a>
+      {/each}
     </div>
   </div>
 </section>

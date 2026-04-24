@@ -11,5 +11,8 @@ export default defineConfig({
             project: "portfolio-v2",
             url: "https://logs.mvr.bz/"
         }
-    }), sveltekit(), imagetools()]
+    }), sveltekit(), imagetools()],
+    server: {
+        allowedHosts: ['mbp.rooster-vega.ts.net']
+    }
 });
