@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json bun.lockb ./
 
 # Install dependencies
-RUN bun install
+RUN bun install --network-concurrency=4 --no-progress
 
 # Copy the rest of the application files
 COPY . .
