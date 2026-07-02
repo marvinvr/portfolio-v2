@@ -4,7 +4,7 @@ import { flushSync } from "svelte";
 const STORAGE_KEY = "space-mode";
 const SEEN_KEY = "space-mode-seen";
 const LIGHT_THEME_COLOR = "#FAF8F4";
-const SPACE_THEME_COLOR = "#05070f";
+const SPACE_THEME_COLOR = "#020205";
 
 export const space = $state({ on: false });
 

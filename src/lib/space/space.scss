@@ -1,31 +1,31 @@
 /* ==========================================================================
-   SPACE MODE — alternate galaxy skin.
+   GALAXY MODE — alternate near-black skin.
 
    Every rule is scoped under `html.space`, so the default light theme stays
-   pixel-identical when the class is absent. The animated backdrop lives in
-   src/lib/components/space/Galaxy.svelte; the toggle in SpaceToggle.svelte.
-   Sections opt into the glass/flow treatment via the `flowIn` action
-   (adds .space-flow) plus a static .space-glass class.
+   pixel-identical when the class is absent. The rotating galaxy backdrop
+   lives in src/lib/components/space/Galaxy.svelte; the switch in
+   SpaceToggle.svelte. Sections opt into the glass/flow treatment via the
+   `flowIn` action (adds .space-flow) plus a static .space-glass class.
    ========================================================================== */
 
 /* Surface ------------------------------------------------------------------
-   The html element carries the deep-space base color (visible pre-hydration
+   The html element carries the near-black base color (visible pre-hydration
    and on overscroll); the body goes transparent so the fixed galaxy canvas
    (z-index: -1) shows through behind all content. */
 html.space {
-  background-color: #05070f;
+  background-color: #020205;
   color-scheme: dark;
 }
 
 html.space body {
   background-color: transparent;
-  color: #a9b4cd;
+  color: #a4a8b4;
   /* Clears the fixed top-left toggle. */
   padding-top: 2.5rem;
 }
 
 html.space ::selection {
-  background: rgba(56, 189, 248, 0.4);
+  background: rgba(125, 211, 252, 0.3);
   color: #ffffff;
 }
 
@@ -37,51 +37,51 @@ html.space::view-transition-new(root) {
 }
 
 /* Palette remap --------------------------------------------------------------
-   Mirrors the design-system utility list in CLAUDE.md onto starlight tones.
-   Selector specificity (html.space + class) beats Tailwind utilities without
-   needing !important. */
+   Mirrors the design-system utility list in CLAUDE.md onto neutral starlight
+   tones — white alphas over black, no blue wash. Selector specificity
+   (html.space + class) beats Tailwind utilities without !important. */
 html.space {
   /* Headings get a whisper of starlight. */
   h1,
   h2,
   h3 {
-    text-shadow: 0 0 28px rgba(125, 211, 252, 0.16);
+    text-shadow: 0 0 26px rgba(255, 255, 255, 0.08);
   }
 
   .prose :is(h1, h2, h3, h4, h5) {
-    color: #e8edfa;
+    color: #e7e9ee;
   }
 
   /* Text */
-  .text-gray-900 { color: #f6f8ff; }
-  .text-gray-800 { color: #e8edfa; }
-  .text-gray-700 { color: #cdd7ec; }
-  .text-gray-600 { color: #a9b4cd; }
-  .text-gray-500 { color: #8290ac; }
-  .text-gray-400 { color: #5f6c8a; }
-  .hover\:text-gray-800:hover { color: #e8edfa; }
+  .text-gray-900 { color: #f5f6f8; }
+  .text-gray-800 { color: #e7e9ee; }
+  .text-gray-700 { color: #c9ccd6; }
+  .text-gray-600 { color: #a4a8b4; }
+  .text-gray-500 { color: #7f8492; }
+  .text-gray-400 { color: #5c6070; }
+  .hover\:text-gray-800:hover { color: #e7e9ee; }
   .hover\:text-gray-900:hover { color: #ffffff; }
-  .group:hover .group-hover\:text-gray-800 { color: #e8edfa; }
-  .before\:text-gray-300::before { color: #46536f; }
+  .group:hover .group-hover\:text-gray-800 { color: #e7e9ee; }
+  .before\:text-gray-300::before { color: #3f4350; }
 
-  /* Accent: sky-700 reads too dark on space, lift to sky-400/300. */
+  /* Accent: sky-700 reads too dark on black, lift to sky-400/300. */
   a { color: #38bdf8; }
   a:hover { color: #7dd3fc; }
   .text-sky-700 { color: #38bdf8; }
   .text-sky-800 { color: #7dd3fc; }
 
   /* Borders */
-  .border-gray-200 { border-color: rgba(148, 163, 201, 0.16); }
-  .border-gray-300 { border-color: rgba(148, 163, 201, 0.26); }
-  .hover\:border-gray-300:hover { border-color: rgba(148, 163, 201, 0.42); }
-  .after\:border-gray-400::after { border-color: rgba(148, 163, 201, 0.32); }
+  .border-gray-200 { border-color: rgba(255, 255, 255, 0.1); }
+  .border-gray-300 { border-color: rgba(255, 255, 255, 0.18); }
+  .hover\:border-gray-300:hover { border-color: rgba(255, 255, 255, 0.28); }
+  .after\:border-gray-400::after { border-color: rgba(255, 255, 255, 0.22); }
   .border-sky-700 { border-color: #38bdf8; }
 
   /* Fills */
   .bg-white {
-    background-color: rgba(148, 163, 201, 0.06);
-    backdrop-filter: blur(14px) saturate(1.4);
-    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
   /* The blog post page paints its <main> white; over the galaxy it should be
      transparent (the article itself becomes a glass panel). */
@@ -90,18 +90,18 @@ html.space {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
-  .bg-gray-50 { background-color: rgba(148, 163, 201, 0.05); }
-  .hover\:bg-gray-50:hover { background-color: rgba(148, 163, 201, 0.1); }
-  .bg-gray-100 { background-color: rgba(148, 163, 201, 0.12); }
-  .hover\:bg-gray-100:hover { background-color: rgba(148, 163, 201, 0.18); }
-  .bg-gray-200 { background-color: rgba(148, 163, 201, 0.16); }
+  .bg-gray-50 { background-color: rgba(255, 255, 255, 0.04); }
+  .hover\:bg-gray-50:hover { background-color: rgba(255, 255, 255, 0.07); }
+  .bg-gray-100 { background-color: rgba(255, 255, 255, 0.07); }
+  .hover\:bg-gray-100:hover { background-color: rgba(255, 255, 255, 0.11); }
+  .bg-gray-200 { background-color: rgba(255, 255, 255, 0.1); }
   .bg-gray-800 {
-    background-color: rgba(17, 24, 43, 0.78);
+    background-color: rgba(12, 13, 18, 0.82);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: inset 0 0 0 1px rgba(148, 163, 201, 0.22);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
   }
-  .hover\:bg-gray-900:hover { background-color: rgba(30, 41, 66, 0.85); }
+  .hover\:bg-gray-900:hover { background-color: rgba(22, 24, 32, 0.9); }
   .bg-sky-700 {
     background-color: #38bdf8;
     box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
@@ -125,42 +125,44 @@ html.space {
   }
 
   .shiki {
-    border: 1px solid rgba(148, 163, 201, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   table,
   th,
   td {
-    border-color: rgba(148, 163, 201, 0.2);
+    border-color: rgba(255, 255, 255, 0.14);
   }
-  th { background-color: rgba(148, 163, 201, 0.12); }
-  tr:nth-child(even) { background-color: rgba(148, 163, 201, 0.05); }
-  td { color: #e8edfa; }
+  th { background-color: rgba(255, 255, 255, 0.07); }
+  tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.035); }
+  td { color: #e7e9ee; }
 }
 
-/* Glass panels ------------------------------------------------------------ */
+/* Glass panels ------------------------------------------------------------
+   Neutral white-on-black glass. brightness() in the backdrop dims the galaxy
+   behind each panel so text stays readable over the bright core. */
 html.space .space-glass {
   width: min(100% - 1.5rem, 82rem);
   margin: 2rem auto;
   border-radius: 18px;
-  border: 1px solid rgba(148, 163, 201, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.11);
   background: linear-gradient(
-    155deg,
-    rgba(148, 163, 201, 0.11),
-    rgba(148, 163, 201, 0.035) 52%,
-    rgba(56, 189, 248, 0.05)
+    160deg,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.02) 55%,
+    rgba(255, 255, 255, 0.045)
   );
-  backdrop-filter: blur(18px) saturate(1.5);
-  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) brightness(0.72) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) brightness(0.72) saturate(1.1);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 32px 64px -32px rgba(1, 4, 12, 0.85);
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 32px 64px -32px rgba(0, 0, 0, 0.7);
 }
 
 @media (max-width: 640px) {
   html.space .space-glass {
-    backdrop-filter: blur(12px) saturate(1.5);
-    -webkit-backdrop-filter: blur(12px) saturate(1.5);
+    backdrop-filter: blur(12px) brightness(0.72) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) brightness(0.72) saturate(1.1);
   }
 }
 
@@ -186,22 +188,24 @@ html.space article.space-glass {
 }
 
 /* Flow-in motion ------------------------------------------------------------
-   Panels drift in from the bottom left towards their resting place. The
-   hidden state has no transition, so re-arming (on toggle) snaps instantly
-   and the entrance replays. `transform: none` in the final state matters:
-   it releases the containing block so fixed-position children behave. */
+   Panels swing in from the bottom right on a 3D arc, echoing the galaxy's
+   right-to-left rotation. The hidden state has no transition, so re-arming
+   (on toggle) snaps instantly and the entrance replays. `transform: none` in
+   the final state matters: it releases the containing block so
+   fixed-position children behave. */
 html.space .space-flow {
   opacity: 0;
-  transform: translate3d(min(-4.5vw, -22px), 64px, 0) scale(0.965)
-    rotate(-1.2deg);
+  transform: perspective(1100px) translate3d(max(4.5vw, 24px), 110px, -160px)
+    rotateX(10deg) rotateY(14deg) rotate(1.2deg);
+  transform-origin: 82% 100%;
 }
 
 html.space .space-flow.flow-in {
   opacity: 1;
   transform: none;
   transition:
-    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) var(--flow-delay, 0ms),
-    opacity 0.7s ease-out var(--flow-delay, 0ms);
+    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1) var(--flow-delay, 0ms),
+    opacity 0.75s ease-out var(--flow-delay, 0ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -21,12 +21,12 @@
     <meta name="theme-color" content="#FAF8F4" />
 
     <script>
-      // Apply persisted space mode before first paint to avoid a light flash.
+      // Apply persisted galaxy mode before first paint to avoid a light flash.
       try {
         if (localStorage.getItem("space-mode") === "1") {
           document.documentElement.classList.add("space");
           var spaceThemeMeta = document.querySelector('meta[name="theme-color"]');
-          if (spaceThemeMeta) spaceThemeMeta.setAttribute("content", "#05070f");
+          if (spaceThemeMeta) spaceThemeMeta.setAttribute("content", "#020205");
         }
       } catch (e) {}
     </script>
