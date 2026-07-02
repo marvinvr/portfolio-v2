@@ -111,6 +111,12 @@ html.space {
     box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
   }
 
+  /* SetupShowcase carousel arrows: white pills in the light theme, but their
+     chevrons (text-gray-700) remap to starlight here — swap the pill to dark
+     glass matching the caption chip so they don't vanish white-on-white. */
+  .bg-white\/80 { background-color: rgba(12, 13, 18, 0.6); }
+  .hover\:bg-white:hover { background-color: rgba(34, 37, 48, 0.75); }
+
   /* Error state (Whoop stats) */
   .bg-red-50 { background-color: rgba(153, 27, 27, 0.16); }
   .border-red-200 { border-color: rgba(248, 113, 113, 0.32); }
@@ -140,29 +146,85 @@ html.space {
 
 /* Glass panels ------------------------------------------------------------
    Neutral white-on-black glass. brightness() in the backdrop dims the galaxy
-   behind each panel so text stays readable over the bright core. */
+   behind each panel so text stays readable over the bright core; saturate()
+   pulls the galaxy's color through the pane so it reads as material, not a
+   gray card. Two pseudo-layers sell the glass: a specular gradient rim
+   (::before) and a reflection sheen (::after). */
 html.space .space-glass {
+  position: relative;
   width: min(100% - 3rem, 74rem);
   margin: 3rem auto;
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.08),
     rgba(255, 255, 255, 0.02) 55%,
-    rgba(255, 255, 255, 0.045)
+    rgba(255, 255, 255, 0.05)
   );
-  backdrop-filter: blur(18px) brightness(0.72) saturate(1.1);
-  -webkit-backdrop-filter: blur(18px) brightness(0.72) saturate(1.1);
+  backdrop-filter: blur(22px) brightness(0.72) saturate(1.55);
+  -webkit-backdrop-filter: blur(22px) brightness(0.72) saturate(1.55);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.09),
-    0 32px 64px -32px rgba(0, 0, 0, 0.7);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 0 42px rgba(255, 255, 255, 0.03),
+    0 32px 64px -32px rgba(0, 0, 0, 0.7),
+    0 8px 24px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* Specular rim: a 1px gradient ring (padding + mask-composite trick) laid
+   over the flat hairline — bright where the light catches the top-left edge,
+   with a faint counter-glint bottom-right, like light wrapping a glass edge.
+   inset: -1px places the ring exactly over the real border. */
+html.space .space-glass::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.13) 22%,
+    rgba(255, 255, 255, 0.03) 46%,
+    rgba(255, 255, 255, 0.02) 62%,
+    rgba(255, 255, 255, 0.25)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Reflection sheen: a soft glow bleeding in from the lit corner plus a wide
+   diagonal streak across the pane. Whisper-level alphas — it must read as
+   light on glass, not a wash over the content. */
+html.space .space-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(140% 70% at 16% -12%, rgba(255, 255, 255, 0.09), transparent 55%),
+    linear-gradient(
+      115deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.05) 44%,
+      rgba(255, 255, 255, 0.012) 52%,
+      transparent 64%
+    );
+  pointer-events: none;
 }
 
 @media (max-width: 640px) {
   html.space .space-glass {
-    backdrop-filter: blur(12px) brightness(0.72) saturate(1.1);
-    -webkit-backdrop-filter: blur(12px) brightness(0.72) saturate(1.1);
+    backdrop-filter: blur(14px) brightness(0.72) saturate(1.45);
+    -webkit-backdrop-filter: blur(14px) brightness(0.72) saturate(1.45);
   }
 }
 
