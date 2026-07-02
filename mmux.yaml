@@ -1,0 +1,5 @@
+processes:
+  - name: Dev Server
+    cmd: bun
+    args: ["run", "dev"]
+    autostart: true
