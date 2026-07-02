@@ -1,0 +1,213 @@
+/* ==========================================================================
+   SPACE MODE — alternate galaxy skin.
+
+   Every rule is scoped under `html.space`, so the default light theme stays
+   pixel-identical when the class is absent. The animated backdrop lives in
+   src/lib/components/space/Galaxy.svelte; the toggle in SpaceToggle.svelte.
+   Sections opt into the glass/flow treatment via the `flowIn` action
+   (adds .space-flow) plus a static .space-glass class.
+   ========================================================================== */
+
+/* Surface ------------------------------------------------------------------
+   The html element carries the deep-space base color (visible pre-hydration
+   and on overscroll); the body goes transparent so the fixed galaxy canvas
+   (z-index: -1) shows through behind all content. */
+html.space {
+  background-color: #05070f;
+  color-scheme: dark;
+}
+
+html.space body {
+  background-color: transparent;
+  color: #a9b4cd;
+  /* Clears the fixed top-left toggle. */
+  padding-top: 2.5rem;
+}
+
+html.space ::selection {
+  background: rgba(56, 189, 248, 0.4);
+  color: #ffffff;
+}
+
+/* Softer, slightly slower crossfade when the View Transitions API drives the
+   toggle moment. */
+html.space::view-transition-old(root),
+html.space::view-transition-new(root) {
+  animation-duration: 0.55s;
+}
+
+/* Palette remap --------------------------------------------------------------
+   Mirrors the design-system utility list in CLAUDE.md onto starlight tones.
+   Selector specificity (html.space + class) beats Tailwind utilities without
+   needing !important. */
+html.space {
+  /* Headings get a whisper of starlight. */
+  h1,
+  h2,
+  h3 {
+    text-shadow: 0 0 28px rgba(125, 211, 252, 0.16);
+  }
+
+  .prose :is(h1, h2, h3, h4, h5) {
+    color: #e8edfa;
+  }
+
+  /* Text */
+  .text-gray-900 { color: #f6f8ff; }
+  .text-gray-800 { color: #e8edfa; }
+  .text-gray-700 { color: #cdd7ec; }
+  .text-gray-600 { color: #a9b4cd; }
+  .text-gray-500 { color: #8290ac; }
+  .text-gray-400 { color: #5f6c8a; }
+  .hover\:text-gray-800:hover { color: #e8edfa; }
+  .hover\:text-gray-900:hover { color: #ffffff; }
+  .group:hover .group-hover\:text-gray-800 { color: #e8edfa; }
+  .before\:text-gray-300::before { color: #46536f; }
+
+  /* Accent: sky-700 reads too dark on space, lift to sky-400/300. */
+  a { color: #38bdf8; }
+  a:hover { color: #7dd3fc; }
+  .text-sky-700 { color: #38bdf8; }
+  .text-sky-800 { color: #7dd3fc; }
+
+  /* Borders */
+  .border-gray-200 { border-color: rgba(148, 163, 201, 0.16); }
+  .border-gray-300 { border-color: rgba(148, 163, 201, 0.26); }
+  .hover\:border-gray-300:hover { border-color: rgba(148, 163, 201, 0.42); }
+  .after\:border-gray-400::after { border-color: rgba(148, 163, 201, 0.32); }
+  .border-sky-700 { border-color: #38bdf8; }
+
+  /* Fills */
+  .bg-white {
+    background-color: rgba(148, 163, 201, 0.06);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  }
+  /* The blog post page paints its <main> white; over the galaxy it should be
+     transparent (the article itself becomes a glass panel). */
+  main.bg-white {
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .bg-gray-50 { background-color: rgba(148, 163, 201, 0.05); }
+  .hover\:bg-gray-50:hover { background-color: rgba(148, 163, 201, 0.1); }
+  .bg-gray-100 { background-color: rgba(148, 163, 201, 0.12); }
+  .hover\:bg-gray-100:hover { background-color: rgba(148, 163, 201, 0.18); }
+  .bg-gray-200 { background-color: rgba(148, 163, 201, 0.16); }
+  .bg-gray-800 {
+    background-color: rgba(17, 24, 43, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 201, 0.22);
+  }
+  .hover\:bg-gray-900:hover { background-color: rgba(30, 41, 66, 0.85); }
+  .bg-sky-700 {
+    background-color: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  }
+  .bg-sky-700\/70 {
+    background-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+  }
+
+  /* Error state (Whoop stats) */
+  .bg-red-50 { background-color: rgba(153, 27, 27, 0.16); }
+  .border-red-200 { border-color: rgba(248, 113, 113, 0.32); }
+  .text-red-600 { color: #f87171; }
+  .text-red-500 { color: #fca5a5; }
+
+  /* Markdown prose bits (element-level rules in app.scss use @apply, so they
+     need element-level overrides here). */
+  p > code {
+    background-color: rgba(146, 64, 14, 0.28);
+    color: #fcd34d;
+  }
+
+  .shiki {
+    border: 1px solid rgba(148, 163, 201, 0.16);
+  }
+
+  table,
+  th,
+  td {
+    border-color: rgba(148, 163, 201, 0.2);
+  }
+  th { background-color: rgba(148, 163, 201, 0.12); }
+  tr:nth-child(even) { background-color: rgba(148, 163, 201, 0.05); }
+  td { color: #e8edfa; }
+}
+
+/* Glass panels ------------------------------------------------------------ */
+html.space .space-glass {
+  width: min(100% - 1.5rem, 82rem);
+  margin: 2rem auto;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 201, 0.14);
+  background: linear-gradient(
+    155deg,
+    rgba(148, 163, 201, 0.11),
+    rgba(148, 163, 201, 0.035) 52%,
+    rgba(56, 189, 248, 0.05)
+  );
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 32px 64px -32px rgba(1, 4, 12, 0.85);
+}
+
+@media (max-width: 640px) {
+  html.space .space-glass {
+    backdrop-filter: blur(12px) saturate(1.5);
+    -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  }
+}
+
+/* Sections carry generous light-theme padding (py-24 etc.); inside a glass
+   deck they get a compact, uniform rhythm instead. */
+html.space .space-glass section {
+  padding-top: clamp(2.25rem, 4vw, 3.25rem);
+  padding-bottom: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+/* Timeline's root is a bare div with mt-12 instead of a padded section. */
+html.space .space-glass > .mt-12 {
+  margin-top: 0;
+  padding-top: clamp(2.25rem, 4vw, 3.25rem);
+  padding-bottom: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+/* Blog article panel */
+html.space article.space-glass {
+  width: 100%;
+  margin: 0.5rem auto 2.5rem;
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+/* Flow-in motion ------------------------------------------------------------
+   Panels drift in from the bottom left towards their resting place. The
+   hidden state has no transition, so re-arming (on toggle) snaps instantly
+   and the entrance replays. `transform: none` in the final state matters:
+   it releases the containing block so fixed-position children behave. */
+html.space .space-flow {
+  opacity: 0;
+  transform: translate3d(min(-4.5vw, -22px), 64px, 0) scale(0.965)
+    rotate(-1.2deg);
+}
+
+html.space .space-flow.flow-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) var(--flow-delay, 0ms),
+    opacity 0.7s ease-out var(--flow-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.space .space-flow {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

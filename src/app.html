@@ -20,6 +20,17 @@
     <meta name="msapplication-TileColor" content="#FAF8F4" />
     <meta name="theme-color" content="#FAF8F4" />
 
+    <script>
+      // Apply persisted space mode before first paint to avoid a light flash.
+      try {
+        if (localStorage.getItem("space-mode") === "1") {
+          document.documentElement.classList.add("space");
+          var spaceThemeMeta = document.querySelector('meta[name="theme-color"]');
+          if (spaceThemeMeta) spaceThemeMeta.setAttribute("content", "#05070f");
+        }
+      } catch (e) {}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

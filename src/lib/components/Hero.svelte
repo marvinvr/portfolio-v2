@@ -24,7 +24,7 @@
 
 <div>
   <section
-    class="md:pt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center flex-col-reverse lg:flex-row flex md:px-8 lg:justify-between"
+    class="pt-12 md:pt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center flex-col-reverse lg:flex-row flex md:px-8 lg:justify-between"
   >
     <div class="space-y-5 flex-1 sm:text-center lg:text-left">
       <div>

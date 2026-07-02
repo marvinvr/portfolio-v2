@@ -2,6 +2,7 @@
   import { ExternalLink, ChevronLeft, ChevronRight, X, Expand } from "lucide-svelte";
   import { onMount } from "svelte";
   import SectionHeader from "./SectionHeader.svelte";
+  import { portal } from "$lib/space/portal";
 
   interface SetupItem {
     name: string;
@@ -355,7 +356,11 @@
 
 <!-- Fullscreen Modal -->
 {#if modalOpen}
-  <div 
+  <!-- Portaled to <body>: space mode wraps this section in a backdrop-filter
+       glass panel, which would otherwise become the containing block for
+       this fixed overlay. -->
+  <div
+    use:portal
     class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
     on:click={closeModal}
     on:keydown={handleKeydown}

@@ -54,6 +54,7 @@
 
     import type { PageData } from "./$types";
     import Projects from "$lib/components/Projects.svelte";
+    import { flowIn } from "$lib/space/flowIn";
 
     interface Props {
         data: PageData;
@@ -89,12 +90,16 @@
     <meta name="twitter:image" content="https://marvinvr.ch/og-image.png" />
 </svelte:head>
 
+<div use:flowIn class="space-glass">
 <Hero
     greetingName="I'm Marvin"
     tagline="Full-Stack Engineer building Industrial AI"
     location="Switzerland"
     subtitle="Currently developing an ML Platform at Octotronic to accelerate Industrial AI. Before that, I worked on Large Language Model research at the University of Applied Sciences FHNW. Prior to that, I built a digital compliance platform for large enterprise customers at Apiax.\nOn the side, I develop WriteABookAI, an AI-native book writing platform, among other smaller and open source projects."
 />
+</div>
+
+<div use:flowIn={{ delay: 80 }} class="space-glass">
 <Timeline
     title="Professional Experience"
     items={[
@@ -136,6 +141,9 @@
         },
     ]}
 />
+</div>
+
+<div use:flowIn={{ delay: 160 }} class="space-glass">
 <Projects
     title="Selected Projects"
     description="I'm currently working on a few projects in my free time. Here are some of my latest ones:"
@@ -215,6 +223,9 @@
         },
     ]}
 />
+</div>
+
+<div use:flowIn class="space-glass">
 <TechStack
     title="Technologies I Work With"
     description="The tech behind my professional and side projects."
@@ -285,6 +296,9 @@
         },
     ]}
 />
+</div>
+
+<div use:flowIn class="space-glass">
 <Timeline
     title="Education"
     items={[
@@ -308,6 +322,9 @@
         },
     ]}
 />
+</div>
+
+<div use:flowIn class="space-glass">
 <Posts
     title="Latest Writing"
     description="My posts usually center around some Software / AI project I've been working on. These are my most recent ones:"
@@ -315,10 +332,16 @@
 >
     <a href="/blog" class="text-sm font-medium">view all posts →</a>
 </Posts>
+</div>
+
+<div use:flowIn>
 <SubHeading
     title="Beyond Work"
     description="Below this, you'll find a few personal things I enjoy. Less professional, more me."
 />
+</div>
+
+<div use:flowIn class="space-glass">
 <SetupShowcase
     product="My Espresso Setup"
     description="I own an Espresso Machine! I really enjoy brewing my own Espressos and Cappuchinos at home. So I've built a setup that allows me to do so."
@@ -385,7 +408,13 @@
         },
     ]}
 />
+</div>
+
+<div use:flowIn class="space-glass">
 <WhoopStats />
+</div>
+
+<div use:flowIn class="space-glass">
 <SetupShowcase
     product="My Drone Setup"
     description="I like to travel in Switzerland and abroad. And while doing so, I love to take stunning drone shots of the scenery."
@@ -435,12 +464,19 @@
         },
     ]}
 />
+</div>
+
+<div use:flowIn class="space-glass">
 <YouTube
     title="Recent Drone Videos"
     description="I publish my drone videos to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
+</div>
+
+<div use:flowIn class="space-glass">
 <HireMe
     title="Get in Touch"
     subtitle="Do you have a question or want to discuss a project? Feel free to reach me anytime on any of these platforms:"
     description=""
 />
+</div>

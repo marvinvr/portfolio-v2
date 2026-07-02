@@ -6,11 +6,24 @@
   import portrait from "$lib/assets/portrait.jpeg?format=webp&w=200&h=200";
   import { onMount } from "svelte";
   import { image } from "$lib/utils/images";
+  import { flowIn } from "$lib/space/flowIn";
+  import { space } from "$lib/space/spaceMode.svelte";
 
   let mounted = $state(false);
 
   onMount(() => {
     mounted = true;
+  });
+
+  // Keep the giscus iframe theme in sync with space mode.
+  $effect(() => {
+    const theme = space.on ? "transparent_dark" : "light";
+    document
+      .querySelector<HTMLIFrameElement>("iframe.giscus-frame")
+      ?.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme } } },
+        "https://giscus.app",
+      );
   });
 
   function handleBack(e: MouseEvent) {
@@ -58,10 +71,11 @@
   <meta name="twitter:image" content="https://marvinvr.ch{headerImage}" />
 </svelte:head>
 
-<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white antialiased">
+<main class="pt-14 pb-16 lg:pt-16 lg:pb-24 bg-white antialiased">
   <div class="flex justify-between px-4 mx-auto max-w-screen-xl">
     <article
-      class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg"
+      use:flowIn
+      class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg space-glass"
     >
       <a href="/" onclick={handleBack} class="flex items-center justify-start mb-8 text-sm text-gray-500 hover:text-gray-800 cursor-pointer transition-colors">
         <svg
@@ -125,7 +139,7 @@
           data-reactions-enabled="1"
           data-emit-metadata="0"
           data-input-position="bottom"
-          data-theme="light"
+          data-theme={space.on ? "transparent_dark" : "light"}
           data-lang="en"
           data-loading="lazy"
           crossorigin="anonymous"

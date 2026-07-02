@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import Posts from "$lib/components/Posts.svelte";
+  import { flowIn } from "$lib/space/flowIn";
 
   interface Props {
     data: PageData;
@@ -29,4 +30,6 @@
   />
 </svelte:head>
 
+<div use:flowIn={{ delay: 80 }} class="space-glass">
 <Posts title="My Recent Posts" posts={latestPosts} />
+</div>

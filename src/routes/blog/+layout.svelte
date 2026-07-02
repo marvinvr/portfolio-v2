@@ -1,6 +1,7 @@
 <script lang="ts">
     import Hero from "$lib/components/Hero.svelte";
     import HireMe from "$lib/components/HireMe.svelte";
+    import { flowIn } from "$lib/space/flowIn";
     import { User, ArrowRight } from "lucide-svelte";
     interface Props {
         children?: import('svelte').Snippet;
@@ -20,6 +21,7 @@
     <meta name="twitter:image" content="https://marvinvr.ch/og-image.png"/>
 </svelte:head>
 
+<div use:flowIn class="space-glass">
 <Hero
     greetingName="I'm Marvin"
     tagline="Full-Stack Engineer building Industrial AI"
@@ -33,9 +35,12 @@
         </a>
     {/snippet}
 </Hero>
+</div>
 {@render children?.()}
+<div use:flowIn class="space-glass">
 <HireMe
     title="Get in Touch"
     subtitle="Do you have a question or want to discuss a project? Feel free to reach me anytime on any of these platforms:"
     description=""
 />
+</div>
