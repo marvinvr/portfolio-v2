@@ -240,20 +240,24 @@
             star.alpha *
             (0.7 + 0.3 * Math.sin(elapsed * star.twinkleSpeed + star.phase));
 
-          if (warp > 0.015) {
+          // Streaks cross-fade into dots over the tail of the warp — a hard
+          // cutoff makes every star pop from line to sprite on one frame.
+          const streak = Math.min(1, warp / 0.12);
+          if (streak > 0.02) {
             const dx = sx - cx;
             const dy = sy - cy;
             const near = 1 + warp * 0.06;
             const far = 1 + warp * (0.5 + layer.parallax * 0.4);
-            ctx.strokeStyle = `rgba(240,244,252,${Math.min(1, twinkle + warp * 0.5)})`;
+            ctx.strokeStyle = `rgba(240,244,252,${Math.min(1, (twinkle + warp * 0.5) * streak)})`;
             ctx.lineWidth = star.size;
             ctx.beginPath();
             ctx.moveTo(cx + dx * near, cy + dy * near);
             ctx.lineTo(cx + dx * far, cy + dy * far);
             ctx.stroke();
-          } else {
+          }
+          if (streak < 1) {
             const drawSize = star.size * 4;
-            ctx.globalAlpha = twinkle;
+            ctx.globalAlpha = twinkle * (1 - streak);
             ctx.drawImage(
               star.sprite,
               sx - drawSize / 2,

@@ -252,41 +252,67 @@ html.space article.space-glass {
 /* Flow-in motion ------------------------------------------------------------
    Panels swing in from deep bottom-right on a 3D arc, echoing the galaxy's
    right-to-left rotation: blur-to-sharp travel, a slight overshoot past
-   resting position, then a settle. The base state carries the reverse
-   transition, so when a panel exits through the bottom (scrolling back up)
-   it accelerates back out into depth. flowIn.ts suppresses that transition
-   when re-arming on toggle so the replay starts from a clean snap.
-   `transform: none` in the final state matters: it releases the containing
-   block so fixed-position children behave. */
+   resting position, then a settle. Every pose value is a --fly-* custom
+   property dealt fresh by flowIn.ts before each entrance (scroll-velocity
+   rush + jitter), so no two panels arrive the same way; the fallbacks are
+   the original fixed pose. The base state carries the reverse transition,
+   so when a panel exits through the bottom (scrolling back up) it
+   accelerates back out into depth. flowIn.ts suppresses that transition
+   when re-arming on toggle so the replay starts from a clean snap. */
 html.space .space-flow {
   opacity: 0;
-  transform: perspective(1100px) translate3d(max(7vw, 40px), 150px, -240px)
-    rotateX(15deg) rotateY(19deg) rotate(1.8deg) scale(0.95);
-  transform-origin: 82% 100%;
+  transform: perspective(1100px)
+    translate3d(var(--fly-x, 90px), var(--fly-y, 150px), var(--fly-z, -240px))
+    rotateX(var(--fly-rx, 15deg)) rotateY(var(--fly-ry, 19deg))
+    rotate(var(--fly-rot, 1.8deg)) scale(var(--fly-scale, 0.95));
+  transform-origin: var(--fly-origin, 82% 100%);
   transition:
     transform 0.6s cubic-bezier(0.5, 0, 0.75, 0.4),
     opacity 0.45s ease-in 0.05s;
 }
 
+/* Settled pose doubles as the hover-tilt surface: flowIn.ts feeds --tilt-*
+   from the cursor position over the panel, so the glass angles subtly under
+   the pointer (identity when idle — visually the old `transform: none`).
+   The animation uses `backwards` fill, not `both`: a forwards fill would pin
+   the 100% frame's `transform: none` forever and eat the tilt. The settled
+   transform makes the panel a containing block for fixed children, but the
+   glass's backdrop-filter already did that — fixed overlays inside panels
+   are portaled to <body> regardless (see portal.ts). */
 html.space .space-flow.flow-in {
   opacity: 1;
-  transform: none;
-  animation: space-flow-in 1.15s var(--flow-delay, 0ms) both;
+  transform: perspective(1100px) rotateX(var(--tilt-rx, 0deg))
+    rotateY(var(--tilt-ry, 0deg));
+  transform-origin: 50% 50%;
+  transition:
+    transform 0.35s ease-out,
+    opacity 0.45s ease-in 0.05s;
+  animation: space-flow-in var(--fly-dur, 1.15s) var(--flow-delay, 0ms)
+    backwards;
 }
 
+/* The keyframes pin the entrance origin themselves (the element's settled
+   origin is the center, for the hover tilt); origin eases back to center
+   over the settle leg. */
 @keyframes space-flow-in {
   0% {
     opacity: 0;
-    filter: blur(8px);
-    transform: perspective(1100px) translate3d(max(7vw, 40px), 150px, -240px)
-      rotateX(15deg) rotateY(19deg) rotate(1.8deg) scale(0.95);
+    filter: blur(var(--fly-blur, 8px));
+    transform-origin: var(--fly-origin, 82% 100%);
+    transform: perspective(1100px)
+      translate3d(var(--fly-x, 90px), var(--fly-y, 150px), var(--fly-z, -240px))
+      rotateX(var(--fly-rx, 15deg)) rotateY(var(--fly-ry, 19deg))
+      rotate(var(--fly-rot, 1.8deg)) scale(var(--fly-scale, 0.95));
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
   60% {
     opacity: 1;
     filter: blur(0px);
-    transform: perspective(1100px) translate3d(-9px, -8px, 14px)
-      rotateX(-2.2deg) rotateY(-2.6deg) rotate(-0.35deg) scale(1.007);
+    transform-origin: var(--fly-origin, 82% 100%);
+    transform: perspective(1100px)
+      translate3d(var(--fly-ox, -9px), var(--fly-oy, -8px), 14px)
+      rotateX(var(--fly-orx, -2.2deg)) rotateY(var(--fly-ory, -2.6deg))
+      rotate(var(--fly-orot, -0.35deg)) scale(1.007);
     animation-timing-function: cubic-bezier(0.34, 1.2, 0.64, 1);
   }
   100% {
@@ -305,6 +331,8 @@ html.space .space-flow.flow-in {
   }
 
   html.space .space-flow.flow-in {
+    transform: none;
+    transition: none;
     animation: none;
   }
 }
