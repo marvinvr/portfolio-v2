@@ -5,10 +5,12 @@ interface FlowInOptions {
 }
 
 /**
- * Marks an element as a space-mode "flow" panel: in space mode it starts
- * shifted towards the bottom left and glides into place once it enters the
- * viewport. All visuals live in space.scss under `html.space`, so the action
- * has no effect in the default theme. When space mode is switched on, every
+ * Marks an element as a galaxy-mode "flow" panel: in galaxy mode it starts
+ * deep in the bottom right and swings into place once it enters the viewport,
+ * and the entrance reverses when it exits through the bottom again (so
+ * scrolling back down replays it). Panels that exit through the top stay
+ * settled. All visuals live in space.scss under `html.space`, so the action
+ * has no effect in the default theme. When galaxy mode is switched on, every
  * panel re-arms so the sections currently on screen fly in again.
  */
 export function flowIn(
@@ -22,14 +24,21 @@ export function flowIn(
 
   let observer: IntersectionObserver | null = null;
 
-  const arm = () => {
+  const observe = () => {
     observer?.disconnect();
-    node.classList.remove("flow-in");
     observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          node.classList.add("flow-in");
-          observer?.disconnect();
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            node.classList.add("flow-in");
+          } else if (
+            entry.boundingClientRect.top >
+            (entry.rootBounds?.height ?? window.innerHeight) / 2
+          ) {
+            // Left through the bottom (scrolled back up): play the entrance
+            // in reverse via the base-state transition.
+            node.classList.remove("flow-in");
+          }
         }
       },
       { threshold: 0.04, rootMargin: "0px 0px -4% 0px" },
@@ -37,7 +46,18 @@ export function flowIn(
     observer.observe(node);
   };
 
-  arm();
+  // A fresh observation fires the callback immediately with the current
+  // state, so panels on screen fly in right away.
+  const arm = () => {
+    // Snap to the hidden state without playing the out-transition.
+    node.style.transition = "none";
+    node.classList.remove("flow-in");
+    void node.offsetWidth;
+    node.style.transition = "";
+    observe();
+  };
+
+  observe();
   window.addEventListener("space:on", arm);
 
   return {

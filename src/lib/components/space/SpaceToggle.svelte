@@ -118,20 +118,21 @@
     pointer-events: none;
   }
 
-  /* The "it wants to be flipped" act: the thumb tugs towards the on side
-     while the whole switch rocks slightly. Pauses on hover. */
+  /* The "it wants to be flipped" act: a little impatient hop, then a big
+     thumb tug towards the on side while the whole switch hops and rocks.
+     Pauses on hover. */
   .nudge:not(:hover) {
-    animation: galaxy-toggle-rock 5.6s ease-in-out infinite 1.8s;
+    animation: galaxy-toggle-rock 3.6s ease-in-out infinite 1.2s;
   }
 
   .nudge:not(:hover) .thumb {
-    animation: galaxy-toggle-tug 5.6s cubic-bezier(0.34, 1.56, 0.64, 1)
-      infinite 1.8s;
+    animation: galaxy-toggle-tug 3.6s cubic-bezier(0.34, 1.56, 0.64, 1)
+      infinite 1.2s;
   }
 
   .nudge:not(:hover) .halo {
-    animation: galaxy-toggle-ping 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite
-      1.8s;
+    animation: galaxy-toggle-ping 3.6s cubic-bezier(0.16, 1, 0.3, 1) infinite
+      1.2s;
   }
 
   /* Galaxy mode: glass chip, night-sky track with stars, glowing moon thumb. */
@@ -196,53 +197,68 @@
 
   @keyframes galaxy-toggle-tug {
     0%,
-    80%,
+    18%,
+    52%,
+    72%,
     100% {
       transform: translateX(0);
     }
-    84% {
-      transform: translateX(8px) scaleX(1.12);
+    /* impatient mini-tug */
+    6% {
+      transform: translateX(5px) scaleX(1.08);
     }
-    88% {
-      transform: translateX(-1px) scaleX(0.94);
+    11% {
+      transform: translateX(-1px) scaleX(0.95);
     }
-    92% {
-      transform: translateX(4px);
+    /* the big one */
+    57% {
+      transform: translateX(9px) scaleX(1.14);
     }
-    96% {
-      transform: translateX(0);
+    62% {
+      transform: translateX(-2px) scaleX(0.92);
+    }
+    67% {
+      transform: translateX(5px);
     }
   }
 
   @keyframes galaxy-toggle-rock {
     0%,
-    80%,
+    18%,
+    52%,
+    73%,
     100% {
       transform: none;
     }
-    84% {
-      transform: rotate(-1.3deg) scale(1.03);
+    /* little hop */
+    6% {
+      transform: translateY(-2px) rotate(-1.1deg) scale(1.02);
     }
-    88% {
-      transform: rotate(0.8deg);
+    11% {
+      transform: translateY(0) rotate(0.6deg);
     }
-    92% {
-      transform: rotate(-0.4deg);
+    /* bigger hop with the big tug */
+    57% {
+      transform: translateY(-3px) rotate(-1.6deg) scale(1.045);
     }
-    96% {
-      transform: none;
+    62% {
+      transform: translateY(1px) rotate(1deg) scale(0.985);
+    }
+    67% {
+      transform: translateY(-1px);
     }
   }
 
   @keyframes galaxy-toggle-ping {
     0%,
-    80% {
+    52% {
       opacity: 0;
       transform: scale(1);
     }
-    82% {
+    56% {
       opacity: 0.75;
     }
+    85%,
     100% {
       opacity: 0;
       transform: scale(1.9);
