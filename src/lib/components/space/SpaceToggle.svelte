@@ -15,7 +15,39 @@
 
   function handleClick() {
     nudge = false;
-    toggleSpace();
+    // Turning it on from the footer: glide back to the top first so the
+    // galaxy forms and the sections fly in from a clean starting point.
+    if (!space.on) {
+      scrollToTopThen(toggleSpace);
+    } else {
+      toggleSpace();
+    }
+  }
+
+  function scrollToTopThen(action: () => void) {
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (window.scrollY < 4 || reduced) {
+      window.scrollTo(0, 0);
+      action();
+      return;
+    }
+
+    let fired = false;
+    const run = () => {
+      if (fired) return;
+      fired = true;
+      window.removeEventListener("scrollend", run);
+      action();
+    };
+
+    // `scrollend` fires when the smooth scroll settles; the timeout is a
+    // fallback for browsers that don't emit it.
+    window.addEventListener("scrollend", run);
+    setTimeout(run, 1000);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 </script>
 
@@ -36,30 +68,23 @@
 </button>
 
 <style>
+  /* No box — sits inline in the footer like a quiet link that happens to
+     carry a switch. */
   .galaxy-toggle {
-    position: fixed;
-    top: max(0.75rem, env(safe-area-inset-top));
-    left: max(0.75rem, env(safe-area-inset-left));
-    z-index: 40;
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.45rem 0.75rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 2px;
-    background: #ffffff;
-    color: #4b5563;
+    gap: 0.5rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #6b7280;
     font: inherit;
-    font-size: 0.8125rem;
-    font-weight: 500;
+    font-size: 0.875rem;
     line-height: 1;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    transition:
-      background-color 0.15s ease,
-      border-color 0.15s ease,
-      color 0.15s ease,
-      box-shadow 0.35s ease;
+    transition: color 0.15s ease;
   }
 
   /* Galaxy mode is a desktop-only easter egg — hide the toggle on mobile. */
@@ -70,14 +95,13 @@
   }
 
   .galaxy-toggle:hover {
-    border-color: #d1d5db;
-    background: #f9fafb;
-    color: #111827;
+    color: #1f2937;
   }
 
   .galaxy-toggle:focus-visible {
     outline: 2px solid #0369a1;
-    outline-offset: 2px;
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   /* The switch */
@@ -142,22 +166,13 @@
       1.2s;
   }
 
-  /* Galaxy mode: glass chip, night-sky track with stars, glowing moon thumb. */
+  /* Galaxy mode: night-sky track with stars, glowing moon thumb. */
   :global(html.space) .galaxy-toggle {
-    border-color: rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.07);
-    color: #e8e9ee;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow:
-      0 0 20px rgba(255, 255, 255, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #7f8492;
   }
 
   :global(html.space) .galaxy-toggle:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.12);
-    color: #ffffff;
+    color: #e7e9ee;
   }
 
   :global(html.space) .track {

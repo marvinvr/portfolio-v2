@@ -1,5 +1,6 @@
 <script>
     import Socials from "./Socials.svelte";
+    import SpaceToggle from "./space/SpaceToggle.svelte";
 </script>
 
 <footer class="w-full py-10">
@@ -47,4 +48,9 @@
         <!-- End Social Brands -->
     </div>
     <!-- End Grid -->
+
+    <!-- Galaxy mode toggle — a quiet, jumpy easter egg on its own line -->
+    <div class="hidden sm:flex justify-center max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
+        <SpaceToggle />
+    </div>
 </footer>

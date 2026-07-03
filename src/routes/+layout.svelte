@@ -3,7 +3,6 @@
   import Footer from "$lib/components/Footer.svelte";
   import Analytics from "$lib/components/Analytics.svelte";
   import Galaxy from "$lib/components/space/Galaxy.svelte";
-  import SpaceToggle from "$lib/components/space/SpaceToggle.svelte";
   import { space } from "$lib/space/spaceMode.svelte";
 
   import "../app.scss";
@@ -27,6 +26,5 @@
 {#if hydrated && space.on}
   <Galaxy />
 {/if}
-<SpaceToggle />
 {@render children?.()}
 <Footer />
