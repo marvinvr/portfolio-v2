@@ -50,7 +50,7 @@
     <!-- End Grid -->
 
     <!-- Galaxy mode toggle — a quiet, jumpy easter egg on its own line -->
-    <div class="hidden sm:flex justify-center max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
+    <div class="flex justify-center max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
         <SpaceToggle />
     </div>
 </footer>

@@ -57,14 +57,22 @@ const rand = (min: number, max: number) => min + Math.random() * (max - min);
    both read them, so the reverse exit uses the same pose). */
 function dealEntrancePose(node: HTMLElement, baseDelay: number) {
   const rush = currentRush();
+  // Phones get a gentler, 2D-only entrance (space.scss reads a subset of these
+  // props under its mobile media query): a near-straight rise with a whisper of
+  // tilt instead of the desktop door-swing. A big 3D rotation reads as flapping
+  // against a narrow screen edge, and iOS drops backdrop-filter on
+  // 3D-transformed elements — so mobile stays flat and the glass keeps blurring.
+  const compact = window.innerWidth <= 640;
   const drift = Math.max(window.innerWidth * 0.07, 40);
 
-  const x = drift * rand(0.55, 1.4);
-  const y = rand(115, 190) + 90 * rush;
-  const z = -(rand(190, 300) + 150 * rush);
-  const rx = rand(10, 19);
-  const ry = rand(12, 26);
-  const rot = rand(0.8, 2.6) * (Math.random() < 0.25 ? -1 : 1);
+  const x = compact ? drift * rand(0.1, 0.45) : drift * rand(0.55, 1.4);
+  const y = compact ? rand(56, 96) + 46 * rush : rand(115, 190) + 90 * rush;
+  const z = compact ? -(rand(80, 140) + 70 * rush) : -(rand(190, 300) + 150 * rush);
+  const rx = compact ? rand(3, 7) : rand(10, 19);
+  const ry = compact ? rand(3, 7) : rand(12, 26);
+  const rot =
+    (compact ? rand(0.3, 1.0) : rand(0.8, 2.6)) *
+    (Math.random() < 0.25 ? -1 : 1);
 
   const set = (prop: string, value: string) =>
     node.style.setProperty(prop, value);
@@ -74,10 +82,19 @@ function dealEntrancePose(node: HTMLElement, baseDelay: number) {
   set("--fly-rx", `${rx.toFixed(2)}deg`);
   set("--fly-ry", `${ry.toFixed(2)}deg`);
   set("--fly-rot", `${rot.toFixed(2)}deg`);
-  set("--fly-scale", rand(0.925, 0.965).toFixed(3));
-  set("--fly-origin", `${rand(70, 92).toFixed(1)}% 100%`);
-  set("--fly-blur", `${(rand(6, 9) + 6 * rush).toFixed(1)}px`);
-  set("--fly-dur", `${(rand(1.0, 1.35) - 0.3 * rush).toFixed(2)}s`);
+  set("--fly-scale", (compact ? rand(0.95, 0.975) : rand(0.925, 0.965)).toFixed(3));
+  set(
+    "--fly-origin",
+    compact ? `${rand(42, 58).toFixed(1)}% 100%` : `${rand(70, 92).toFixed(1)}% 100%`,
+  );
+  set(
+    "--fly-blur",
+    `${((compact ? rand(3, 5) : rand(6, 9)) + (compact ? 3 : 6) * rush).toFixed(1)}px`,
+  );
+  set(
+    "--fly-dur",
+    `${((compact ? rand(0.85, 1.1) : rand(1.0, 1.35)) - 0.3 * rush).toFixed(2)}s`,
+  );
   const warpWait = Math.max(0, galaxyFormsAt - performance.now());
   set("--flow-delay", `${Math.round(warpWait + baseDelay + rand(0, 90))}ms`);
   // Overshoot mirrors the entrance direction, scaled to its size.

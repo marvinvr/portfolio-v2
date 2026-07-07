@@ -87,13 +87,6 @@
     transition: color 0.15s ease;
   }
 
-  /* Galaxy mode is a desktop-only easter egg — hide the toggle on mobile. */
-  @media (max-width: 639px) {
-    .galaxy-toggle {
-      display: none;
-    }
-  }
-
   .galaxy-toggle:hover {
     color: #1f2937;
   }
