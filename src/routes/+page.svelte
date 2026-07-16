@@ -12,7 +12,6 @@
     import octotronicLogo from "$lib/assets/logo_octotronic.jpeg?format=webp&w=100&h=100";
 
     // @ts-ignore
-    import computerVisionChallengeHeader from "$lib/posts/2023-11-13-wildlife-cameras/header.png?format=webp&w=480";
     // @ts-ignore
     import autoYtShortsHeader from "$lib/projects/auto-yt-shorts.png?format=webp&w=560";
     // @ts-ignore
@@ -27,6 +26,8 @@
     import dockTailHeader from "$lib/projects/docktail.jpeg?format=webp&w=560";
     // @ts-ignore
     import duskPlayerHeader from "$lib/projects/dusk-player.png?format=webp&w=560";
+    // @ts-ignore
+    import mmuxHeader from "$lib/projects/mmux.png?format=webp&w=560";
 
     // @ts-ignore
     import espressoFull from "$lib/assets/showcase/coffee-full.png?format=webp&w=720";
@@ -48,7 +49,7 @@
     import Posts from "$lib/components/Posts.svelte";
     import YouTube from "$lib/components/YouTube.svelte";
     import HireMe from "$lib/components/HireMe.svelte";
-    import WhoopStats from "$lib/components/WhoopStats.svelte";
+    // import WhoopStats from "$lib/components/WhoopStats.svelte"; // Whoop section hidden for now
     import SetupShowcase from "$lib/components/SetupShowcase.svelte";
     import SubHeading from "$lib/components/SubHeading.svelte";
 
@@ -149,6 +150,15 @@
     description="I'm currently working on a few projects in my free time. Here are some of my latest ones:"
     projects={[
         {
+            title: "mmux",
+            image: mmuxHeader,
+            description:
+                "mmux is a terminal multiplexer in a single Rust binary that gives your AI coding agents persistent, per-directory terminals.",
+            url: "https://mmux.org",
+            release: "2026-07-01",
+            tags: ["Open Source", "Rust", "Terminal"],
+        },
+        {
             title: "Dusk",
             image: duskPlayerHeader,
             description:
@@ -212,15 +222,6 @@
       release: "2024-06-01",
       tags: ["SaaS", "AI"],
     },*/
-        {
-            title: "Wildlife Camera Image Classification",
-            image: computerVisionChallengeHeader,
-            description:
-                "I recently participated in a computer vision challenge where I had to classify images of wildlife cameras. Our findings are available on GitHub.",
-            url: "https://github.com/marvinvr/ccv1",
-            release: "2023-07-01",
-            tags: ["Computer Vision", "ML"],
-        },
     ]}
 />
 </div>
@@ -410,9 +411,11 @@
 />
 </div>
 
+<!-- Whoop section hidden for now — re-enable by uncommenting (also restore the WhoopStats import above)
 <div use:flowIn class="space-glass">
 <WhoopStats />
 </div>
+-->
 
 <div use:flowIn class="space-glass">
 <SetupShowcase
