@@ -9,6 +9,7 @@
     greetingName: string;
     tagline: string;
     location: string;
+    locationLink?: string;
     subtitle: string;
     additionalActions?: import('svelte').Snippet;
   }
@@ -17,6 +18,7 @@
     greetingName,
     tagline,
     location,
+    locationLink,
     subtitle,
     additionalActions
   }: Props = $props();
@@ -32,7 +34,11 @@
         <h2 class="text-gray-700 font-normal text-xl xl:text-2xl mt-3">{tagline}</h2>
         <div class="flex items-center justify-start sm:justify-center lg:justify-start space-x-2 mt-3">
           <MapMarkerOutline class="w-4 h-4 text-gray-400" />
-          <span class="text-sm text-gray-500">{location}</span>
+          {#if locationLink}
+            <a href={locationLink} target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 cursor-pointer">{location}</a>
+          {:else}
+            <span class="text-sm text-gray-500">{location}</span>
+          {/if}
         </div>
       </div>
       <div class="lg:pr-12 space-y-0">

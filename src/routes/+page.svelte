@@ -10,6 +10,8 @@
     import kantiLogo from "$lib/assets/logo_kanti.jpeg?format=webp&w=100&h=100";
     // @ts-ignore
     import octotronicLogo from "$lib/assets/logo_octotronic.jpeg?format=webp&w=100&h=100";
+    // @ts-ignore
+    import mlabLogo from "$lib/assets/logo_mlab.png?format=webp&w=100&h=100";
 
     // @ts-ignore
     // @ts-ignore
@@ -68,13 +70,13 @@
 <svelte:head>
     <meta
         name="keywords"
-        content="Marvin von Rappard, von Rappard, Switzerland, Zurich, Full Stack Engineer, Full Stack Developer, Industrial AI, Machine Learning, LLM, Deep Learning"
+        content="Marvin von Rappard, von Rappard, Switzerland, Basel, Zurich, AI Engineer, Full Stack Engineer, MLOps, AI Engineering, Machine Learning, LLM, Deep Learning"
     />
     <link rel="canonical" href="https://marvinvr.ch" />
     <meta
         name="description"
         property="og:description"
-        content="Full-Stack Engineer building Industrial AI. Currently building an ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
+        content="Data & AI Engineering Consultant at Machine Learning Architects Basel, part of the Swiss Digital Network. Portfolio of projects, blog posts, and open source work."
     />
 
     <title>About Me | Marvin von Rappard</title>
@@ -86,7 +88,7 @@
     <meta name="twitter:title" content="About Me | Marvin von Rappard" />
     <meta
         name="twitter:description"
-        content="Full-Stack Engineer building Industrial AI. Currently building a ML Platform at Octotronic. Portfolio of projects, blog posts, and open source work."
+        content="Data & AI Engineering Consultant at Machine Learning Architects Basel, part of the Swiss Digital Network. Portfolio of projects, blog posts, and open source work."
     />
     <meta name="twitter:image" content="https://marvinvr.ch/og-image.png" />
 </svelte:head>
@@ -94,9 +96,10 @@
 <div use:flowIn class="space-glass">
 <Hero
     greetingName="I'm Marvin"
-    tagline="Full-Stack Engineer building Industrial AI"
-    location="Switzerland"
-    subtitle="Currently developing an ML Platform at Octotronic to accelerate Industrial AI. Before that, I worked on Large Language Model research at the University of Applied Sciences FHNW. Prior to that, I built a digital compliance platform for large enterprise customers at Apiax.\nOn the side, I develop WriteABookAI, an AI-native book writing platform, among other smaller and open source projects."
+    tagline="Data & AI Engineering Consultant"
+    location="Baden, Switzerland"
+    locationLink="https://maps.app.goo.gl/vxjn1bH79TwC7E3G9"
+    subtitle="Currently at Machine Learning Architects Basel, where I help organizations design, build and operate reliable data and AI solutions and bring them from prototype into production. Before that, I built the Machine Learning layer of an Industrial AI platform at Octotronic, worked on Large Language Model research at the University of Applied Sciences FHNW, and built a digital compliance platform for enterprise customers at Apiax."
 />
 </div>
 
@@ -105,12 +108,21 @@
     title="Professional Experience"
     items={[
         {
-            date: "Jan\xa02025 - Present",
+            date: "Aug\xa02026 - Present",
+            link: "https://ml-architects.ch/",
+            title: "Machine Learning Architects Basel",
+            position: "Data & AI Engineering Consultant",
+            description:
+                "Consulting and engineering for organizations that want to move data and AI products beyond the prototype stage. As part of the Swiss Digital Network, I design, build and operate data pipelines, ML and LLM systems and the MLOps foundations around them, with a strong focus on reliability for clients in pharma, manufacturing and finance.",
+            icon: mlabLogo,
+        },
+        {
+            date: "Jan\xa02025 - Jul\xa02026",
             link: "https://www.octotronic.com/",
             title: "Octotronic AG",
             position: "Full-Stack Engineer",
             description:
-                "Building the Machine Learning layer of OctoCore, a Data Intelligence platform that digitizes entire factories. As part of this, I work directly with clients, deploying our solution and training their teams. Our platform enables people on the shop floor to tackle real use cases by training industrial AI with our in-house built low-code tools.",
+                "Built the Machine Learning layer of OctoCore, a Data Intelligence platform that digitizes entire factories. As part of this, I worked directly with clients, deploying our solution and training their teams. The platform enables people on the shop floor to tackle real use cases by training industrial AI with in-house built low-code tools.",
             icon: octotronicLogo,
         },
         {
@@ -342,6 +354,71 @@
 />
 </div>
 
+<!-- Whoop section hidden for now — re-enable by uncommenting (also restore the WhoopStats import above)
+<div use:flowIn class="space-glass">
+<WhoopStats />
+</div>
+-->
+
+<div use:flowIn class="space-glass">
+<SetupShowcase
+    product="My Drone Setup"
+    description="I like to travel in Switzerland and abroad. And while doing so, I love to take stunning drone shots of the scenery."
+    images={[
+        {
+            src: droneFull,
+            alt: "Drone frame",
+            productName: "My Drone Setup",
+            subtitle: "DJI Mavic 4 Pro",
+            link: "https://www.dji.com/ch/mavic-4-pro"
+        },
+        {
+        	src: droneController,
+        	alt: "Drone Controller",
+        	productName: "My Controller",
+        	subtitle: "DJI RC Pro 2",
+        	link: "https://www.dji.com/ch/rc-pro-2"
+        },
+        {
+        	src: droneLenses,
+        	alt: "Drone Lenses",
+        	productName: "My ND Filters",
+        	subtitle: "Freewell Split Filters All Day",
+        	link: "https://www.digitec.ch/de/s1/product/freewell-split-filters-all-day-drohnen-filter-dji-mavic-4-pro-drohne-zubehoer-59057082"
+        }
+    ]}
+    items={[
+        {
+            name: "DJI Mavic 4 Pro",
+            detail: "DJI Mavic 4 Pro Fly More Combo",
+            link: "https://www.dji.com/ch/mavic-4-pro",
+        },
+        {
+        	name: "DJI RC Pro 2",
+        	detail: "Professional flight controller by DJI",
+        	link: "https://www.dji.com/ch/rc-pro-2"
+        },
+        {
+            name: "Freewell Split Filters All Day",
+            detail: "Filters for the Mavic 4 Pro to make it work in various light conditions",
+            link: "https://www.digitec.ch/de/s1/product/freewell-split-filters-all-day-drohnen-filter-dji-mavic-4-pro-drohne-zubehoer-59057082",
+        },
+        {
+            name: "Final Cut Pro",
+            detail: "Final Cut Pro for editing the drone videos",
+            link: "https://www.apple.com/final-cut-pro/",
+        },
+    ]}
+/>
+</div>
+
+<div use:flowIn class="space-glass">
+<YouTube
+    title="Recent Drone Videos"
+    description="I publish my drone videos to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
+/>
+</div>
+
 <div use:flowIn class="space-glass">
 <SetupShowcase
     product="My Espresso Setup"
@@ -408,71 +485,6 @@
             link: "https://caffe-uno.ch/products/mezzomezzo-unsere-hausmischung?variant=51991870931277",
         },
     ]}
-/>
-</div>
-
-<!-- Whoop section hidden for now — re-enable by uncommenting (also restore the WhoopStats import above)
-<div use:flowIn class="space-glass">
-<WhoopStats />
-</div>
--->
-
-<div use:flowIn class="space-glass">
-<SetupShowcase
-    product="My Drone Setup"
-    description="I like to travel in Switzerland and abroad. And while doing so, I love to take stunning drone shots of the scenery."
-    images={[
-        {
-            src: droneFull,
-            alt: "Drone frame",
-            productName: "My Drone Setup",
-            subtitle: "DJI Mavic 4 Pro",
-            link: "https://www.dji.com/ch/mavic-4-pro"
-        },
-        {
-        	src: droneController,
-        	alt: "Drone Controller",
-        	productName: "My Controller",
-        	subtitle: "DJI RC Pro 2",
-        	link: "https://www.dji.com/ch/rc-pro-2"
-        },
-        {
-        	src: droneLenses,
-        	alt: "Drone Lenses",
-        	productName: "My ND Filters",
-        	subtitle: "Freewell Split Filters All Day",
-        	link: "https://www.digitec.ch/de/s1/product/freewell-split-filters-all-day-drohnen-filter-dji-mavic-4-pro-drohne-zubehoer-59057082"
-        }
-    ]}
-    items={[
-        {
-            name: "DJI Mavic 4 Pro",
-            detail: "DJI Mavic 4 Pro Fly More Combo",
-            link: "https://www.dji.com/ch/mavic-4-pro",
-        },
-        {
-        	name: "DJI RC Pro 2",
-        	detail: "Professional flight controller by DJI",
-        	link: "https://www.dji.com/ch/rc-pro-2"
-        },
-        {
-            name: "Freewell Split Filters All Day",
-            detail: "Filters for the Mavic 4 Pro to make it work in various light conditions",
-            link: "https://www.digitec.ch/de/s1/product/freewell-split-filters-all-day-drohnen-filter-dji-mavic-4-pro-drohne-zubehoer-59057082",
-        },
-        {
-            name: "Final Cut Pro",
-            detail: "Final Cut Pro for editing the drone videos",
-            link: "https://www.apple.com/final-cut-pro/",
-        },
-    ]}
-/>
-</div>
-
-<div use:flowIn class="space-glass">
-<YouTube
-    title="Recent Drone Videos"
-    description="I publish my drone videos to YouTube when I travel to places. Check them out if you enjoy a nice scenery with from an aerial view."
 />
 </div>
 

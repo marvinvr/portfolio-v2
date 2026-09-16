@@ -17,11 +17,4 @@ processes:
   - name: Dev Server
     cmd: bun
     args: ["run", "dev"]
-    autostart: true
-
-# Linked projects: other projects to show alongside this one in the same
-# workspace — any directories you want grouped together (extra clones, a
-# related repo, a service), each its own sidebar group. One level deep,
-# de-duplicated by path.
-# linked-projects:
-#   - ../myproject2
+    autostart: false
