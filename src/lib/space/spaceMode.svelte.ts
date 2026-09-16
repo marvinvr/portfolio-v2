@@ -34,7 +34,7 @@ function apply(on: boolean) {
   document
     .querySelector('meta[name="theme-color"]')
     ?.setAttribute("content", on ? SPACE_THEME_COLOR : LIGHT_THEME_COLOR);
-  if (on) window.dispatchEvent(new CustomEvent("space:on"));
+  window.dispatchEvent(new CustomEvent(on ? "space:on" : "space:off"));
 }
 
 export function toggleSpace() {

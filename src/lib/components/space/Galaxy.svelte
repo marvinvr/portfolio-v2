@@ -1,6 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
+  import {
+    TILT,
+    PLANE,
+    PERSPECTIVE,
+    galaxyCenter,
+    flights,
+    flightPoint,
+  } from "$lib/space/orbit";
 
   let canvas = $state<HTMLCanvasElement>();
 
@@ -45,6 +53,28 @@
       age: number;
       life: number;
     }
+    /* Expanding ring of light where a glass panel has just docked. */
+    interface Pulse {
+      x: number;
+      y: number;
+      age: number;
+      life: number;
+    }
+    /* Cursor comet: a shooting star that chases the pointer. */
+    interface TrailPoint {
+      x: number;
+      y: number;
+      t: number;
+    }
+    /* Mini shooting stars shed by the comet head on fast pointer moves. */
+    interface Spark {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      age: number;
+      life: number;
+    }
 
     let width = 0;
     let height = 0;
@@ -56,6 +86,26 @@
     let galaxyRadius = 0;
     let meteors: Meteor[] = [];
     let nextMeteorIn = 3;
+    let pulses: Pulse[] = [];
+
+    // Cursor comet state (mouse/pen only — touch has no hover).
+    const hoverCapable = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    ).matches;
+    let cursorX = 0;
+    let cursorY = 0;
+    let headX = 0;
+    let headY = 0;
+    let cursorSeen = false;
+    let lastCursorMove = -1e9;
+    let cursorSpeed = 0; // px/s, smoothed
+    let cursorDirX = 0;
+    let cursorDirY = 0;
+    let presence = 0;
+    let trail: TrailPoint[] = [];
+    let sparks: Spark[] = [];
+    let sparkBudget = 0;
+
     let pointerX = 0;
     let pointerY = 0;
     let targetPointerX = 0;
@@ -71,10 +121,9 @@
     let warpElapsed = reducedMotion ? warpDuration : 0;
 
     // Spiral disc orientation: squashed (viewed at an inclination) and tipped
-    // on screen. Rotation combines a slow idle spin with scroll, so scrolling
+    // on screen (constants shared with the orbital flight planner in
+    // orbit.ts). Rotation combines a slow idle spin with scroll, so scrolling
     // down turns the galaxy right-to-left across its top edge.
-    const TILT = 0.46;
-    const PLANE = -0.42;
     const cosPlane = Math.cos(PLANE);
     const sinPlane = Math.sin(PLANE);
     const IDLE_SPIN = 0.02; // rad/s
@@ -203,7 +252,157 @@
       });
     };
 
-    const drawFrame = (dt: number) => {
+    const TRAIL_MS = 280;
+    const TRAIL_STEPS = 16;
+    const drawFlights = (now: number, scroll: number) => {
+      for (const flight of flights) {
+        const age = now - flight.start;
+        if (age > flight.duration + 400) {
+          flights.delete(flight);
+          continue;
+        }
+        if (age < 0) continue;
+        const p = Math.min(1, age / flight.duration);
+        const q = flight.reverse ? 1 - p : p;
+        const head = flightPoint(flight, q, scroll);
+
+        if (!flight.reverse && !flight.landed && p >= 1) {
+          flight.landed = true;
+          pulses.push({ x: head.x, y: head.y, age: 0, life: 0.7 });
+        }
+        if (p >= 1) continue;
+
+        // Trail thins out as the pane decelerates into dock.
+        const fade = 1 - Math.pow(p, 3);
+        ctx.lineCap = "round";
+        let prev = head;
+        for (let k = 1; k <= TRAIL_STEPS; k++) {
+          const tk = age - k * (TRAIL_MS / TRAIL_STEPS);
+          if (tk < 0) break;
+          const pk = tk / flight.duration;
+          const point = flightPoint(
+            flight,
+            flight.reverse ? 1 - pk : pk,
+            scroll,
+          );
+          const persp = PERSPECTIVE / (PERSPECTIVE - point.z);
+          const along = 1 - k / TRAIL_STEPS;
+          const alpha = along * along * 0.7 * fade * Math.min(1, persp * 1.5);
+          ctx.strokeStyle = `rgba(255,228,196,${alpha.toFixed(3)})`;
+          ctx.lineWidth = (0.8 + 3.2 * persp) * (0.35 + 0.65 * along);
+          ctx.beginPath();
+          ctx.moveTo(prev.x, prev.y);
+          ctx.lineTo(point.x, point.y);
+          ctx.stroke();
+          prev = point;
+        }
+
+        const persp = PERSPECTIVE / (PERSPECTIVE - head.z);
+        const glow = (28 + 70 * (1 - p)) * persp;
+        ctx.globalAlpha = 0.3 * fade;
+        ctx.drawImage(warmSprite, head.x - glow / 2, head.y - glow / 2, glow, glow);
+        ctx.globalAlpha = 1;
+      }
+    };
+
+    const TRAIL_LIFE = 520; // ms
+    const drawCursor = (dt: number, now: number) => {
+      if (!cursorSeen) return;
+
+      // Presence ramps up quickly on movement and fades after ~2s idle; the
+      // speed estimate decays between pointer events so a stopped mouse
+      // stops shedding sparks.
+      const idle = (now - lastCursorMove) / 1000;
+      const target = idle < 2.2 ? 1 : 0;
+      presence += (target - presence) * Math.min(1, dt * (target ? 6 : 1.6));
+      cursorSpeed *= Math.max(0, 1 - dt * 5);
+      if (presence < 0.01 && !sparks.length && !trail.length) return;
+
+      const rush = Math.min(1, cursorSpeed / 1400);
+
+      // Comet head chases the pointer.
+      const k = Math.min(1, dt * 14);
+      headX += (cursorX - headX) * k;
+      headY += (cursorY - headY) * k;
+
+      // Tail: history of head positions, drawn as a tapering streak.
+      const last = trail[trail.length - 1];
+      if (!last || Math.hypot(headX - last.x, headY - last.y) > 1.5) {
+        trail.push({ x: headX, y: headY, t: now });
+      }
+      while (trail.length && now - trail[0].t > TRAIL_LIFE) trail.shift();
+      if (trail.length > 70) trail.splice(0, trail.length - 70);
+
+      ctx.lineCap = "round";
+      for (let i = 1; i < trail.length; i++) {
+        const a = trail[i - 1];
+        const b = trail[i];
+        const life = 1 - (now - b.t) / TRAIL_LIFE;
+        if (life <= 0) continue;
+        const alpha = life * life * (0.3 + 0.5 * rush) * presence;
+        ctx.strokeStyle = `rgba(255,240,222,${alpha.toFixed(3)})`;
+        ctx.lineWidth = 0.6 + 2.8 * life;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+
+      // Head: warm halo swelling with speed, hot white core.
+      const halo = 36 + 44 * rush;
+      ctx.globalAlpha = 0.5 * presence;
+      ctx.drawImage(warmSprite, headX - halo / 2, headY - halo / 2, halo, halo);
+      ctx.globalAlpha = 0.95 * presence;
+      ctx.drawImage(whiteSprite, headX - 6, headY - 6, 12, 12);
+      ctx.globalAlpha = 1;
+
+      // Sparks: shed backwards off the head once the pointer moves briskly,
+      // each a tiny meteor with its own tail.
+      sparkBudget += dt * Math.max(0, cursorSpeed - 350) * 0.022 * presence;
+      while (sparkBudget >= 1 && sparks.length < 90) {
+        sparkBudget -= 1;
+        const back = 90 + Math.random() * 240;
+        const side = (Math.random() - 0.5) * 260;
+        sparks.push({
+          x: headX + (Math.random() - 0.5) * 10,
+          y: headY + (Math.random() - 0.5) * 10,
+          vx: -cursorDirX * back - cursorDirY * side,
+          vy: -cursorDirY * back + cursorDirX * side,
+          age: 0,
+          life: 0.45 + Math.random() * 0.5,
+        });
+      }
+      sparkBudget = Math.min(sparkBudget, 3);
+
+      ctx.lineWidth = 1.3;
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.age += dt;
+        if (s.age >= s.life) {
+          sparks.splice(i, 1);
+          continue;
+        }
+        const drag = Math.max(0, 1 - dt * 1.4);
+        s.vx *= drag;
+        s.vy *= drag;
+        s.x += s.vx * dt;
+        s.y += s.vy * dt;
+        const t = s.age / s.life;
+        const alpha = Math.sin(Math.PI * t) * 0.85;
+        const tailX = s.x - s.vx * 0.09;
+        const tailY = s.y - s.vy * 0.09;
+        const gradient = ctx.createLinearGradient(s.x, s.y, tailX, tailY);
+        gradient.addColorStop(0, `rgba(255,248,236,${alpha.toFixed(3)})`);
+        gradient.addColorStop(1, "rgba(255,228,196,0)");
+        ctx.strokeStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.stroke();
+      }
+    };
+
+    const drawFrame = (dt: number, now: number) => {
       elapsed += dt;
       ctx.clearRect(0, 0, width, height);
 
@@ -275,11 +474,9 @@
       if (galaxyAlpha > 0.01) {
         const rotation =
           -(elapsed * IDLE_SPIN + scroll * SCROLL_SPIN) + warp * 0.7;
-        const gx = width * 0.5 + pointerX * 16;
-        const gy =
-          height * 0.46 -
-          Math.min(scroll * 0.03, height * 0.1) +
-          pointerY * 12;
+        const center = galaxyCenter(width, height, scroll);
+        const gx = center.x + pointerX * 16;
+        const gy = center.y + pointerY * 12;
 
         ctx.save();
         ctx.translate(gx, gy);
@@ -317,6 +514,35 @@
           );
         }
         ctx.globalAlpha = 1;
+      }
+
+      // Panels in orbit: a comet trail of light runs behind each glass pane
+      // riding in (flowIn.ts registers the very path the DOM animation
+      // follows). The head sits under the pane, so its glow bleeds through
+      // the frosted glass; the tail streaks across open sky behind it.
+      if (!reducedMotion) drawFlights(now, scroll);
+
+      // Docking pulses.
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const pulse = pulses[i];
+        pulse.age += dt;
+        if (pulse.age >= pulse.life) {
+          pulses.splice(i, 1);
+          continue;
+        }
+        const t = pulse.age / pulse.life;
+        const ease = 1 - Math.pow(1 - t, 3);
+        const radius = 18 + 170 * ease;
+        ctx.save();
+        ctx.translate(pulse.x, pulse.y);
+        ctx.rotate(PLANE);
+        ctx.scale(1, TILT);
+        ctx.strokeStyle = `rgba(255,236,212,${(0.22 * (1 - t)).toFixed(3)})`;
+        ctx.lineWidth = 0.5 + 1.5 * (1 - t);
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
       }
 
       // Shooting stars (only once the warp has settled).
@@ -357,6 +583,10 @@
         ctx.stroke();
       }
 
+      // Cursor comet rides on top of everything else on the canvas (still
+      // behind the glass panels, where it blooms through the frost).
+      if (!reducedMotion && warpT >= 1) drawCursor(dt, now);
+
       ctx.globalCompositeOperation = "source-over";
 
       if (warpT < 1) warpElapsed += dt;
@@ -366,7 +596,7 @@
       if (!running) return;
       const dt = Math.min(0.05, (now - lastTime) / 1000);
       lastTime = now;
-      drawFrame(dt);
+      drawFrame(dt, now);
       rafId = requestAnimationFrame(loop);
     };
 
@@ -395,7 +625,7 @@
       ) {
         buildScene();
       }
-      if (reducedMotion) drawFrame(0);
+      if (reducedMotion) drawFrame(0, performance.now());
     };
 
     const onVisibility = () => {
@@ -405,6 +635,36 @@
     const onPointerMove = (event: PointerEvent) => {
       targetPointerX = event.clientX / width - 0.5;
       targetPointerY = event.clientY / height - 0.5;
+
+      if (!hoverCapable || event.pointerType === "touch") return;
+      const now = performance.now();
+      const x = event.clientX;
+      const y = event.clientY;
+      if (cursorSeen) {
+        const dx = x - cursorX;
+        const dy = y - cursorY;
+        const dist = Math.hypot(dx, dy);
+        const dtMs = Math.max(8, now - lastCursorMove);
+        const inst = Math.min(4000, (dist / dtMs) * 1000);
+        cursorSpeed += (inst - cursorSpeed) * 0.4;
+        if (dist > 0.5) {
+          cursorDirX = dx / dist;
+          cursorDirY = dy / dist;
+        }
+      } else {
+        // First contact: materialise at the pointer instead of flying in
+        // from the origin.
+        cursorSeen = true;
+        headX = x;
+        headY = y;
+      }
+      cursorX = x;
+      cursorY = y;
+      lastCursorMove = now;
+    };
+    const onPointerLeave = () => {
+      // Let presence fade out when the pointer leaves the window.
+      lastCursorMove = -1e9;
     };
 
     resize();
@@ -412,6 +672,8 @@
     document.addEventListener("visibilitychange", onVisibility);
     if (!reducedMotion) {
       window.addEventListener("pointermove", onPointerMove, { passive: true });
+      document.documentElement.addEventListener("mouseleave", onPointerLeave);
+      window.addEventListener("blur", onPointerLeave);
       start();
     }
 
@@ -420,6 +682,8 @@
       window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pointermove", onPointerMove);
+      document.documentElement.removeEventListener("mouseleave", onPointerLeave);
+      window.removeEventListener("blur", onPointerLeave);
     };
   });
 </script>

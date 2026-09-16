@@ -143,37 +143,56 @@ html.space {
 }
 
 /* Glass panels ------------------------------------------------------------
-   Neutral white-on-black glass. brightness() in the backdrop dims the galaxy
-   behind each panel so text stays readable over the bright core; saturate()
-   pulls the galaxy's color through the pane so it reads as material, not a
-   gray card. Two pseudo-layers sell the glass: a specular gradient rim
-   (::before) and a reflection sheen (::after). */
+   Liquid glass: a thick, slightly domed pane over the galaxy. The backdrop
+   is blurred, dimmed and colour-boosted so the disc reads through it as
+   material; a chromatic rim (::before) catches light warm at the lit edge
+   and cool at the shadow edge like dispersion in real glass; and the sheen
+   (::after) carries a specular highlight that follows the cursor across
+   the pane (flowIn.ts feeds --glass-mx/--glass-my/--glass-on). */
+@property --glass-on {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 html.space .space-glass {
   position: relative;
   width: min(100% - 3rem, 74rem);
   margin: 3rem auto;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 255, 255, 0.02) 55%,
-    rgba(255, 255, 255, 0.05)
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.025) 48%,
+    rgba(255, 255, 255, 0.06)
   );
-  backdrop-filter: blur(22px) brightness(0.72) saturate(1.55);
-  -webkit-backdrop-filter: blur(22px) brightness(0.72) saturate(1.55);
+  backdrop-filter: blur(26px) brightness(0.7) saturate(1.7) contrast(1.04);
+  -webkit-backdrop-filter: blur(26px) brightness(0.7) saturate(1.7)
+    contrast(1.04);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-    inset 0 0 42px rgba(255, 255, 255, 0.03),
-    0 32px 64px -32px rgba(0, 0, 0, 0.7),
-    0 8px 24px -12px rgba(0, 0, 0, 0.55);
+    /* top inner lip + left glint: the lit edge of a thick pane */
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 1px 0 0 rgba(255, 255, 255, 0.07),
+    /* bottom caustic: light pooling along the lower inside edge */
+    inset 0 -14px 28px -22px rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+    /* body: soft internal fog so the pane has volume */
+    inset 0 0 60px rgba(255, 255, 255, 0.035),
+    /* lift */
+    0 40px 80px -36px rgba(0, 0, 0, 0.75),
+    0 10px 30px -14px rgba(0, 0, 0, 0.6);
+  transition: --glass-on 0.45s ease, border-color 0.45s ease;
 }
 
-/* Specular rim: a 1px gradient ring (padding + mask-composite trick) laid
-   over the flat hairline — bright where the light catches the top-left edge,
-   with a faint counter-glint bottom-right, like light wrapping a glass edge.
-   inset: -1px places the ring exactly over the real border. */
+html.space .space-glass:hover {
+  border-color: rgba(255, 255, 255, 0.17);
+}
+
+/* Chromatic rim: a 1px gradient ring (padding + mask-composite trick) over
+   the flat hairline — warm-white where the light catches the top-left edge,
+   thinning to nothing along the sides, and a cool counter-glint bottom-right
+   like dispersion at a glass edge. inset: -1px lays it over the real border. */
 html.space .space-glass::before {
   content: "";
   position: absolute;
@@ -182,11 +201,12 @@ html.space .space-glass::before {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.45),
-    rgba(255, 255, 255, 0.13) 22%,
-    rgba(255, 255, 255, 0.03) 46%,
-    rgba(255, 255, 255, 0.02) 62%,
-    rgba(255, 255, 255, 0.25)
+    rgba(255, 244, 230, 0.6),
+    rgba(255, 236, 220, 0.2) 18%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0.02) 60%,
+    rgba(200, 220, 255, 0.14) 82%,
+    rgba(190, 214, 255, 0.36)
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -199,22 +219,28 @@ html.space .space-glass::before {
   pointer-events: none;
 }
 
-/* Reflection sheen: a soft glow bleeding in from the lit corner plus a wide
-   diagonal streak across the pane. Whisper-level alphas — it must read as
-   light on glass, not a wash over the content. */
+/* Sheen: a cursor-tracking specular bloom (fades in/out via --glass-on),
+   a fixed glow bleeding in from the lit corner, and a wide diagonal streak
+   across the pane. Whisper-level alphas — light on glass, not a wash. */
 html.space .space-glass::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(140% 70% at 16% -12%, rgba(255, 255, 255, 0.09), transparent 55%),
+    radial-gradient(
+      42% 48% at var(--glass-mx, 30%) var(--glass-my, 0%),
+      rgba(255, 255, 255, calc(0.12 * var(--glass-on, 0))),
+      rgba(255, 255, 255, calc(0.04 * var(--glass-on, 0))) 45%,
+      transparent 72%
+    ),
+    radial-gradient(140% 70% at 16% -12%, rgba(255, 255, 255, 0.1), transparent 55%),
     linear-gradient(
       115deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.05) 44%,
-      rgba(255, 255, 255, 0.012) 52%,
-      transparent 64%
+      transparent 28%,
+      rgba(255, 255, 255, 0.055) 42%,
+      rgba(255, 255, 255, 0.015) 52%,
+      transparent 66%
     );
   pointer-events: none;
 }
@@ -248,133 +274,46 @@ html.space article.space-glass {
 }
 
 /* Flow-in motion ------------------------------------------------------------
-   Panels swing in from deep bottom-right on a 3D arc, echoing the galaxy's
-   right-to-left rotation: blur-to-sharp travel, a slight overshoot past
-   resting position, then a settle. Every pose value is a --fly-* custom
-   property dealt fresh by flowIn.ts before each entrance (scroll-velocity
-   rush + jitter), so no two panels arrive the same way; the fallbacks are
-   the original fixed pose. The base state carries the reverse transition,
-   so when a panel exits through the bottom (scrolling back up) it
-   accelerates back out into depth. flowIn.ts suppresses that transition
-   when re-arming on toggle so the replay starts from a clean snap. */
+   The entrance itself is a Web Animations API animation planned per panel by
+   flowIn.ts (planOrbit): the panel rides an orbit around the galaxy core
+   into place, with the canvas trailing it. CSS only owns the two resting
+   states — hidden (before entrance / after exit) and settled (identity plus
+   the hover tilt). Because the animation docks on an identity transform and
+   is cancelled on finish, the hand-off to the settled rule is invisible. */
 html.space .space-flow {
   opacity: 0;
-  transform: perspective(1100px)
-    translate3d(var(--fly-x, 90px), var(--fly-y, 150px), var(--fly-z, -240px))
-    rotateX(var(--fly-rx, 15deg)) rotateY(var(--fly-ry, 19deg))
-    rotate(var(--fly-rot, 1.8deg)) scale(var(--fly-scale, 0.95));
-  transform-origin: var(--fly-origin, 82% 100%);
-  transition:
-    transform 0.6s cubic-bezier(0.5, 0, 0.75, 0.4),
-    opacity 0.45s ease-in 0.05s;
 }
 
 /* Settled pose doubles as the hover-tilt surface: flowIn.ts feeds --tilt-*
    from the cursor position over the panel, so the glass angles subtly under
-   the pointer (identity when idle — visually the old `transform: none`).
-   The animation uses `backwards` fill, not `both`: a forwards fill would pin
-   the 100% frame's `transform: none` forever and eat the tilt. The settled
-   transform makes the panel a containing block for fixed children, but the
-   glass's backdrop-filter already did that — fixed overlays inside panels
-   are portaled to <body> regardless (see portal.ts). */
+   the pointer (identity when idle). The settled transform makes the panel a
+   containing block for fixed children, but the glass's backdrop-filter
+   already did that — fixed overlays inside panels are portaled to <body>
+   regardless (see portal.ts). */
 html.space .space-flow.flow-in {
   opacity: 1;
   transform: perspective(1100px) rotateX(var(--tilt-rx, 0deg))
     rotateY(var(--tilt-ry, 0deg));
   transform-origin: 50% 50%;
-  transition:
-    transform 0.35s ease-out,
-    opacity 0.45s ease-in 0.05s;
-  animation: space-flow-in var(--fly-dur, 1.15s) var(--flow-delay, 0ms)
-    backwards;
+  transition: transform 0.35s ease-out;
 }
 
-/* The keyframes pin the entrance origin themselves (the element's settled
-   origin is the center, for the hover tilt); origin eases back to center
-   over the settle leg. */
-@keyframes space-flow-in {
-  0% {
-    opacity: 0;
-    filter: blur(var(--fly-blur, 8px));
-    transform-origin: var(--fly-origin, 82% 100%);
-    transform: perspective(1100px)
-      translate3d(var(--fly-x, 90px), var(--fly-y, 150px), var(--fly-z, -240px))
-      rotateX(var(--fly-rx, 15deg)) rotateY(var(--fly-ry, 19deg))
-      rotate(var(--fly-rot, 1.8deg)) scale(var(--fly-scale, 0.95));
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  60% {
-    opacity: 1;
-    filter: blur(0px);
-    transform-origin: var(--fly-origin, 82% 100%);
-    transform: perspective(1100px)
-      translate3d(var(--fly-ox, -9px), var(--fly-oy, -8px), 14px)
-      rotateX(var(--fly-orx, -2.2deg)) rotateY(var(--fly-ory, -2.6deg))
-      rotate(var(--fly-orot, -0.35deg)) scale(1.007);
-    animation-timing-function: cubic-bezier(0.34, 1.2, 0.64, 1);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: none;
-  }
-}
-
-/* Mobile flow-in ------------------------------------------------------------
-   Phones swap the 3D door-swing for a flat 2D rise: less busy on a narrow
-   screen, and — crucially — the settled panel keeps a plain `transform: none`
-   so backdrop-filter still blurs the galaxy behind the glass (iOS drops
-   backdrop-filter on any 3D-transformed element, even an identity perspective).
-   Reuses the --fly-* poses dealt by flowIn.ts, ignoring the depth/tilt ones. */
+/* Phones keep the settled panel on a plain `transform: none` so
+   backdrop-filter still blurs the galaxy behind the glass (iOS drops
+   backdrop-filter on any 3D-transformed element, even an identity
+   perspective). flowIn.ts likewise plans a flat 2D flight there. */
 @media (max-width: 640px) {
-  html.space .space-flow {
-    transform: translate(var(--fly-x, 24px), var(--fly-y, 80px))
-      rotate(var(--fly-rot, 0.8deg)) scale(var(--fly-scale, 0.96));
-    transform-origin: var(--fly-origin, 50% 100%);
-  }
-
   html.space .space-flow.flow-in {
     transform: none;
-    animation: space-flow-in-compact var(--fly-dur, 1s) var(--flow-delay, 0ms)
-      backwards;
-  }
-
-  @keyframes space-flow-in-compact {
-    0% {
-      opacity: 0;
-      filter: blur(var(--fly-blur, 4px));
-      transform-origin: var(--fly-origin, 50% 100%);
-      transform: translate(var(--fly-x, 24px), var(--fly-y, 80px))
-        rotate(var(--fly-rot, 0.8deg)) scale(var(--fly-scale, 0.96));
-      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    62% {
-      opacity: 1;
-      filter: blur(0px);
-      transform-origin: var(--fly-origin, 50% 100%);
-      transform: translate(var(--fly-ox, -3px), var(--fly-oy, -6px))
-        rotate(var(--fly-orot, -0.2deg)) scale(1.004);
-      animation-timing-function: cubic-bezier(0.34, 1.2, 0.64, 1);
-    }
-    100% {
-      opacity: 1;
-      filter: blur(0px);
-      transform: none;
-    }
+    transition: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.space .space-flow {
+  html.space .space-flow,
+  html.space .space-flow.flow-in {
     opacity: 1;
     transform: none;
     transition: none;
-    animation: none;
-  }
-
-  html.space .space-flow.flow-in {
-    transform: none;
-    transition: none;
-    animation: none;
   }
 }

@@ -1,4 +1,14 @@
 import type { ActionReturn } from "svelte/action";
+import {
+  TILT,
+  PERSPECTIVE,
+  SIN_INCL,
+  cosPlane,
+  sinPlane,
+  galaxyCenter,
+  flights,
+  type Flight,
+} from "./orbit";
 
 interface FlowInOptions {
   delay?: number;
@@ -15,13 +25,17 @@ let lastScrollT = 0;
 
 /* When galaxy mode is switched on, the canvas plays its ~1.4s hyperspace
    intro. Panels whose entrance is dealt before the galaxy has formed wait
-   out the remainder, so the spiral gets its moment before glass arrives. */
+   out the remainder, so the spiral gets its moment before glass arrives.
+   A page that loads straight into galaxy mode gets a shorter beat. */
 let galaxyFormsAt = 0;
 
 function startTracking() {
   if (trackingStarted) return;
   trackingStarted = true;
   lastScrollY = window.scrollY;
+  if (document.documentElement.classList.contains("space")) {
+    galaxyFormsAt = performance.now() + 700;
+  }
   window.addEventListener("space:on", () => {
     galaxyFormsAt = performance.now() + 1250;
   });
@@ -49,72 +63,218 @@ function currentRush(): number {
 }
 
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
+const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const rad = (deg: number) => (deg * Math.PI) / 180;
 
-/* Deals a fresh entrance pose: jitter around the bottom-right home
-   trajectory, pushed deeper, blurrier and snappier the harder the user is
-   scrolling when the panel shows up. Written as --fly-* custom properties
-   consumed by space.scss (the hidden base state and the entrance keyframes
-   both read them, so the reverse exit uses the same pose). */
-function dealEntrancePose(node: HTMLElement, baseDelay: number) {
-  const rush = currentRush();
-  // Phones get a gentler, 2D-only entrance (space.scss reads a subset of these
-  // props under its mobile media query): a near-straight rise with a whisper of
-  // tilt instead of the desktop door-swing. A big 3D rotation reads as flapping
-  // against a narrow screen edge, and iOS drops backdrop-filter on
-  // 3D-transformed elements — so mobile stays flat and the glass keeps blurring.
-  const compact = window.innerWidth <= 640;
-  const drift = Math.max(window.innerWidth * 0.07, 40);
-
-  const x = compact ? drift * rand(0.1, 0.45) : drift * rand(0.55, 1.4);
-  const y = compact ? rand(56, 96) + 46 * rush : rand(115, 190) + 90 * rush;
-  const z = compact ? -(rand(80, 140) + 70 * rush) : -(rand(190, 300) + 150 * rush);
-  const rx = compact ? rand(3, 7) : rand(10, 19);
-  const ry = compact ? rand(3, 7) : rand(12, 26);
-  const rot =
-    (compact ? rand(0.3, 1.0) : rand(0.8, 2.6)) *
-    (Math.random() < 0.25 ? -1 : 1);
-
-  const set = (prop: string, value: string) =>
-    node.style.setProperty(prop, value);
-  set("--fly-x", `${x.toFixed(1)}px`);
-  set("--fly-y", `${y.toFixed(1)}px`);
-  set("--fly-z", `${z.toFixed(1)}px`);
-  set("--fly-rx", `${rx.toFixed(2)}deg`);
-  set("--fly-ry", `${ry.toFixed(2)}deg`);
-  set("--fly-rot", `${rot.toFixed(2)}deg`);
-  set("--fly-scale", (compact ? rand(0.95, 0.975) : rand(0.925, 0.965)).toFixed(3));
-  set(
-    "--fly-origin",
-    compact ? `${rand(42, 58).toFixed(1)}% 100%` : `${rand(70, 92).toFixed(1)}% 100%`,
-  );
-  set(
-    "--fly-blur",
-    `${((compact ? rand(3, 5) : rand(6, 9)) + (compact ? 3 : 6) * rush).toFixed(1)}px`,
-  );
-  set(
-    "--fly-dur",
-    `${((compact ? rand(0.85, 1.1) : rand(1.0, 1.35)) - 0.3 * rush).toFixed(2)}s`,
-  );
-  const warpWait = Math.max(0, galaxyFormsAt - performance.now());
-  set("--flow-delay", `${Math.round(warpWait + baseDelay + rand(0, 90))}ms`);
-  // Overshoot mirrors the entrance direction, scaled to its size.
-  set("--fly-ox", `${(-x * rand(0.07, 0.11)).toFixed(1)}px`);
-  set("--fly-oy", `${(-(rand(6, 12) + 5 * rush)).toFixed(1)}px`);
-  set("--fly-orx", `${(-rx * rand(0.12, 0.18)).toFixed(2)}deg`);
-  set("--fly-ory", `${(-ry * rand(0.1, 0.16)).toFixed(2)}deg`);
-  set("--fly-orot", `${(-rot * rand(0.14, 0.24)).toFixed(2)}deg`);
+/* Ease-out with a soft overshoot: c1 sets how far past the target the
+   panel swings before settling (0.8 ≈ 3.5%). */
+function easeOutBack(t: number, c1: number) {
+  const c3 = c1 + 1;
+  const x = t - 1;
+  return 1 + c3 * x * x * x + c1 * x * x;
 }
 
+/* Path parameter over linear time: a plain ease-out-back front-loads the
+   far side of the orbit into the first frames; pre-warping time keeps more
+   of the arc on screen while still braking hard into dock. */
+function pathEase(t: number, c1: number) {
+  return easeOutBack(Math.pow(t, 1.18), c1);
+}
+
+/* Orbit planning ----------------------------------------------------------
+   The panel's resting anchor is projected into the galaxy's disc
+   coordinates (angle + radius on the tilted, rotated ellipse). The flight
+   then spirals in along the disc: it starts a sweep of 120–250° back along
+   the direction the galaxy rotates and out past its rest radius, deep
+   behind the disc plane, and rides the orbit in — fading up from the far
+   side, decelerating, overshooting a touch and docking. Both possible
+   depth signs of the inclined disc are tried and the one that stays
+   furthest behind wins; depth is then clamped so the panel never comes
+   in front of its rest plane.
+
+   The path is sampled at SAMPLES points in linear time (easing baked into
+   the samples) and emitted twice: as Web Animations keyframes for the DOM
+   panel and as a Flight for the canvas, which draws the trail from the very
+   same numbers. */
+const SAMPLES = 64;
+
+interface Plan {
+  keyframes: Keyframe[];
+  duration: number;
+  delay: number;
+  flight: Flight;
+}
+
+function planOrbit(node: HTMLElement, baseDelay: number): Plan {
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  const scroll = window.scrollY;
+  const compact = W <= 640;
+  const rush = currentRush();
+
+  // Tall panels orbit by a point near their top, so the visible part of
+  // the panel is what rides the arc — not a center a screen below.
+  const rect = node.getBoundingClientRect();
+  const anchorX = rect.left + rect.width / 2;
+  const anchorY = rect.top + Math.min(rect.height / 2, H * 0.3);
+  const g = galaxyCenter(W, H, scroll);
+
+  // Rest anchor in disc coordinates.
+  const dx = anchorX - g.x;
+  const dy = anchorY - g.y;
+  const u = dx * cosPlane + dy * sinPlane;
+  const v = -dx * sinPlane + dy * cosPlane;
+  const rRest = Math.hypot(u, v / TILT);
+  const aRest = Math.atan2(v / TILT, u);
+
+  const maxDim = Math.max(W, H);
+  const minDim = Math.min(W, H);
+  // Start beyond the rest orbit — at least half a viewport out, so panels
+  // resting near the core still get a real spiral instead of a wobble.
+  const rFar = Math.min(
+    Math.max(rRest * rand(1.35, 1.7), minDim * rand(0.45, 0.62)),
+    maxDim * 1.1,
+  );
+  // Panels far from the core get a shorter sweep: their arc is already
+  // huge, and most of a long one would happen off screen.
+  const farness = clamp01(rRest / (0.8 * maxDim));
+  const sweep = lerp(rad(250), rad(120), farness) * rand(0.85, 1.15);
+  const depthPush =
+    (compact ? rand(520, 780) : rand(820, 1250)) + 320 * rush;
+  const duration =
+    ((compact ? rand(1.05, 1.3) : rand(1.35, 1.75)) - 0.3 * rush) * 1000;
+  const overshoot = compact ? 0.55 : 0.8;
+
+  const build = (sign: number) => {
+    const pts = new Float32Array(SAMPLES * 3);
+    const zRest = sign * Math.sin(aRest) * rRest * SIN_INCL;
+    let maxZ = -Infinity;
+    for (let i = 0; i < SAMPLES; i++) {
+      const t = i / (SAMPLES - 1);
+      const e = pathEase(t, overshoot);
+      const k = 1 - e;
+      // Positive sweep = arrive travelling in the galaxy's spin direction.
+      const a = aRest + sweep * k;
+      const r = rRest + (rFar - rRest) * k;
+      const U = Math.cos(a) * r;
+      const V = Math.sin(a) * r * TILT;
+      const sx = g.x + U * cosPlane - V * sinPlane - anchorX;
+      const sy = g.y + U * sinPlane + V * cosPlane - anchorY;
+      // Never in front of the rest plane: a panel that came towards the
+      // viewer would scale past 1 and pop, so depth is clamped to "behind".
+      let z = sign * Math.sin(a) * r * SIN_INCL - zRest - depthPush * k;
+      z = Math.min(z, 0);
+      if (z > maxZ) maxZ = z;
+      pts[i * 3] = sx;
+      pts[i * 3 + 1] = sy;
+      pts[i * 3 + 2] = z;
+    }
+    return { pts, maxZ };
+  };
+  let path = build(1);
+  const alt = build(-1);
+  if (alt.maxZ < path.maxZ) path = alt;
+  const pts = path.pts;
+  const at = (i: number) => ({
+    x: pts[i * 3],
+    y: pts[i * 3 + 1],
+    z: pts[i * 3 + 2],
+  });
+
+  // Attitude: the panel banks into the turn and leads with the edge that
+  // arrives first, like a craft swinging in on final approach. All angles
+  // scale with (1 - e), so they unwind to zero exactly at dock and flip
+  // briefly the other way through the overshoot.
+  const last = SAMPLES - 1;
+  const p25 = at(Math.round(last * 0.25));
+  const p45 = at(Math.round(last * 0.45));
+  const vx = -p45.x;
+  const vy = -p45.y;
+  const turn =
+    (p45.x - p25.x) * (0 - p45.y) - (p45.y - p25.y) * (0 - p45.x);
+  const yaw0 = compact ? 0 : -Math.sign(vx) * rand(28, 52);
+  const pitch0 = compact ? 0 : Math.sign(vy) * rand(5, 12);
+  const roll0 = Math.sign(turn) * (compact ? rand(1.5, 4) : rand(3, 9));
+  const maxBlur = compact ? 6 : 12;
+  const msPerSample = duration / last;
+
+  const keyframes: Keyframe[] = [];
+  for (let i = 0; i < SAMPLES; i++) {
+    const t = i / last;
+    const e = pathEase(t, overshoot);
+    const k = 1 - e;
+    const p = at(i);
+    const persp = PERSPECTIVE / (PERSPECTIVE - p.z);
+
+    let blur = 0;
+    if (i > 0 && i < last) {
+      const q = at(i - 1);
+      const speed = Math.hypot(p.x - q.x, p.y - q.y) / msPerSample;
+      blur =
+        Math.min(maxBlur, speed * 1.6) * Math.sqrt(clamp01(k)) +
+        5 * clamp01(-p.z / 1400) * clamp01(k);
+    }
+    const opacity = Math.pow(clamp01(t / 0.2), 0.7);
+
+    // Desktop: true 3D — translate3d under perspective (x/y pre-divided so
+    // the projected point lands on the sampled screen offset) plus yaw,
+    // pitch and roll. Phones: flat translate + scale + roll, because iOS
+    // drops backdrop-filter on 3D-transformed elements.
+    const transform = compact
+      ? `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px) ` +
+        `rotate(${(roll0 * k).toFixed(2)}deg) scale(${persp.toFixed(4)})`
+      : `perspective(${PERSPECTIVE}px) ` +
+        `translate3d(${(p.x / persp).toFixed(1)}px, ${(p.y / persp).toFixed(1)}px, ${p.z.toFixed(1)}px) ` +
+        `rotateX(${(pitch0 * k).toFixed(2)}deg) rotateY(${(yaw0 * k).toFixed(2)}deg) ` +
+        `rotateZ(${(roll0 * k).toFixed(2)}deg)`;
+
+    keyframes.push({
+      offset: t,
+      opacity,
+      filter: `blur(${blur < 0.15 ? 0 : blur.toFixed(1)}px)`,
+      transform,
+    });
+  }
+  // Dock exactly on identity so the hand-off to the CSS settled state is invisible.
+  keyframes[last].transform = compact
+    ? "translate(0px, 0px) rotate(0deg) scale(1)"
+    : `perspective(${PERSPECTIVE}px) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+  keyframes[last].opacity = 1;
+  keyframes[last].filter = "blur(0px)";
+
+  const warpWait = Math.max(0, galaxyFormsAt - performance.now());
+  const delay = Math.round(warpWait + baseDelay + rand(0, 140));
+
+  return {
+    keyframes,
+    duration,
+    delay,
+    flight: {
+      anchorX,
+      anchorDocY: anchorY + scroll,
+      pts,
+      samples: SAMPLES,
+      start: 0,
+      duration,
+      reverse: false,
+      landed: false,
+    },
+  };
+}
+
+type FlowState = "hidden" | "entering" | "settled" | "exiting";
+
 /**
- * Marks an element as a galaxy-mode "flow" panel: in galaxy mode it starts
- * deep in the bottom right and swings into place once it enters the viewport,
- * and the entrance reverses when it exits through the bottom again (so
- * scrolling back down replays it). Panels that exit through the top stay
- * settled. Each entrance gets a freshly dealt pose (scroll rush + jitter),
- * and settled panels tilt subtly under the cursor. All visuals live in
- * space.scss under `html.space`, so the action has no effect in the default
- * theme. When galaxy mode is switched on, every panel re-arms so the sections
- * currently on screen fly in again.
+ * Marks an element as a galaxy-mode "flow" panel: in galaxy mode it rides an
+ * orbit around the galaxy core into place once it enters the viewport
+ * (see planOrbit), and flies back out along the same orbit when it exits
+ * through the bottom again (so scrolling back down replays it). Panels that
+ * exit through the top stay settled. Each entrance gets a freshly planned
+ * orbit (scroll rush + jitter), and settled panels tilt subtly under the
+ * cursor. Resting states live in space.scss under `html.space`, so the
+ * action has no visible effect in the default theme. When galaxy mode is
+ * switched on, every panel re-arms so the sections on screen fly in again.
  */
 export function flowIn(
   node: HTMLElement,
@@ -124,7 +284,105 @@ export function flowIn(
   startTracking();
 
   const baseDelay = options.delay ?? 0;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let observer: IntersectionObserver | null = null;
+  let state: FlowState = "hidden";
+  let anim: Animation | null = null;
+  let flight: Flight | null = null;
+  let lastPlan: Plan | null = null;
+
+  const clear = () => {
+    if (anim) {
+      anim.onfinish = null;
+      anim.cancel();
+      anim = null;
+    }
+    if (flight) {
+      flights.delete(flight);
+      flight = null;
+    }
+  };
+
+  /** Forward progress (0 = far, 1 = docked) of the pose currently shown. */
+  const progress = (): number => {
+    if (!anim) return state === "settled" ? 1 : 0;
+    const timing = anim.effect?.getComputedTiming();
+    const D = Number(timing?.duration ?? 0);
+    const delay = timing?.delay ?? 0;
+    const t = Number(anim.currentTime ?? 0);
+    const frac = D > 0 ? clamp01((t - delay) / D) : 0;
+    return state === "exiting" ? 1 - frac : frac;
+  };
+
+  /* Plays the planned orbit forwards (entrance) or backwards (exit) from a
+     given forward progress, so an exit interrupts an entrance mid-arc and a
+     re-entrance picks up exactly where the exit left off. */
+  const play = (plan: Plan, forward: boolean, fromP: number, delay: number) => {
+    clear();
+    const D = forward ? plan.duration : plan.duration * 0.55;
+    const done = forward ? fromP : 1 - fromP;
+    const a = node.animate(plan.keyframes, {
+      duration: D,
+      delay,
+      easing: "linear",
+      fill: "both",
+      direction: forward ? "normal" : "reverse",
+    });
+    if (done > 0) a.currentTime = delay + done * D;
+    flight = {
+      ...plan.flight,
+      start: performance.now() + delay - done * D,
+      duration: D,
+      reverse: !forward,
+      landed: !forward,
+    };
+    flights.add(flight);
+    anim = a;
+    state = forward ? "entering" : "exiting";
+    a.onfinish = () => {
+      if (anim !== a) return;
+      // Reverse: hide via CSS first, then drop the animation — no flash.
+      if (!forward) node.classList.remove("flow-in");
+      a.cancel();
+      anim = null;
+      state = forward ? "settled" : "hidden";
+      // The Flight stays registered so the canvas can finish its trail.
+    };
+  };
+
+  const enter = () => {
+    if (state === "entering" || state === "settled") return;
+    // Outside galaxy mode the panel just shows (all visuals are scoped to
+    // html.space); the orbit is only flown when there is a galaxy to orbit.
+    if (reduced || !document.documentElement.classList.contains("space")) {
+      node.classList.add("flow-in");
+      state = "settled";
+      return;
+    }
+    if (state === "exiting" && lastPlan) {
+      play(lastPlan, true, progress(), 0);
+      return;
+    }
+    clear();
+    node.classList.add("flow-in");
+    lastPlan = planOrbit(node, baseDelay);
+    play(lastPlan, true, 0, lastPlan.delay);
+  };
+
+  const exit = () => {
+    if (state === "hidden" || state === "exiting") return;
+    if (
+      reduced ||
+      !lastPlan ||
+      !document.documentElement.classList.contains("space")
+    ) {
+      clear();
+      node.classList.remove("flow-in");
+      state = "hidden";
+      return;
+    }
+    play(lastPlan, false, progress(), 0);
+  };
 
   const observe = () => {
     observer?.disconnect();
@@ -132,19 +390,13 @@ export function flowIn(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            // Deal the pose only on a real entrance — re-dealing while the
-            // panel is settled would yank a running/finished animation.
-            if (!node.classList.contains("flow-in")) {
-              dealEntrancePose(node, baseDelay);
-              node.classList.add("flow-in");
-            }
+            enter();
           } else if (
             entry.boundingClientRect.top >
             (entry.rootBounds?.height ?? window.innerHeight) / 2
           ) {
-            // Left through the bottom (scrolled back up): play the entrance
-            // in reverse via the base-state transition.
-            node.classList.remove("flow-in");
+            // Left through the bottom (scrolled back up): fly back out.
+            exit();
           }
         }
       },
@@ -156,40 +408,56 @@ export function flowIn(
   // A fresh observation fires the callback immediately with the current
   // state, so panels on screen fly in right away.
   const arm = () => {
-    // Snap to the hidden state without playing the out-transition.
-    node.style.transition = "none";
+    clear();
     node.classList.remove("flow-in");
-    void node.offsetWidth;
-    node.style.transition = "";
+    state = "hidden";
     observe();
+  };
+
+  // Galaxy mode switched off mid-flight: drop the animation and rest.
+  const settle = () => {
+    clear();
+    node.classList.add("flow-in");
+    state = "settled";
   };
 
   // Hover tilt: the settled glass angles away under the pointer, as if the
   // cursor presses on the pane. Consumed by the .flow-in settled transform.
+  // The same event feeds the liquid-glass specular in space.scss: --glass-mx/
+  // --glass-my place the highlight under the cursor, --glass-on fades it.
   const MAX_TILT = 2.2;
   const tilt = (e: PointerEvent) => {
-    if (e.pointerType !== "mouse" || !node.classList.contains("flow-in"))
-      return;
+    if (e.pointerType !== "mouse") return;
     const r = node.getBoundingClientRect();
-    const dx = ((e.clientX - r.left) / r.width) * 2 - 1;
-    const dy = ((e.clientY - r.top) / r.height) * 2 - 1;
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    node.style.setProperty("--glass-mx", `${(px * 100).toFixed(1)}%`);
+    node.style.setProperty("--glass-my", `${(py * 100).toFixed(1)}%`);
+    node.style.setProperty("--glass-on", "1");
+    if (state !== "settled") return;
+    const dx = px * 2 - 1;
+    const dy = py * 2 - 1;
     node.style.setProperty("--tilt-ry", `${(dx * MAX_TILT).toFixed(2)}deg`);
     node.style.setProperty("--tilt-rx", `${(-dy * MAX_TILT).toFixed(2)}deg`);
   };
   const untilt = () => {
     node.style.setProperty("--tilt-rx", "0deg");
     node.style.setProperty("--tilt-ry", "0deg");
+    node.style.setProperty("--glass-on", "0");
   };
 
   observe();
   window.addEventListener("space:on", arm);
+  window.addEventListener("space:off", settle);
   node.addEventListener("pointermove", tilt, { passive: true });
   node.addEventListener("pointerleave", untilt);
 
   return {
     destroy() {
+      clear();
       observer?.disconnect();
       window.removeEventListener("space:on", arm);
+      window.removeEventListener("space:off", settle);
       node.removeEventListener("pointermove", tilt);
       node.removeEventListener("pointerleave", untilt);
     },
