@@ -15,7 +15,7 @@ COPY . .
 RUN bun run build
 
 # Stage 2 - run the app
-FROM node:20-alpine AS run
+FROM node:24.22.1-alpine AS run
 
 # Install wget 
 RUN apk add --no-cache wget
