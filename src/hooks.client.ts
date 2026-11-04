@@ -1,4 +1,4 @@
-import { PUBLIC_ENVIRONMENT } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 import { handleErrorWithSentry, replayIntegration } from "@sentry/sveltekit";
 import * as Sentry from "@sentry/sveltekit";
 
@@ -17,8 +17,8 @@ Sentry.init({
   // If you don't want to use Session Replay, just remove the line below:
   integrations: [replayIntegration()],
 
-  environment: PUBLIC_ENVIRONMENT,
-	enabled: PUBLIC_ENVIRONMENT !== 'local'
+  environment: env.PUBLIC_ENVIRONMENT,
+	enabled: env.PUBLIC_ENVIRONMENT !== 'local'
 });
 
 // If you have a custom error handler, pass it to `handleErrorWithSentry`

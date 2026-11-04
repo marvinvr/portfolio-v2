@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { PUBLIC_ENVIRONMENT } from "$env/static/public";
+  import { env } from "$env/dynamic/public";
 </script>
 
 <svelte:head>
-  {#if PUBLIC_ENVIRONMENT === "production"}
+  {#if env.PUBLIC_ENVIRONMENT === "production"}
     <script
       src="https://stats.marvinvr.ch/api/script.js"
       data-site-id="008653442f42"
