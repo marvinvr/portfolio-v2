@@ -1,4 +1,4 @@
-import { YOUTUBE_API_KEY } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 import { json, error } from "@sveltejs/kit";
 import NodeCache from "node-cache";
 
@@ -22,6 +22,11 @@ export async function GET() {
     
     if (cachedVideos) {
         return json({ videos: cachedVideos, playlistUrl: `https://www.youtube.com/playlist?list=${PLAYLIST_ID}` });
+    }
+
+    const YOUTUBE_API_KEY = env.YOUTUBE_API_KEY;
+    if (!YOUTUBE_API_KEY) {
+        error(500, "YOUTUBE_API_KEY not configured");
     }
 
     const response = await fetch(

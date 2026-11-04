@@ -1,9 +1,6 @@
 import { json, error } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import {
-  WHOOP_CLIENT_ID,
-  WHOOP_CLIENT_SECRET,
-} from "$env/static/private";
+import { env } from "$env/dynamic/private";
 import {
   getWhoopAccessToken,
 } from "$lib/whoop-store";
@@ -96,6 +93,9 @@ let cachedStats:
   | null = null;
 
 async function getAccessToken(): Promise<string> {
+  const WHOOP_CLIENT_ID = env.WHOOP_CLIENT_ID;
+  const WHOOP_CLIENT_SECRET = env.WHOOP_CLIENT_SECRET;
+
   if (!WHOOP_CLIENT_ID || !WHOOP_CLIENT_SECRET) {
     error(500, "Missing required Whoop credentials");
   }

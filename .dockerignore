@@ -1,0 +1,21 @@
+# Never ship local or generated env files in the build context
+.env
+.env.*
+!.env.example
+
+# Dependencies and build output are produced inside the image
+node_modules
+build
+.svelte-kit
+package
+
+# VCS / editor / OS noise
+.git
+.github
+.vscode
+.history
+.DS_Store
+*.log
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.sentryclirc
