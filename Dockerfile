@@ -1,5 +1,5 @@
 # Stage 1 - build the app
-FROM oven/bun:1 as build
+FROM oven/bun:1@sha256:1d22548f177f4ff38e0c15baa3c2c46c6c2060ba2d1bc573bb4720b407548f1d as build
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ COPY . .
 RUN bun run build
 
 # Stage 2 - run the app
-FROM node:24.22.1-alpine AS run
+FROM node:24.22.2-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85 AS run
 
 # Install wget 
 RUN apk add --no-cache wget
