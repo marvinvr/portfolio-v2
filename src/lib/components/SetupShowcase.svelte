@@ -219,7 +219,7 @@
             <div 
               class="absolute inset-0 transition-all duration-700 ease-in-out"
               style="background: linear-gradient(135deg, rgb({dominantColor}) 0%, rgb({secondaryColor}) 50%, rgb({dominantColor}) 100%)"
-            />
+            ></div>
             
             <!-- Animated gradient overlay for depth -->
             <div 
@@ -227,12 +227,12 @@
               style="background: radial-gradient(circle at 30% 40%, rgba({secondaryColor}, 0.4) 0%, transparent 50%),
                      radial-gradient(circle at 70% 60%, rgba({dominantColor}, 0.3) 0%, transparent 50%),
                      radial-gradient(circle at 50% 50%, rgba({dominantColor}, 0.5) 0%, transparent 70%);"
-            />
+            ></div>
 
             <!-- Foreground image (cover, crossfades) -->
             <button 
               class="absolute inset-0 z-[2] cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50"
-              on:click={openModal}
+              onclick={openModal}
               aria-label="Open fullscreen view"
             >
               {#each images as img, i (img.src + '-fg')}
@@ -259,14 +259,14 @@
               class="absolute inset-0 pointer-events-none z-[3]"
               style="background: radial-gradient(ellipse at center, transparent 45%, rgba({dominantColor}, 0.15) 70%, rgba({dominantColor}, 0.35) 85%, rgba({dominantColor}, 0.5) 100%);"
               aria-hidden="true"
-            />
+            ></div>
 
             {#if images.length > 1}
               <button
                 class="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-sm bg-white/80 hover:bg-white backdrop-blur-sm z-10 transition-colors duration-150 border border-gray-200"
                 type="button"
                 aria-label="Previous image"
-                on:click={prev}
+                onclick={prev}
               >
                 <ChevronLeft class="size-6 text-gray-700" />
               </button>
@@ -274,7 +274,7 @@
                 class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-sm bg-white/80 hover:bg-white backdrop-blur-sm z-10 transition-colors duration-150 border border-gray-200"
                 type="button"
                 aria-label="Next image"
-                on:click={next}
+                onclick={next}
               >
                 <ChevronRight class="size-6 text-gray-700" />
               </button>
@@ -304,7 +304,7 @@
             </div>
           </div>
         {:else}
-          <div class="w-full aspect-square rounded-md border border-gray-200 bg-gray-50" />
+          <div class="w-full aspect-square rounded-md border border-gray-200 bg-gray-50" ></div>
         {/if}
       </div>
 
@@ -362,16 +362,17 @@
   <div
     use:portal
     class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
-    on:click={closeModal}
-    on:keydown={handleKeydown}
+    onclick={closeModal}
+    onkeydown={handleKeydown}
     role="dialog"
+    tabindex="-1"
     aria-modal="true"
     aria-label="Fullscreen image viewer"
   >
     <!-- Close button -->
     <button
       class="absolute top-4 right-4 p-2 rounded-sm bg-white/10 hover:bg-white/20 text-white transition-colors duration-150 z-50"
-      on:click={closeModal}
+      onclick={closeModal}
       aria-label="Close fullscreen view"
     >
       <X class="size-5" />
@@ -392,7 +393,7 @@
       <div 
         class="absolute inset-0 -z-10 transition-all duration-700"
         style="background: radial-gradient(circle at center, rgba({secondaryColor}, 0.2) 0%, rgba({dominantColor}, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%)"
-      />
+      ></div>
 
       <!-- Image -->
       <div class="relative max-w-full max-h-full">
@@ -412,14 +413,14 @@
       {#if images.length > 1}
         <button
           class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 rounded-sm bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors duration-150"
-          on:click|stopPropagation={prev}
+          onclick={(event) => { event.stopPropagation(); prev(); }}
           aria-label="Previous image"
         >
           <ChevronLeft class="size-8 text-white" />
         </button>
         <button
           class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 rounded-sm bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors duration-150"
-          on:click|stopPropagation={next}
+          onclick={(event) => { event.stopPropagation(); next(); }}
           aria-label="Next image"
         >
           <ChevronRight class="size-8 text-white" />
@@ -439,7 +440,7 @@
                 href={images[currentIndex].link}
                 target="_blank"
                 rel="noopener noreferrer"
-                on:click|stopPropagation
+                onclick={(event) => event.stopPropagation()}
                 aria-label={`Open link for ${images[currentIndex].productName}`}
               >
                 <ExternalLink class="size-4" />

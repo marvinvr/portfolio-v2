@@ -184,7 +184,7 @@ try {
     activePage = page;
     page.setDefaultTimeout(15_000);
     await page.clock.setFixedTime(new Date(fixedTime));
-    page.on('pageerror', (error) => failures.push(`${viewportName}: ${error.message}`));
+    page.on('pageerror', (error) => failures.push(`${viewportName}: ${error.stack ?? error.message}`));
     page.on('console', (message) => { if (message.type() === 'error') failures.push(`${viewportName}: ${message.text()}`); });
     page.on('response', (response) => {
       if (response.url().startsWith(baseURL) && response.status() >= 500) failures.push(`${response.status()} ${response.url()}`);

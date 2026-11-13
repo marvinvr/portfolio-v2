@@ -7,10 +7,9 @@
     import Robot from "svelte-material-icons/Robot.svelte";
     import ChartBellCurve from "svelte-material-icons/ChartBellCurve.svelte";
     import Docker from "svelte-material-icons/Docker.svelte";
-    import type { Component } from "svelte";
     import SectionHeader from "./SectionHeader.svelte";
 
-    const iconMap: Record<string, Component> = {
+    const iconMap: Record<string, typeof LanguagePython> = {
         python: LanguagePython,
         typescript: LanguageTypescript,
         java: LanguageJava,

@@ -43,8 +43,8 @@
   }
 
   let { data }: Props = $props();
-  const { content, meta, slug } = data;
-  const headerImage = image(slug, meta.header);
+  const { content, meta, slug } = $derived(data);
+  const headerImage = $derived(image(slug, meta.header));
 
   const SvelteComponent = $derived(content);
 </script>

@@ -8,7 +8,7 @@
   }
 
   let { data }: Props = $props();
-  const { latestPosts } = data;
+  const { latestPosts } = $derived(data);
 </script>
 
 <svelte:head>

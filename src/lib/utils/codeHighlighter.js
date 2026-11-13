@@ -4,13 +4,15 @@ const THEME = 'github-dark';
 
 /**
  * Returns code with curly braces and backticks replaced by HTML entity equivalents
- * @param {string} html - highlighted HTML
+ * @param {string} code - highlighted HTML
  * @returns {string} - escaped HTML
  */
 function escapeHtml(code) {
+  /** @type {Record<string, string>} */
+  const entities = { '{': '&lbrace;', '}': '&rbrace;', '`': '&grave;' };
   return code.replace(
     /[{}`]/g,
-    (character) => ({ '{': '&lbrace;', '}': '&rbrace;', '`': '&grave;' })[character],
+    (character) => entities[character],
   );
 }
 
@@ -20,6 +22,7 @@ function escapeHtml(code) {
  * @returns {number[]}
  */
 function rangeParser(rangeString) {
+  /** @type {number[]} */
   const result = [];
   const ranges = rangeString.split(',');
   ranges.forEach((element) => {
@@ -43,29 +46,35 @@ function rangeParser(rangeString) {
  */
 function makeFocussable(html) {
   const root = parse(html);
-  root.querySelector('pre').setAttribute('tabIndex', '0');
-  return root.toString();
+  const pre = root.querySelector('pre');
+  if (pre) {
+    pre.setAttribute('tabIndex', '0');
+    pre.setAttribute('role', 'region');
+    pre.setAttribute('aria-label', 'Code example');
+  }
+  // Svelte flags focusable <pre> elements, but keyboard users need to scroll code.
+  return '<!-- svelte-ignore a11y_no_noninteractive_tabindex (Scrollable code examples need keyboard focus.) -->' + root.toString();
 }
 
 /**
  * @param code {string} - code to highlight
  * @param lang {string} - code language
  * @param meta {string} - code meta
- * @returns {string} - highlighted html
+ * @returns {Promise<string>} - highlighted html
  */
 async function highlighter(code, lang, meta) {
   const shikiHighlighter = await getHighlighter({
     theme: THEME,
   });
 
+  const highlightMeta = meta && /{([\d,-]+)}/.exec(meta);
   let html;
-  if (!meta) {
+  if (!highlightMeta) {
     html = shikiHighlighter.codeToHtml(code, {
       lang,
     });
   } else {
-    const highlightMeta = /{([\d,-]+)}/.exec(meta)[1];
-    const highlightLines = rangeParser(highlightMeta);
+    const highlightLines = rangeParser(highlightMeta[1]);
 
     html = shikiHighlighter.codeToHtml(code, {
       lang,

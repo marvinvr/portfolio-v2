@@ -72,7 +72,7 @@
       description: 'Average sleep time',
       tooltip: 'Total time spent in light, REM, and deep sleep stages. Does not include time awake in bed. Most adults need 7-9 hours for optimal recovery and performance.'
     }
-  ];
+  ] as const;
 
   onMount(async () => {
     try {

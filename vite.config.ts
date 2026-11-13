@@ -12,6 +12,15 @@ export default defineConfig({
             url: "https://logs.mvr.bz/"
         }
     }), sveltekit(), imagetools()],
+    environments: {
+        // Lightning CSS drops the unprefixed backdrop-filter in galaxy mode.
+        // SvelteKit overrides build.cssMinify, so set the client environment.
+        client: {
+            build: {
+                cssMinify: 'esbuild'
+            }
+        }
+    },
     server: {
         allowedHosts: ['mbp.rooster-vega.ts.net']
     }
