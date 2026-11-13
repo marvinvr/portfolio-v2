@@ -19,3 +19,6 @@ package
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .sentryclirc
+
+# Visual baselines/reports are mounted only in the isolated screenshot runner
+visual

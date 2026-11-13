@@ -1,0 +1,48 @@
+{
+  "sourceCommit": "063291d211eca62c23c87cbe6b885a846f117c45",
+  "fingerprint": {
+    "browser": "156.0.8078.80",
+    "platform": "linux/arm64",
+    "fonts": "6a8d33e038a4d62d6db20f881215ed713457923bcfa399433f90594da469229c",
+    "fixedTime": "2026-01-15T12:00:00.000Z",
+    "locale": "en-US",
+    "timezone": "UTC",
+    "policy": {
+      "threshold": 0.1,
+      "includeAA": false,
+      "maxDiffPixels": 100
+    }
+  },
+  "screens": [
+    "desktop-blog-to-post.png",
+    "desktop-blog.png",
+    "desktop-carousel-next.png",
+    "desktop-galaxy.png",
+    "desktop-home.png",
+    "desktop-modal-next.png",
+    "desktop-modal.png",
+    "desktop-post-2023-11-11-hello-world.png",
+    "desktop-post-2023-11-13-wildlife-cameras.png",
+    "desktop-post-2023-11-18-writing-your-homework-with-chatgpt.png",
+    "desktop-post-2023-11-22-building-my-second-brain-with-obsidian.png",
+    "desktop-post-2024-10-03-activation-aware-weight-quantization-awq.png",
+    "desktop-post-2025-06-06-write-a-book-ai.png",
+    "desktop-post-2025-07-23-building-accurate-solar-system-model-javascript.png",
+    "desktop-post-2025-12-11-building-docktail.png",
+    "mobile-blog-to-post.png",
+    "mobile-blog.png",
+    "mobile-carousel-next.png",
+    "mobile-galaxy.png",
+    "mobile-home.png",
+    "mobile-modal-next.png",
+    "mobile-modal.png",
+    "mobile-post-2023-11-11-hello-world.png",
+    "mobile-post-2023-11-13-wildlife-cameras.png",
+    "mobile-post-2023-11-18-writing-your-homework-with-chatgpt.png",
+    "mobile-post-2023-11-22-building-my-second-brain-with-obsidian.png",
+    "mobile-post-2024-10-03-activation-aware-weight-quantization-awq.png",
+    "mobile-post-2025-06-06-write-a-book-ai.png",
+    "mobile-post-2025-07-23-building-accurate-solar-system-model-javascript.png",
+    "mobile-post-2025-12-11-building-docktail.png"
+  ]
+}

@@ -1,5 +1,16 @@
 # CLAUDE.md
 
+## Visual regression safety
+
+After UI-affecting changes or dependency upgrades, run `bun run visual check`.
+Review every screen reported in `visual/report/report.md` against its baseline,
+actual, and diff images, and confirm that each change is intended before pushing.
+Do not overwrite the baseline to hide regressions. For an intentional baseline
+update, run `bun run visual baseline`, review the images, then run `check` twice;
+both checks must report zero changes before committing the baseline. This explicit
+visual-check requirement supersedes the general preference against running tests
+for these changes. Setup, isolation, thresholds, and coverage: [visual/README.md](visual/README.md).
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview

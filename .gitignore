@@ -51,3 +51,6 @@ Temporary Items
 
 # Sentry Config File
 .sentryclirc
+
+# Visual screenshots under review (baselines are versioned)
+/visual/report/

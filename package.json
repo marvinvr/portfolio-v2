@@ -10,13 +10,17 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "whoop:token": "node scripts/get-whoop-token.js",
     "whoop:clear": "node scripts/clear-whoop-access-token.js",
-    "postbuild": "bunx svelte-sitemap --out-dir ./build/prerendered --change-freq daily --domain https://marvinvr.ch && mv ./build/prerendered/sitemap.xml ./build/client/sitemap.xml"
+    "postbuild": "bunx svelte-sitemap --out-dir ./build/prerendered --change-freq daily --domain https://marvinvr.ch && mv ./build/prerendered/sitemap.xml ./build/client/sitemap.xml",
+    "visual": "node scripts/visual.mjs"
   },
   "devDependencies": {
     "@sveltejs/kit": "^2.37.1",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
     "autoprefixer": "^10.4.16",
     "mdsvex": "^0.11.0",
+    "pixelmatch": "8.0.0",
+    "playwright": "1.64.1",
+    "pngjs": "7.0.0",
     "postcss": "^8.4.31",
     "sass": "^1.69.5",
     "svelte": "^5.38.7",
